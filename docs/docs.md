@@ -1,0 +1,1 @@
+Corpo principale della documentazione, qui inseriamo i file md sulla teoria pura e dura
