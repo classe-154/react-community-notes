@@ -1,8 +1,24 @@
-# 3.⚛️ Props
+#### Modulo: React  
+**Titolo:** Guida Completa a Props 
 
-### **3.1 Passaggio dei dati**
+**📍 Indice Rapido**
 
-#### 3.1.1 Cosa sono le Props
+1. [Passaggio dei dati in react](#1-passaggio-dei-dati)
+   - 1.1 [Cosa sono le Props](#11-cosa-sono-le-props)
+   - 1.2 [Sintassi e Destrutturazione](#12-sintassi-e-destrutturazione)  
+   - 1.3 [Props Speciali](#13-props-speciali)
+2. [Organizzazione dei dati](#2-organizzazione-dei-dati)
+   - 2.1 [Props Multiple](#21-props-multiple)  
+   - 2.2 [Rendering di liste da oggetti tramite props e operatore ternario](#22-rendering-di-liste-da-oggetti-tramite-props-e-operatore-ternario)  
+   - 2.3 [Il Props Drilling](#23-il-prop-drilling-il-passamano-delle-props)
+   - 
+3. [Risorse Techniche](#3--risorse-e-documentazione)
+4. [Key Takeaways del giorno](#4--key-takeaways-del-giorno)
+5. [Glossario: termini essenziali](#5--glossario)
+
+### **1 Passaggio dei dati**
+
+#### 1.1 Cosa sono le Props
 Le **Props** (abbreviazione di _properties_) sono lo strumento fondamentale per far parlare i componenti tra loro. Immaginale come dei messaggi o delle istruzioni che un componente "Genitore" invia a un componente "Figlio" per dirgli cosa deve mostrare.
 
 - **Dinamismo:** In React i componenti sono riutilizzabili; le props sono il modo principale per renderli dinamici. Senza di esse, ogni componente sarebbe una copia identica dell'altro.
@@ -39,7 +55,7 @@ export default App;
 ```
     
 
-#### 3.1.2 Sintassi e Destrutturazione 
+#### 1.2 Sintassi e Destrutturazione 
 Un componente può ricevere valori come parametri. Possiamo usare l'oggetto intero o, per rendere il codice più leggibile, estrarre direttamente i valori che ci servono.
 
 - **Azione:** Usa la destrutturazione tra le graffe `{ }` nei parametri della funzione per evitare di scrivere `props.nome` ogni volta.
@@ -59,7 +75,7 @@ function App() {
 }
 ```
 
-#### 3.1.3 Props Speciali 
+#### 1.3 Props Speciali 
 Esistono modi avanzati per gestire i dati e il contenuto annidato:
 
 - **La prop `children`:** Contiene tutto ciò che viene inserito tra i tag di apertura e chiusura di un componente. Utile per creare "contenitori" grafici.
@@ -152,9 +168,9 @@ function App() {
 }
 ```
 
-### **3.2 Organizzazione dei Dati**
+### **2 Organizzazione dei Dati**
 
-#### 3.2.1 Props Multiple 
+#### 2.1 Props Multiple 
 Un componente può gestire infiniti dati contemporaneamente, basta elencarli nella destrutturazione.
 
 ```js
@@ -168,7 +184,7 @@ function UserCard({ nome, eta }) {
 }
 ```
 
-#### 3.2.2 Rendering di Liste da Oggetti tramite Props e Operatore Ternario
+#### 2.2 Rendering di Liste da Oggetti tramite Props e Operatore Ternario
 Spesso i dati non arrivano dal componente Padre come singoli testi, ma come un oggetto unico e strutturato (ad esempio, un report inviato da una centralina con lo stato di vari sensori). Per gestirli in modo dinamico, il componente Figlio riceve l'oggetto tramite le props, lo trasforma in un array leggibile e lo elabora.
 
 - **La trasformazione:** Usiamo **Object.entries()** per convertire l'oggetto ricevuto in un array di coppie [chiave,   valore]. Questo trucco rende il componente Figlio universale e pronto a ricevere qualsiasi oggetto dal Padre.
@@ -220,7 +236,7 @@ export default StatusSicurezza;
 ```
 
 
-#### 3.2.3 Il Prop Drilling (Il "Passamano" delle Props)
+#### 2.3 Il Prop Drilling (Il "Passamano" delle Props)
 Il Prop Drilling (letteralmente "perforazione tramite props") si verifica quando decidiamo di spostare un dato in alto nell'albero dei componenti per renderlo accessibile a più rami (questa operazione si chiama lifting state, o sollevamento dello stato).
 
 Il problema sorge quando un componente posizionato molto in fondo ha bisogno di quel dato: per farglielo arrivare, siamo costretti a passare la prop lungo tutta la catena, livello dopo livello, attraversando componenti che non ne avrebbero alcun bisogno.
@@ -277,7 +293,7 @@ Quando l'albero dei componenti diventa troppo profondo, React mette a disposizio
 
 ---
 
-### 🔗 Risorse e Documentazione
+### 3. 🔗 Risorse e Documentazione
 
 - 📚 **React Docs:** [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
     
@@ -291,7 +307,7 @@ Quando l'albero dei componenti diventa troppo profondo, React mette a disposizio
 
 ---
 
-### 🚀 Key Takeaways del Giorno
+### 4. 🚀 Key Takeaways del Giorno
 
 - **Comunicazione:** Le props servono a passare dati dal componente padre al figlio.
     
@@ -306,7 +322,7 @@ Quando l'albero dei componenti diventa troppo profondo, React mette a disposizio
 - **Cicli su Oggetti via Props:** Quando il Padre passa un oggetto come prop, il Figlio può usare Object.entries() per trasformarlo in un array e generare liste dinamiche.
 
 ---
-### 📖 Glossario
+### 5. 📖 Glossario
 
 | **Termine Istituzionale** | **Definizione Formale**                           | **"Spiega Brutta"**                                                         |
 | ------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------- |
