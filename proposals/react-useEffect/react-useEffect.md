@@ -1,34 +1,34 @@
 # React `useEffect` — Appunti di lezione
 
-#1 Argomenti Lezione: React useEffect
+1. Argomenti Lezione: React useEffect
 
-  1.1 Cos'è useEffect? (Gestione dei Side Effects)
+ - [1.1 Cos'è useEffect? (Gestione dei Side Effects)](#11-cosè-useeffect)
 
-  1.2 Anatomia di useEffect (Setup, Cleanup e Dipendenze)
+ - [1.2 Anatomia di useEffect (Setup, Cleanup e Dipendenze)](#12-anatomia-di-useeffect)
 
-  1.3 Ciclo di vita di React (Trigger, Render, Commit, Paint)
+ - [1.3 Ciclo di vita di React (Trigger, Render, Commit, Paint)](#13-ciclo-di-vita-di-react)
 
-  1.4 Le tre varianti dell'array delle dipendenze
+ - [1.4 Le tre varianti dell'array delle dipendenze](#14-le-tre-varianti-dellarray-delle-dipendenze)
 
-  1.5 La funzione di cleanup (Prevenzione Memory Leaks)
+ - [1.5 La funzione di cleanup (Prevenzione Memory Leaks)](#15-la-funzione-di-cleanup)
 
-  1.6 Ordine di esecuzione — Schema completo
+ - [1.6 Ordine di esecuzione — Schema completo](#16-ordine-di-esecuzione--schema-completo)
 
-  1.7 Esempi pratici di sincronizzazione
-  * 1.7.1 Mount e Unmount di un componente
-  * 1.7.2 Sincronizzazione dinamica tramite Dipendenze
-  * 1.7.3 Interazione con le API del Browser
+ - [1.7 Esempi pratici di sincronizzazione](#17-esempi-pratici)
+  * [1.7.1 Mount e Unmount di un componente](#171-esempio-1--mount-e-unmount)
+  * [1.7.2 Sincronizzazione dinamica tramite Dipendenze](#172-esempio-2--dipendenze)
+  * [1.7.3 Interazione con le API del Browser](#173-esempio-3--side-effects-del-browser)
 
-  1.8 Errori comuni e Anti-pattern
-  * 1.8.1 Loop infiniti da oggetti instabili
-  * 1.8.2 Aggiornamenti di stato su componenti smontati
-  * 1.8.3 Omissione di variabili nell'array delle dipendenze
+ - [1.8 Errori comuni e Anti-pattern](#18-errori-comuni)
+  * [1.8.1 Loop infiniti da oggetti instabili](#181-loop-infinito--dipendenza-che-cambia-ad-ogni-render)
+  * [1.8.2 Aggiornamenti di stato su componenti smontati](#182-aggiornare-state-su-componente-smontato)
+  * [1.8.3 Omissione di variabili nell'array delle dipendenze](#183-dimenticare-le-dipendenze)
 
-  1.9 Tabella riepilogativa e Casi d'uso
+ - [1.9 Tabella riepilogativa e Casi d'uso](#19-tabella-riepilogativa)
 
-2. Risorse Tecniche (MDN, W3S, React)
-3. Key Takeaways 
-4. Glossario
+2. [Risorse Tecniche (MDN, W3S, React)](#-risorse-tecniche)
+3. [Key Takeaways](#key-takeaways) 
+4. [Glossario](#4-glossario)
 
 ## 1.1 Cos'è `useEffect`?
 
@@ -442,7 +442,7 @@ useEffect(() => {
 ---
 
 
-# 3 Key Takeaways
+## Key Takeaways
 
 
 * **Quando si usa?**
@@ -458,7 +458,7 @@ useEffect(() => {
 
 * **Cose da non dimenticare!**
   * 🧹 **La Cleanup (`return () => {}`):** Se crei un timer o una connessione, devi sempre "spegnerli" nel return. Altrimenti continuano a girare in background consumando memoria (*memory leak*).
-  * **L'array delle dipendenze:** * `[]` vuoto = esegui solo all'inizio.
+  * **L'array delle dipendenze:** * `[]` vuoto = esegui solo al mount del componente.
     * `[variabile]` = riesegui solo se quel dato cambia.
     * *Nessun array* = esegui a ogni singolo render (da evitare!).
   * **Dichiarare tutto:** Ogni variabile (stato o prop) che usi dentro l'effetto *deve* stare nell'array delle dipendenze, o l'effetto userà dati vecchi e congelati nel tempo.
