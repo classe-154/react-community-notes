@@ -1,12 +1,31 @@
 In JSX, le iterazioni vengono gestite inserendo codice JavaScript all’interno delle parentesi graffe {}.
-Il metodo più comune ed efficiente per generare liste di elementi è utilizzare la funzionE
+Il metodo più comune ed efficiente per generare liste di elementi è utilizzare la funzione
 .map() di JavaScript, che permette di ciclare un array e restituire un nuovo array di elementi JSX.
 
 Ci sono alcune regole fondamentali da ricordare quando si utilizza .map() in React:
 
 1. La key (da non dimenticare mai)
 
-Quando si genera una lista di elementi, la key deve essere assegnata all’elemento root restituito dall’iterazione, cioè al primo elemento JSX renderizzato all’interno della .map().
+Quando si genera una lista di elementi, la key va assegnata all'elemento JSX principale restituito da ogni iterazione della map, cioè al primo elemento JSX renderizzato all’interno della .map().
+
+const users = [
+  { id: 1, name: "Mario" },
+  { id: 2, name: "Luigi" }
+];
+
+function List() {
+  return (
+    <ul>
+      {users.map(user => {
+        return (
+          <li key={user.id}> aggiungiamo qui la key in quanto primo elemento jsx dopo la return
+            {user.name}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 Perché la key è importante?
 
