@@ -12,13 +12,13 @@
    - 1.2 [Gestione dello Stato Avanzata: Oggetti e Handler Generici](#12-gestione-dello-stato-avanzata-oggetti-e-handler-generici)
    - 1.3 [Gestione del Submit e Reset del Form](#13-gestione-del-submit-e-reset-del-form)
 
-2. [Mandare i dati con POST](#2-organizzazione-dei-dati)
+2. [Mandare i dati con POST](#2-mandare-i-dati-con-post)
    - 2.1 [Comporre una richiesta di POST](#21-comporre-una-richiesta-di-post)  
    - 2.2 [Custom Hook per fare la POST](#22-custom-hook-per-fare-la-post)  
 
-3. [Risorse Techniche](#3--risorse-e-documentazione)
-4. [Key Takeaways del giorno](#4--key-takeaways-del-giorno)
-5. [Glossario: termini essenziali](#5--glossario)
+3. [Risorse Tecniche](#-3-risorse-tecniche)
+4. [Key Takeaways del giorno](#-4-key-takeaways)
+5. [Glossario: termini essenziali](#-5-syllabus)
 
 # 1. Forms
 
@@ -322,7 +322,7 @@ function sendData(formData) {
             'Content-type': 'application/json'
         },
         method:'POST',
-        body:JSON.stringify(post)
+        body:JSON.stringify(formData)
     };
 
     fetch(API_URL, options)
