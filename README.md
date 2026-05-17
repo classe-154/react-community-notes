@@ -2,7 +2,7 @@ Landing page, Indice Mastro e Team Showcase
 
 # Indice Completo
 1. Argomenti
-    - [React: intro e Terminale](./proposals/react-intro-terminal/React-Intro-Terminal.md)
+    - [React: intro e Terminale](./proposals/react-intro-terminal/React-Intro-E-Terminal.md)
     - [React JSX Components](./proposals/react-jsx-components/React-JSX-Components.md)
     - [React Props](./proposals/react-props/React-Props.md)
     - [React Iterazioni JSX](./proposals/react-iterazioni-jsx/React-Iterazioni-JSX.md)
