@@ -4,19 +4,22 @@
 **📍 Indice Rapido**
 
 1. [React & Node.js: introduzione](#1-react--nodejs-introduzione)
-    1.1 [Breve storia di React e Node.js](#11-breve-storia-di-react-e-nodejs)
-    1.2 [Node.js: Il Motore del Back-end](#12-nodejs-il-motore-del-back-end)
-    1.3 [Gestione dei Pacchetti: Perché usare `pnpm`?](#13-gestione-dei-pacchetti-perché-usare-pnpm)
+   - 1.1 [Breve storia di React e Node.js](#11-breve-storia-di-react-e-nodejs)
+   - 1.2 [Node.js: Il Motore del Back-end](#12-nodejs-il-motore-del-back-end)
+   - 1.3 [Gestione dei Pacchetti: Perché usare `pnpm`?](#13-gestione-dei-pacchetti-perché-usare-pnpm)
 2. [Workflow del Developer: Terminale e Comandi](#2-workflow-del-developer-terminale) 
-    2.1 [Terminal: navigazione base](#21-terminal-navigazione-base-)
-    2.2 [Terminal: pnpm e Vite](#22-terminal-pnpm-e-vite)
-        2.2.1 [Comandi essenziali](#221-essenziali)
-        2.2.2 [Ulteriori comandi](#222-ulteriori-comandi)
+   - 2.1 [Terminal: navigazione base](#21-terminal-navigazione-base-)
+   - 2.2 [Terminal: pnpm e Vite](#22-terminal-pnpm-e-vite)
+       * 2.2.1 [Comandi essenziali](#221-essenziali)
+       * 2.2.2 [Ulteriori comandi](#222-ulteriori-comandi)
 3. [React: l'architetto del front end](#3-react-larchitetto-del-front-end)
-    3.1 [Struttura base di un progetto React](#31-struttura-base-di-un-progetto-react)
-    3.2 [I pilastri di React](#32-i-pilastri-di-react)
+   - 3.1 [Struttura base di un progetto React](#31-struttura-base-di-un-progetto-react)
+   - 3.2 [I pilastri di React](#32-i-pilastri-di-react)
 4. [Import & Export](#4-import--export)
 5. [Best practice e tips](#5-best-practice-e-tips)
+6. [Riferimenti](#6-riferimenti)
+7. [Key Takeaways](#7-key-takeaways)
+8. [Glossario](#8-glossario)
 
 
 # 1. React & Node.js: introduzione
@@ -144,3 +147,36 @@ In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import
 * **Scripts personalizzati:** Nel `package.json` puoi creare alias. Se aggiungi `"pippo": "ls -la"`, potrai eseguirlo con `pnpm pippo`. ⚡
 
 ---
+
+## 6. Riferimenti
+- [pnpm](https://pnpm.io/installation)
+- [React](https://react.dev/)
+- [JSX](https://react.dev/learn/writing-markup-with-jsx)
+
+---
+
+## 7. Key Takeaways
+
+- React è una libreria per creare interfacce utente dichiarative basate su componenti.
+- Node.js è un runtime JavaScript che permette di eseguire codice sul server e gestire pacchetti con `pnpm`.
+- `pnpm` è veloce, efficiente nello spazio su disco e garantisce installazioni ripetibili grazie a `pnpm-lock.yaml`.
+- In React, `JSX` permette di scrivere markup HTML dentro JavaScript e ogni componente deve restituire un singolo elemento radice.
+- I comandi principali in un progetto React/Vite sono `pnpm install` per installare, `pnpm dev` per avviare il server e `pnpm create vite` per creare un nuovo progetto.
+- Usa `className` invece di `class` in JSX, e `htmlFor` invece di `for` negli elementi di form.
+- `StrictMode` aiuta a individuare bug in fase di sviluppo, quindi è normale vedere doppi render in sviluppo.
+- I componenti React devono iniziare con una lettera maiuscola e possono essere riutilizzati facilmente.
+
+## 8. Glossario
+
+| Termine | Definizione | Spiegazione pratica |
+| --- | --- | --- |
+| React | Libreria JavaScript per costruire interfacce utente basate su componenti. | Permette di descrivere come deve apparire l’interfaccia in base allo stato attuale. |
+| Node.js | Runtime JavaScript per eseguire codice fuori dal browser. | Consente di usare JavaScript anche sul server. |
+| pnpm | Package manager performante per Node.js. | Installa dipendenze con collegamenti fisici, riducendo lo spazio su disco. |
+| Vite | Strumento di sviluppo per progetti moderni come React. | Crea, avvia e aggiorna il progetto in tempo reale con reload veloce. |
+| JSX | Sintassi che combina JavaScript e markup HTML. | Scrivi componenti React con una sintassi simile all’HTML. |
+| Componenti | Funzioni o classi che restituiscono UI in React. | Pezzi riutilizzabili dell’interfaccia, come mattoni di un layout. |
+| Stato (State) | Dati locali che determinano il comportamento e l’aspetto di un componente. | Quando cambiano, React aggiorna automaticamente la UI. |
+| Virtual DOM | Rappresentazione in memoria dell’interfaccia utente. | React confronta le differenze e aggiorna solo le parti necessarie. |
+| Export / Import | Meccanismo per condividere codice tra moduli. | `export` rende disponibile un elemento; `import` lo riporta nel file. |
+| StrictMode | Modalità di sviluppo che esegue controlli aggiuntivi sui componenti. | Aiuta a trovare bug e comportamenti indesiderati prima della produzione. |
