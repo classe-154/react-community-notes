@@ -112,6 +112,8 @@ function ProductList() {
 
 export default ProductList;
 ```
+Nota Bene:
+Se il tuo Effect non è stato causato da un’interazione (come un clic), React generalmente lascia prima che il browser aggiorni e mostri la schermata aggiornata, e solo dopo esegue l’Effect. Se il tuo Effect sta facendo qualcosa di visivo (ad esempio posizionare un tooltip) e il ritardo è percepibile (per esempio provoca uno sfarfallio), sostituisci `useEffect` con [`useLayoutEffect`](https://react.dev/reference/react/useLayoutEffect).
 
 ### 1.1.4 Il Rischio del Loop Infinito
 
@@ -161,5 +163,5 @@ _I punti fondamentali da portarsi a casa_
 | **Termine Istituzionale** | **Definizione Formale**                                                                                                                                  | **"Spiega Brutta"**                                                                                      |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Data Fetching**         | Processo asincrono di richiesta e acquisizione di dati da una sorgente o API esterna verso l'applicazione.                                               | Andare a bussare al server per farsi dare le informazioni che mancano alla pagina.                       |
-| **Re-render**             | Ciclo di riesecuzione del codice di un componente da parte di React a seguito di una variazione di stato o di prop.                                      | React che ricalcola da capo tutta la pagina perché è cambiato qualcosa e deve aggiornare la vista.       |
+| **Re-render**             | Ciclo di riesecuzione del codice di un componente da parte di React a seguito di una variazione di stato o di prop.                                      | React che ricalcola il componente perché è cambiato qualcosa e deve aggiornare la vista.       |
 | **Asincronia**            | Modello di esecuzione in cui un'operazione viene avviata senza bloccare il flusso principale del programma, gestendo il risultato in un secondo momento. | Chiedere una cosa che richiede tempo e continuare a fare altro mentre si aspetta che arrivi la risposta. |
