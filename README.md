@@ -7,6 +7,7 @@ Landing page, Indice Mastro e Team Showcase
     - [React Iterazioni JSX](./proposals/react-iterazioni-jsx/React-Iterazioni-JSX.md)
     - [React useState](./proposals/react-useState/React-useState.md)
     - [React useEffect](./proposals/react-useEffect/React-useEffect.md)
+    - [React Data Binding](./proposals/react-data-binding/React-Data-Binding.md)
     - [React Form & POST](./proposals/react-form-post/React-Form-&-POST.md)
     - [React Context API](./proposals/react-context-api/React-Context-API.md)
     - [React Data Fetching](./proposals//react-data-fetching/React-Data-Fetching.md)
