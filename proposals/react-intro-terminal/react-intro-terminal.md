@@ -148,6 +148,26 @@ In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import
 
 ---
 
+# 6. 📖 Glossario Tecnico
+
+| Termine Istituzionale | Definizione Formale | “Spiega Brutta” (In pratica) |
+| :--- | :--- | :--- |
+| **Node.js** | Ambiente di esecuzione (runtime) lato server, asincrono e guidato dagli eventi, basato sul motore JavaScript V8 di Chrome. | Il motore che tira fuori JavaScript dal browser e ti permette di usarlo per scrivere il back-end o far girare programmi sul computer. |
+| **React** | Libreria JavaScript open-source e dichiarativa per la creazione di interfacce utente (UI) dinamiche basate su componenti riutilizzabili. | L'architetto del front-end che ti fa decidere "come deve apparire" la pagina in base ai dati, aggiornando tutto da solo senza impazzire. |
+| **Vite** | Build tool moderno che offre un server di sviluppo locale estremamente rapido e ottimizza il packaging dei file di progetto. | **NON È UN FRAMEWORK!** È lo strumento svizzero che ti crea la cartella del progetto in un secondo e ti apre il server di prova locale. |
+| **pnpm** | Gestore di pacchetti efficiente per Node.js che ottimizza lo spazio su disco utilizzando hard link e un content-addressable storage globale. | Un gestore di pacchetti più intelligente e veloce di npm, che non ti copia cento volte gli stessi file sul PC salvando un sacco di spazio sul disco. |
+| **pnpm-lock.yaml** | File di configurazione generato automaticamente che registra le versioni esatte delle dipendenze per garantire la consistenza nel team. | Il "patto di sangue" del progetto: blocca le versioni precise delle librerie così tutti i developer usano le stesse identiche cose. **Non si tocca!** |
+| **JSX** | Sintassi che permette di scrivere strutture HTML in file JS. | Un modo per scrivere “HTML dentro JavaScript” per costruire la pagina in modo più semplice e leggibile. |
+| **Fragment** | `<> ... </>` | Un contenitore invisibile (o *dummy tag*) che serve a raggruppare più elementi senza creare un tag extra nel DOM. |
+| **Componente** | Funzione JavaScript che restituisce JSX. | Un pezzo della pagina che puoi riusare: prende dati e restituisce cosa deve essere mostrato a schermo (come un mattoncino Lego). |
+| **Virtual DOM** | Rappresentazione in memoria del DOM reale utilizzata da React per ottimizzare e velocizzare gli aggiornamenti della UI. | Una copia "finta" della pagina che React usa per capire cosa è cambiato davvero e aggiornare solo quel pezzettino, senza ricaricare tutto. |
+| **Stato (State)** | Oggetto JavaScript interno a un componente che memorizza dati dinamici soggetti a mutamento. | La "memoria a breve termine" del componente: se questo dato cambia, React ridisegna la pagina da solo in automatico. |
+| **Default Export** | Meccanismo di ES6 per esportare un singolo modulo o elemento principale da un file JavaScript. | L'esportazione principale del file: quando la importi non servono le parentesi graffe e puoi ribattezzarla come ti pare. |
+| **Named Export** | Meccanismo di ES6 per esportare molteplici elementi identificati specificamente dal loro nome. | Esportazioni multiple fatte col proprio nome: quando le importi, devi metterle obbligatoriamente dentro le parentesi graffe `{}`. |
+| **React StrictMode** | Componente helper di React che attiva controlli e avvertimenti aggiuntivi in sviluppo, renderizzando i componenti due volte. | Una modalità "rompiballe" che fa girare tutto due volte per scovare bug nascosti ed effetti collaterali prima di andare online. |
+
+---
+
 ## 6. Riferimenti
 - [pnpm](https://pnpm.io/installation)
 - [React](https://react.dev/)
