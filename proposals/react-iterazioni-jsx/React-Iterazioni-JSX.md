@@ -24,7 +24,7 @@
 
 4. [Risorse e Documentazione](#4-risorse-e-documentazione)
 5. [Key Takeaways del giorno](#5-key-takeaways-del-giorno)
-6. [Glossario: Definizioni Istituzionali vs Spiega Brutta](#6-glossario-tecnico)
+6. [Glossario: Definizioni Istituzionali vs Spiega Brutta](#6-glossario-definizioni-istituzionali-vs-spiega-brutta)
 
 
 
