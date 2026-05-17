@@ -9,11 +9,11 @@
     *   [1.2 Il Meccanismo del Two-Way Data Binding (Controlled Components)](#12-il-meccanismo-del-two-way-data-binding-controlled-components)
         *   [1.2.1 Come funziona il “Doppio Legame” in 2 Passaggi](#121-come-funziona-il-doppio-legame-in-2-passaggi)
 *   [1.3 Gestione dello Stato Avanzata: Oggetti e Handler Generici](#13-gestione-dello-stato-avanzata-oggetti-e-handler-generici)
-    *   [1.3.1 Focus Tecnico: Proprietà Calcolate [name]](#131-focus-tecnico-proprietà-calcolate-name)
+    *   [1.3.1 Focus Tecnico: Proprietà Calcolate `[name]`](#131-focus-tecnico-proprietà-calcolate-name)
     *   [L'importance dello Spread Operator (...user)](#limportanza-dello-spread-operator-user)
 *   [1.4 Gestione del Submit e Reset del Form](#14-gestione-del-submit-e-reset-del-form)
     *   [1.4.1 Best Practices per l'Invio dei Dati](#141-best-practices-per-linvio-dei-dati)
-*   [💡 Schema Logico: Il Flusso dei Dati](#schema-logico-il-flusso-dei-dati)
+*   [💡 Schema Logico: Il Flusso dei Dati](#-schema-logico-il-flusso-dei-dati)
 *   [2 Risorse e Documentazione](#2-risorse-e-documentazione)
 *   [3 Key Takeaways](#3-key-takeaways)
 *   [4 Glossario](#4-glossario)
@@ -246,6 +246,8 @@ Registrando l'handler su `onSubmit` nel form:
 * funzionerà anche premendo il tasto Invio;
 * migliorerà accessibilità e UX.
 
+Nota bene: se il button non ha un type ma è dentro una form, il type di default sarà "submit".
+
 ---
 
 # 💡 Schema Logico: Il Flusso dei Dati
@@ -341,7 +343,7 @@ Quando cambia lo stato:
 | **Data Binding**                  | Processo sistematico che stabilisce una connessione logica e automatica tra i dati dell'applicazione (Model) e gli elementi di presentazione visiva (View).          | Il ponte magico che fa sì che se tocchi qualcosa nel codice cambia lo schermo, e se l'utente scrive sullo schermo cambia la variabile nel codice.                                         |
 | **Controlled Component**          | Elemento di un form HTML il cui valore corrente è governato ed impostato esclusivamente dallo stato di React, che funge da “singola fonte di verità”.                | Un input totalmente sottomesso a React: non ricorda nemmeno cosa ha scritto l'utente a meno che tu non glielo salvi esplicitamente in una variabile di stato.                             |
 | **Two-Way Binding**               | Flusso bidirezionale di sincronizzazione in cui le mutazioni del modello modificano la UI e, simmetricamente, le interazioni sulla UI modificano il modello.         | Una strada a doppio senso: la variabile comanda l'input (`value`), ma l'input aggiorna la variabile (`onChange`) ad ogni singola lettera pigiata sulla tastiera.                          |
-| **Immutabilità (State)**          | Principio per cui lo stato corrente non può subire modifiche *in-place*. React confronta solo la referenza di memoria per decidere se innescare il rendering.        | La regola d'oro per cui non puoi modificare un oggetto esistente. Devi fare una “fotocopia” totale, cambiare il dettaglio sulla copia e dare a React la copia nuova di zecca.             |
+| **Immutabilità (State)**          | Principio per cui lo stato corrente non può subire modifiche *in-place*. React confronta solo la referenza di memoria per decidere se innescare il rendering.        | La regola d'oro per cui non puoi modificare uno stato esistente. Devi fare una “fotocopia” totale, cambiare il dettaglio sulla copia e dare a React la copia nuova di zecca.             |
 | **Computed Property Names**       | Funzionalità ES6 che permette di calcolare dinamicamente le chiavi di un oggetto a runtime usando la sintassi `[name]: value`.                                       | Usare le parentesi quadre per gestire 100 input diversi con una sola funzione, usando il nome del campo come “chiave” per trovare il pezzetto giusto dello stato.                         |
 | **Single Page Application (SPA)** | Architettura web che carica una sola pagina HTML e aggiorna i contenuti tramite JavaScript usando le History API, simulando la navigazione.                          | Un sito che non si ricarica mai davvero; simula il cambio pagina via codice, rendendo ogni refresh manuale un potenziale reset della memoria dell'app.                                    |
 | **Virtual DOM & Diffing**         | Rappresentazione leggera della UI in memoria che React confronta (*Diffing*) con la versione precedente per calcolare le modifiche minime da applicare al DOM reale. | React si fa una “bozza” veloce del sito, vede cosa hai cambiato e tocca il browser vero solo per quel millimetro di codice diverso.                                                       |
