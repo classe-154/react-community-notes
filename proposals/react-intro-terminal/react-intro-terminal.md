@@ -12,9 +12,11 @@
     2.2 [Terminal: pnpm e Vite](#22-terminal-pnpm-e-vite)
         2.2.1 [Comandi essenziali](#221-essenziali)
         2.2.2 [Ulteriori comandi](#222-ulteriori-comandi)
-3. [Risorse Tecniche (MDN, W3Schools)](#3-risorse-e-documentazione)
-4. [Key Takeaways del giorno](#4-key-takeaways-del-giorno)
-5. [Glossario: termini essenziali](#5-glossario-termini-essenziali)
+3. [React: l'architetto del front end](#3-react-larchitetto-del-front-end)
+    3.1 [Struttura base di un progetto React](#31-struttura-base-di-un-progetto-react)
+    3.2 [I pilastri di React](#32-i-pilastri-di-react)
+4. [Import & Export](#4-import--export)
+5. [Best practice e tips](#5-best-practice-e-tips)
 
 
 # 1. React & Node.js: introduzione
@@ -106,7 +108,7 @@ React trasforma il modo di pensare la UI attraverso i **Componenti**.
 
 * *Regola:* Le funzioni che contengono HTML in jsx devono avere un tag principale padre. Per convenzione si usa un tag generico vuoto ***"dummy tag"*** <> </>.
 
-### 3.2 I Pilastri di React
+### 3.2 I pilastri di React
 
 1. **Componenti:** Pezzi di UI piccoli e riutilizzabili.
 2. **JSX (JavaScript XML):** Permette di scrivere HTML dentro JavaScript.
@@ -118,7 +120,7 @@ React trasforma il modo di pensare la UI attraverso i **Componenti**.
 
 ---
 
-## 4. ES6 Modules: Import & Export
+## 4. Import & Export
 
 In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import` ed `export`.
 
@@ -134,7 +136,7 @@ In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import
 
 ---
 
-## 5. Best Practices e Tips
+## 5. Best Practice e Tips
 
 * **React StrictMode:** `<StrictMode>` in fase di sviluppo renderizza i componenti due volte. Serve a scovare bug e "effetti collaterali" indesiderati. Non preoccuparti se vedi doppi log in console! 🔍
 * **Naming Convention:** I componenti React devono sempre iniziare con la **lettera maiuscola** (es. `Header`, non `header`).
