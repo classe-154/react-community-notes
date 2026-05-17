@@ -495,7 +495,7 @@ Il suo lavoro è:
 ```txt
 guardo l’URL attuale
 ↓
-cerco la Route corrispondente
+cerco la prima Route corrispondente al path selezionato
 ↓
 renderizzo il componente giusto
 ```
@@ -535,7 +535,7 @@ Questo:
 <a href="/contact">Contatti</a>
 ```
 
-fa una navigazione classica e può causare refresh.
+fa una navigazione classica e causa refresh.
 
 Con React Router si usa:
 
@@ -590,7 +590,7 @@ Link = navigazione interna semplice, senza refresh
 
 ## 1.14 `NavLink`
 
-`NavLink` è come `Link`, ma gestisce automaticamente lo stato active.
+`NavLink` è come `Link`, ma gestisce automaticamente gli stati Active e Pending.
 
 Esempio:
 
@@ -652,9 +652,9 @@ Esempio senza `end`:
 ```txt
 NavLink to="/products"
 
-/products        → active
-/products/5      → active
-/products/5/edit → active
+/products        → /products active
+/products/5      → /products active
+/products/5/edit → /products active
 ```
 
 Se vuoi che il link sia active solo sulla pagina esatta `/products`, usi `end`:
@@ -668,9 +668,9 @@ Se vuoi che il link sia active solo sulla pagina esatta `/products`, usi `end`:
 Risultato:
 
 ```txt
-/products        → active
-/products/5      → non active
-/products/5/edit → non active
+/products        → /products active
+/products/5      → /products non active
+/products/5/edit → /products non active
 ```
 
 Per la Home:
@@ -742,6 +742,7 @@ Esempio completo:
 ```
 
 `path="*"` cattura tutto ciò che non è stato intercettato dalle rotte precedenti.
+E' IMPERATIVO che la `<Route path="*" element={<NotFound/>}/>` sia l'ultima Route dentro il componente `<Routes/>` altrimenti, qualsiasi Rotta inseriamo ci porterebbe alla pagina NotFound.
 
 Esempio:
 
@@ -774,8 +775,6 @@ function NotFound() {
 
 export default NotFound
 ```
-
-Il link per tornare alla home deve essere un `Link`, non un `<a>`, così resti dentro la SPA senza refresh.
 
 ---
 
