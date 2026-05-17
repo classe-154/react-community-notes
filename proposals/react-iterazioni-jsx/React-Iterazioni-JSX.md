@@ -31,7 +31,7 @@
 
 # 1 Iterazioni in JSX
 
-In JSX, le iterazioni vengono gestite inserendo codice JavaScript all'interno delle parentesi graffe `{}`. Il metodo più comune ed efficiente per generare liste di elementi è utilizzare la funzione `.map()` di JavaScript, che permette di ciclare un array e restituire un nuovo array di elementi JSX.
+In JSX, le iterazioni vengono gestite inserendo codice JavaScript all'interno delle parentesi graffe `{}`. Il metodo più comune ed efficiente per generare liste di elementi è utilizzare la funzione `.map()` di JavaScript, che permette di ciclare un array e restituire un nuovo array di elementi JSX della stessa dimensione dell'array originario.
 
 Ci sono alcune regole fondamentali da ricordare quando si utilizza `.map()` in React.
 
@@ -171,7 +171,7 @@ Prima di mostrare i dati in React, possiamo "pulirli" usando `.filter()` per sel
 
 ## Il metodo .filter()
 
-Il metodo `.filter()` serve a creare un nuovo array contenendo solo gli elementi che rispettano una determinata condizione.
+Il metodo `.filter()` serve a creare un nuovo array contenente solo gli elementi che rispettano una determinata condizione.
 
 **Esempio:**
 
@@ -244,13 +244,13 @@ In questo caso:
 | --------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | **JSX**               | Sintassi che permette di scrivere strutture HTML in file JS. | Un modo per scrivere “HTML dentro JavaScript” per costruire la pagina in modo più semplice e leggibile.                            |
 | **Expression**        | Codice JS valutato dentro le parentesi graffe.               | Un pezzo di JavaScript che React calcola al volo e trasforma in un valore da mostrare nella pagina (es. testo, numero, risultato). |
-| **Fragment**          | `<> ... </>`                                                 | Un contenitore invisibile che serve a raggruppare più elementi senza creare un tag extra nel DOM.                                  |
+| **Fragment**          | `<> ... </>`                                                 | Un contenitore invisibile (dummy tag) che serve a raggruppare più elementi senza creare un tag extra nel DOM.                                  |
 | **Componente**        | Funzione JavaScript che restituisce JSX.                     | Un pezzo della pagina che puoi riusare: prende dati e restituisce cosa deve essere mostrato a schermo.                             |
 | **.map()**            | Metodo array che trasforma ogni elemento in un nuovo valore. | Prendi un array, fai qualcosa con ogni elemento, e ottieni un nuovo array. In React, lo usi per trasformare dati in componenti.   |
 | **key**               | Prop speciale che aiuta React a identificare elementi unici.  | Un'etichetta univoca che dici a React "questo elemento è sempre lo stesso, anche se si muove". Evita bug quando la lista cambia.   |
 | **Reconciliation**    | Processo di aggiornamento del DOM virtuale in React.          | React confronta il vecchio DOM virtuale con il nuovo e aggiorna solo le parti che sono cambiate. È come un diff intelligente.     |
 | **Destructuring**     | Tecnica per estrarre valori da oggetti o array.               | Prendi un oggetto con molte proprietà e "scarichi" solo quelle che ti servono in variabili separate. Rende il codice più pulito.  |
-| **.filter()**         | Metodo array che seleziona solo elementi che soddisfano una condizione. | Crea un nuovo array contenendo solo gli elementi per cui la funzione ritorna `true`. Utile per pulire i dati prima di renderizzare. |
+| **.filter()**         | Metodo array che seleziona solo elementi che soddisfano una condizione. | Crea un nuovo array contenente solo gli elementi per cui la funzione ritorna `true`. Utile per pulire i dati prima di renderizzare. |
 | **Operatore ternario**| Operatore condizionale compatto: `condizione ? se vero : se falso`. | Un if/else in una sola riga. Se la condizione è vera, usa il primo valore; altrimenti usa il secondo.                               |
-| **Return implicito**  | Return automatico quando usi parentesi tonde in arrow function. | `() => <div>contenuto</div>` ritorna automaticamente il JSX senza scrivere `return`. Pratico e leggibile.                          |
+| **Return implicito**  | Return automatico quando usi parentesi tonde in arrow function. |`() => (<div> contenuto </div>)` oppure `() => <div>contenuto</div>` ritorna automaticamente il JSX senza scrivere `return`. Pratico e leggibile.                          |
 | **Return esplicito**  | Return scritto manualmente con la parola chiave `return`.     | `() => { return <div>contenuto</div> }`. Più verboso ma a volte necessario se hai più logica dentro la funzione.                  |
