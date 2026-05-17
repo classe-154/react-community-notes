@@ -9,4 +9,6 @@ Landing page, Indice Mastro e Team Showcase
     - [React useEffect](./proposals/react-useEffect/React-useEffect.md)
     - [React Form & POST](./proposals/react-form-post/React-Form-&-POST.md)
     - [React Context API](./proposals/react-context-api/React-Context-API.md)
+    - [React Data Fetching](./proposals//react-data-fetching/React-Data-Fetching.md)
+    - [React Router](./proposals/react-router/React-Router.md)
     
