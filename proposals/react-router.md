@@ -1,6 +1,84 @@
-# React Router 
+#### Modulo: React
+**Titolo:** React Router
 
-## 1. Web tradizionale: MPA
+**📍 Indice Rapido**
+
+1. [React Router](#1-react-router)
+  - 1.1 [Web Tradizionale: MPA](#11-web-tradizionale-mpa)
+  - 1.2 [Single Page Application: SPA](#12-spa-single-page-application)
+  - 1.3 [Perché serve React Router](#13-perché-serve-react-router)
+  - 1.4 [Convenzione cartella pages](#14-convenzione-cartella-pages)
+  - 1.5 [Routing manuale con useState](#15-routing-manuale-con-usestate)
+  - 1.6 [Rendering condizionale con &&](#16-rendering-condizionale-con-)
+    * 1.6.1[Come funziona davvero && in Javascript](#161-come-funziona-davvero--in-javascript)
+  - 1.7 [Limiti del Routing Manuale](#17-limiti-del-routing-manuale)
+  - 1.8 [Installazione di React Router](#18-installazione-di-react-router)
+  - 1.9 [Configurazione di base](#19-configurazione-base)
+  - 1.10 [BrowserRouter](#110-browserrouter)
+  - 1.11 [Routes](#111-routes)
+  - 1.12 [Route](#112-route)
+  - 1.13 [Link: Navigare senza refresh](#113-link-navigare-senza-refresh)
+    * 1.13.1 [Quando usare Link](#1131-quando-usare-link)
+  - 1.14 [NavLink](#114-navlink)
+    * 1.14.1 [Quando usare NavLink](#1141-quando-usare-navlink)
+    * 1.14.2 [`end` su NavLink](#1142-end-su-navlink)
+    * 1.14.3 [Styling condizionale con NavLink](#1143-styling-condizionale-con-navlink)
+  - 1.15 [Gestione pagina 404](#115-path-gestione-404)
+    * 1.15.1 [Componente NotFound](#1151-componente-notfound)
+  - 1.16 [Layout Condivisi](#116-layout-condivisi)
+  - 1.17 [Outlet](#117-outlet)
+  - 1.18 [Rotta Layout senza path](#118-rotta-layout-senza-path)
+  - 1.19 [Pagina 404 dentro o fuori dal layout](#119-404-dentro-o-fuori-dal-layout)
+    * 1.19.1 [Pagina 404 dento al layout](#1191-404-dentro-il-layout)
+    * 1.19.2 [Pagina 404 fuori dal layout](#1192-404-fuori-dal-layout)
+  - 1.20 [Rotte annidate con path](#120-rotte-annidate-con-path)
+  - 1.21 [Differenza tra `Layout Route` e `Nested Route con path`](#121-differenza-tra-layout-route-e-nested-route-con-path)
+    * 1.21.1 [Route padre con path](#1211-route-padre-con-path)
+    * 1.21.2 [Route padre con element](#1212-route-padre-con-element)
+  - 1.22 [Route Prefixes](#122-route-prefixes)
+  - 1.23 [Index Route](#123-index-route)
+  - 1.24 [Parametri dinamici](#124-parametri-dinamici)
+  - 1.25 [useParams](#125-useparams)
+    * 1.25.1 [Esempio con ricerca dati](#1251-esempio-con-ricerca-dati)
+    * 1.25.2 [Parametri dinamici in un e-commerce](#1252-parametri-dinamici-in-un-e-commerce)
+    * 1.25.3 [Parametri multipli](#1253-parametri-multipli)
+  - 1.26 [Optional segments](#126-optional-segments)
+  - 1.27 [Search Params](#127-search-params-valori-dopo-)
+    * 1.27.1 [useSearchParams](#1271-usesearchparams-come-stato-nellurl)
+  - 1.28 [useNavigate](#128-usenavigate)
+    * 1.28.1 [Quando usare useNavigate](#1281-quando-usare-usenavigate)
+  - 1.29 [useLocation](#129-uselocation)
+    * 1.29.1 [locationState](#1291-locationstate)
+  - 1.30 [<Navigate> Il redirect Dichiarativo](#130-navigate-redirect-dichiarativo)
+    * 1.30.1 [<Navigate> con replace](#1301-navigate-con-replace)
+  - 1.31 [Rotte Private](#131-rotte-private)
+  - 1.32 [Element vs Component](#132-element-vs-component)
+    * 1.32.1 [Sintassi con Element](#1321-sintassi-con-element)
+    * 1.32.2 [Sintassi con Component](#1322-sintassi-con-component)
+    * 1.32.3 [Regola Semplice](#1323-regola-semplice)
+    * 1.32.4 [Esempio completo con Element](#1324-esempio-completo-con-element)
+    * 1.32.5 [Esempio Completo con Component](#1325-esempio-completo-con-component)
+2. [Ripassi importanti](#2-ripassi-importanti)
+  - 2.1 [Fetch al mount con useEffect](#21-fetch-al-mount-con-useeffect)
+  - 2.2 [History API](#22-history-api)
+  - 2.3 [CSS Modules](#23-css-modules)
+  - 2.4 [Rules of Hooks](#24-rules-of-hooks)
+
+3. [Riferimenti Rapidi](#3-riferimenti-rapidi)
+  - 3.1 [Tabella di setup rapido](#31-tabella-di-setup-rapido)
+  - 3.2 [Riferimento rapido componenti](#32-riferimento-rapido-componenti)
+  - 3.3 [Riferimento rapido hooks](#33-riferimento-rapido-hook)
+  - 3.4 [Schema finale dei concetti](#34-schema-finale-dei-concetti)
+
+4. [Risorse e Documentazione](#4-riferimenti-tecnici)
+5. [Key Takeaways del giorno](#5-key-takeaways)
+6. [Glossario: Definizioni Istituzionali vs Spiega Brutta](#6-glossario)
+
+
+
+# 1. React Router 
+
+## 1.1 Web tradizionale: MPA
 
 Nel web tradizionale si parla spesso di **MPA**, cioè **Multi-Page Application**.
 
@@ -32,7 +110,7 @@ Con un link HTML normale, il browser cambia pagina. Fa una nuova richiesta HTTP 
 
 ---
 
-## 2. SPA: Single Page Application
+## 1.2 SPA: Single Page Application
 
 React permette di costruire applicazioni SPA, cioè **Single Page Application**.
 
@@ -78,7 +156,7 @@ Non sono tre file HTML diversi. Sono tre componenti React diversi mostrati in ba
 
 ---
 
-## 3. Perché serve React Router
+## 1.3 Perché serve React Router
 
 Il problema principale è questo:
 
@@ -100,7 +178,7 @@ La modalità usata in questi appunti è il **Declarative Mode**, cioè la modali
 
 ---
 
-## 4. Convenzione: cartella `pages`
+## 1.4 Convenzione: cartella `pages`
 
 Nei progetti React è buona pratica creare una cartella:
 
@@ -134,7 +212,7 @@ layouts/MainLayout.jsx      → struttura comune della pagina
 
 ---
 
-## 5. Routing manuale con `useState`
+## 1.5 Routing manuale con `useState`
 
 Prima di usare React Router, possiamo simulare una navigazione con `useState`.
 
@@ -184,7 +262,7 @@ Questa è una specie di router artigianale.
 
 ---
 
-## 6. Rendering condizionale con `&&`
+## 1.6 Rendering condizionale con `&&`
 
 Nel codice:
 
@@ -220,7 +298,7 @@ mostra il componente solo se la condizione è vera
 
 ---
 
-## 7. Come funziona davvero `&&` in JavaScript
+### 1.6.1 Come funziona davvero `&&` in JavaScript
 
 L’operatore `&&` valuta da sinistra verso destra.
 
@@ -257,17 +335,17 @@ se isLoggedIn è false, non mostrare nulla
 
 ---
 
-## 8. Limiti del routing manuale
+## 1.7 Limiti del routing manuale
 
 Il routing fatto con `useState` funziona solo visivamente, ma ha grossi limiti.
 
-### L’URL non cambia
+### 1.7.1 L’URL non cambia
 
 Se passo da Home a Contact, l’URL resta lo stesso.
 
 Quindi non posso condividere il link alla pagina Contatti.
 
-### Il refresh resetta tutto
+### 1.7.2 Il refresh resetta tutto
 
 Se sono su Contact e aggiorno la pagina, lo stato torna al valore iniziale.
 
@@ -279,11 +357,11 @@ const [page, setPage] = useState("home")
 
 Dopo il refresh torno sempre a Home.
 
-### Avanti e indietro del browser non funzionano bene
+### 1.7.3 Avanti e indietro del browser non funzionano bene
 
 Il browser non sa che sei passato da Home a Contact, perché l’URL non è cambiato.
 
-### Non esiste deep linking
+### 1.7.4 Non esiste deep linking
 
 Non posso aprire direttamente:
 
@@ -297,7 +375,7 @@ Per risolvere questi problemi serve React Router.
 
 ---
 
-## 9. Installazione di React Router
+## 1.8 Installazione di React Router
 
 L’installazione è:
 
@@ -334,7 +412,7 @@ Non mischiare i due stili nello stesso progetto.
 
 ---
 
-## 10. Configurazione base
+## 1.9 Configurazione base
 
 Esempio:
 
@@ -369,7 +447,7 @@ Route
 
 ---
 
-## 11. `BrowserRouter`
+## 1.10 `BrowserRouter`
 
 `BrowserRouter` è il contenitore principale del routing.
 
@@ -401,7 +479,7 @@ useSearchParams
 
 ---
 
-## 12. `Routes`
+## 1.11 `Routes`
 
 `Routes` è il contenitore delle rotte.
 
@@ -426,7 +504,7 @@ renderizzo il componente giusto
 
 ---
 
-## 13. `Route`
+## 1.12 `Route`
 
 `Route` associa un URL a un componente.
 
@@ -447,7 +525,7 @@ La proprietà `element` o `Component` indica il componente da mostrare.
 
 ---
 
-## 14. `Link`: navigare senza refresh
+## 1.13 `Link`: navigare senza refresh
 
 In una SPA non devi usare il normale tag `<a>` per le navigazioni interne.
 
@@ -483,7 +561,7 @@ La differenza:
 
 `Link` sotto sotto renderizza comunque un `<a>`, ma intercetta il click, blocca il comportamento standard e aggiorna l’URL tramite React Router.
 
-### Quando usare `Link`
+### 1.13.1 Quando usare `Link`
 
 Usa `Link` per navigazioni semplici e generiche, cioè quando vuoi portare l’utente da una pagina all’altra senza bisogno di evidenziare lo stato attivo del link.
 
@@ -510,7 +588,7 @@ Link = navigazione interna semplice, senza refresh
 
 ---
 
-## 15. `NavLink`
+## 1.14 `NavLink`
 
 `NavLink` è come `Link`, ma gestisce automaticamente lo stato active.
 
@@ -544,7 +622,7 @@ Esempio CSS:
 }
 ```
 
-### Quando usare `NavLink`
+### 1.14.1 Quando usare `NavLink`
 
 Usa `NavLink` soprattutto nella Navbar o nei menu di navigazione, perché permette di capire visivamente in quale pagina si trova l’utente.
 
@@ -565,7 +643,7 @@ NavLink → navigazione + stato active
 
 ---
 
-## 16. `end` su `NavLink`
+### 1.14.2 `end` su `NavLink`
 
 Il link verso `/`, oppure verso un path padre, può risultare active anche su rotte più specifiche.
 
@@ -607,7 +685,7 @@ Per la Home:
 
 ---
 
-## 17. Styling condizionale con `NavLink`
+### 1.14.3 Styling condizionale con `NavLink`
 
 Oltre alla classe `active` automatica, `NavLink` può ricevere una funzione in `className`, `style` o `children`.
 
@@ -645,7 +723,7 @@ Qui di seguito viene mostrato anche un esempio di combinazione con Bootstrap:
 
 ---
 
-## 18. `path="*"`: gestione 404
+## 1.15 `path="*"`: gestione 404
 
 Per gestire URL non validi si usa la rotta jolly:
 
@@ -677,7 +755,7 @@ andranno tutte su `NotFound`.
 
 ---
 
-## 19. Componente `NotFound`
+### 1.15.1 Componente `NotFound`
 
 Esempio:
 
@@ -701,7 +779,7 @@ Il link per tornare alla home deve essere un `Link`, non un `<a>`, così resti d
 
 ---
 
-## 20. Layout condivisi
+## 1.16 Layout condivisi
 
 In un’app reale molte pagine hanno elementi comuni che si ripetono sempre, per esempio:
 
@@ -754,7 +832,7 @@ Quindi il layout contiene ciò che resta sempre uguale. Le pages contengono solo
 
 ---
 
-## 21. `Outlet`
+## 1.17 `Outlet`
 
 Nel layout si usa `Outlet`.
 
@@ -793,7 +871,7 @@ MainLayout
 
 ---
 
-## 22. Rotta layout senza path
+## 1.18 Rotta layout senza path
 
 Per usare un layout condiviso:
 
@@ -833,11 +911,11 @@ ma vengono mostrate dentro il layout.
 
 ---
 
-## 23. 404 dentro o fuori dal layout
+## 1.19 404 dentro o fuori dal layout
 
 Hai due possibilità.
 
-### 404 dentro il layout
+### 1.19.1 404 dentro il layout
 
 ```jsx
 <Route element={<MainLayout />}>
@@ -849,7 +927,7 @@ Hai due possibilità.
 
 La pagina 404 avrà Navbar e Footer.
 
-### 404 fuori dal layout
+### 1.19.2 404 fuori dal layout
 
 ```jsx
 <Route element={<MainLayout />}>
@@ -866,7 +944,7 @@ Dipende dal risultato che vuoi ottenere.
 
 ---
 
-## 24. Rotte annidate con path
+## 1.20 Rotte annidate con path
 
 Le rotte annidate possono anche servire per creare URL gerarchici.
 
@@ -892,11 +970,11 @@ Qui la route padre ha un `path`, quindi crea un prefisso URL.
 
 ---
 
-## 25. Differenza tra layout route e nested route con path
+## 1.21 Differenza tra layout route e nested route con path
 
 Sono entrambe rotte annidate, ma hanno scopi diversi.
 
-### Route padre con `path`
+### 1.21.1 Route padre con `path`
 
 ```jsx
 <Route path="/percorso">
@@ -912,7 +990,7 @@ Serve per creare una struttura URL comune.
 /percorso/storia
 ```
 
-### Route padre con `element`
+### 1.21.2 Route padre con `element`
 
 ```jsx
 <Route element={<MainLayout />}>
@@ -930,7 +1008,7 @@ URL non vengono prefissati
 
 ---
 
-## 26. Route prefixes
+## 1.22 Route prefixes
 
 C’è anche un caso intermedio: una Route padre con `path`, ma senza `element`.
 
@@ -956,7 +1034,7 @@ Risultato:
 
 ---
 
-## 27. `index` route
+## 1.23 `index` route
 
 Quando una rotta padre ha delle figlie, si può usare `index` per indicare la figlia predefinita.
 
@@ -988,7 +1066,7 @@ Nota importante: una index route non può avere figli; se hai bisogno di figli, 
 
 ---
 
-## 28. Parametri dinamici
+## 1.24 Parametri dinamici
 
 Se devi creare pagine dinamiche, non crei una rotta per ogni elemento.
 
@@ -1020,7 +1098,7 @@ Se un segmento del path inizia con `:`, diventa dinamico e il valore viene reso 
 
 ---
 
-## 29. `useParams()`
+## 1.25 `useParams()`
 
 Per leggere il parametro dinamico si usa `useParams`.
 
@@ -1064,7 +1142,7 @@ parseInt(userId)
 
 ---
 
-## 30. Esempio con ricerca dati
+### 1.25.1 Esempio con ricerca dati
 
 ```jsx
 import { useParams } from "react-router"
@@ -1112,7 +1190,7 @@ Se l’id non esiste, mostro un messaggio di errore.
 
 ---
 
-## 31. Parametri dinamici in un e-commerce
+### 1.25.2 Parametri dinamici in un e-commerce
 
 Nel tuo caso:
 
@@ -1142,7 +1220,7 @@ const product = products.find(
 
 ---
 
-## 32. Parametri multipli
+### 1.25.3 Parametri multipli
 
 Puoi avere anche più parametri dinamici nella stessa route.
 
@@ -1168,7 +1246,7 @@ Attenzione: i nomi dei parametri nello stesso path devono essere unici, altrimen
 
 ---
 
-## 33. Optional segments
+## 1.26 Optional segments
 
 React Router permette anche segmenti opzionali con `?`.
 
@@ -1196,7 +1274,7 @@ Questa è una funzionalità più avanzata.
 
 ---
 
-## 34. Search params: valori dopo `?`
+## 1.27 Search params: valori dopo `?`
 
 Oltre ai parametri nel path, esistono i **search params**, cioè i valori dopo il punto interrogativo.
 
@@ -1233,7 +1311,7 @@ function SearchResults() {
 
 I search params sono i valori dopo `?` nell’URL e sono accessibili con `useSearchParams`, che restituisce un’istanza di `URLSearchParams`.
 
-### `useSearchParams` come stato nell’URL
+### 1.27.1 `useSearchParams` come stato nell’URL
 
 `useSearchParams` si può pensare come una specie di `useState`, ma invece di salvare il valore solo nello stato React, lo salva nell’URL.
 
@@ -1288,7 +1366,7 @@ salva il dato nell’URL
 
 ---
 
-## 35. `useNavigate()`
+## 1.28 `useNavigate()`
 
 `useNavigate` serve per cambiare pagina tramite codice.
 
@@ -1338,7 +1416,7 @@ navigate(-1)
 
 Per la navigazione standard è meglio usare `Link` o `NavLink`, perché gestiscono meglio accessibilità, apertura in nuova scheda, click destro e comportamento naturale dei link. `useNavigate` va riservato ai casi in cui la navigazione avviene via codice.
 
-### Quando usare `useNavigate`
+### 1.28.1 Quando usare `useNavigate`
 
 Usa `useNavigate` quando prima di cambiare pagina devi eseguire una logica JavaScript.
 
@@ -1375,7 +1453,7 @@ useNavigate    → cambio pagina dopo aver eseguito codice
 
 ---
 
-## 36. `useLocation()`
+## 1.29 `useLocation()`
 
 `useLocation` serve per leggere informazioni sull’URL corrente.
 
@@ -1416,7 +1494,7 @@ hash     → frammento, es. #reviews
 state    → eventuali dati passati durante la navigazione
 ```
 
-### `location.state`
+### 1.29.1 `location.state`
 
 `location.state` permette di passare piccoli dati da una pagina all’altra senza mostrarli nell’URL.
 
@@ -1454,7 +1532,7 @@ ma la pagina può comunque sapere che l’utente arriva dal carrello.
 
 ---
 
-## 37. `Navigate`: redirect dichiarativo
+## 1.30 `Navigate`: redirect dichiarativo
 
 Oltre all’hook `useNavigate`, React Router ha anche il componente `Navigate`.
 
@@ -1483,7 +1561,7 @@ Navigate    → componente, si usa nel return/rendering condizionale
 
 È utile quando il redirect dipende da una condizione di render.
 
-### `Navigate` con `replace`
+### 1.30.1 `Navigate` con `replace`
 
 `Navigate` può ricevere la prop `replace`.
 
@@ -1513,7 +1591,7 @@ Senza `replace`, la pagina protetta potrebbe restare nella cronologia del browse
 
 ---
 
-## 38. Rotte private
+## 1.31 Rotte private
 
 Una rotta privata è una rotta accessibile solo se una certa condizione è vera, di solito se l’utente è autenticato.
 
@@ -1558,11 +1636,11 @@ Questo pattern è utile per aree riservate, dashboard, profili utente, carrelli 
 
 ---
 
-## 39. `element` vs `Component`
+## 1.32 `element` vs `Component`
 
 React Router permette due sintassi.
 
-### Sintassi con `element`
+### 1.32.1 Sintassi con `element`
 
 ```jsx
 <Route path="/contact" element={<Contact />} />
@@ -1576,7 +1654,7 @@ Qui passi un elemento React già creato.
 <Route path="/contact" element={<Contact title="Contatti" />} />
 ```
 
-### Sintassi con `Component`
+### 1.32.2 Sintassi con `Component`
 
 ```jsx
 <Route path="/contact" Component={Contact} />
@@ -1588,7 +1666,7 @@ React Router crea internamente l’elemento.
 
 Questa sintassi è comoda quando non devi passare props.
 
-### Regola semplice
+### 1.32.3 Regola semplice
 
 ```txt
 element   → vuole <Componente />
@@ -1615,7 +1693,7 @@ Sbagliato:
 
 ---
 
-## 40. Esempio completo con `element`
+### 1.32.4 Esempio completo con `element`
 
 ```jsx
 import { BrowserRouter, Routes, Route } from "react-router"
@@ -1645,7 +1723,7 @@ export default App
 
 ---
 
-## 41. Esempio completo con `Component`
+### 1.32.5 Esempio completo con `Component`
 
 ```jsx
 import { BrowserRouter, Routes, Route } from "react-router"
@@ -1683,7 +1761,9 @@ Nota:
 
 ---
 
-## 42. Fetch al mount con `useEffect`
+# 2 Ripassi Importanti
+
+## 2.1 Fetch al mount con `useEffect`
 
 Di seguito viene ripassato anche un concetto importante collegato alle pagine di routing: caricare dati quando una pagina viene montata.
 
@@ -1729,7 +1809,7 @@ Questo è il momento giusto per caricare dati da un’API quando entri in una pa
 
 ---
 
-## 43. History API
+## 2.2 History API
 
 Le **History API** sono API native del browser. React Router le usa internamente per simulare la navigazione in una SPA.
 
@@ -1783,7 +1863,7 @@ React Router aggiorna i componenti
 
 ---
 
-## 44. CSS Modules
+## 2.3 CSS Modules
 
 Ripasso anche dell’uso dei **CSS Modules**.
 
@@ -1825,7 +1905,7 @@ Questo evita conflitti con classi globali, per esempio quelle di Bootstrap.
 
 ---
 
-## 45. Rules of Hooks
+## 2.4 Rules of Hooks
 
 Un altro ripasso importante riguarda le **Rules of Hooks**.
 
@@ -1866,8 +1946,9 @@ La condizione si mette **dentro** l’hook, non attorno all’hook.
 
 ---
 
+# 3 Riferimenti Rapidi
 
-## Tabella di scelta rapida
+## 3.1 Tabella di setup rapido
 
 | Se devi... | Usa... | Perché |
 |---|---|---|
@@ -1884,7 +1965,7 @@ La condizione si mette **dentro** l’hook, non attorno all’hook.
 
 ---
 
-## 46. Riferimento rapido: componenti
+## 3.2 Riferimento rapido: componenti
 
 | Componente | Quando usarlo | Esempio |
 |---|---|---|
@@ -1898,7 +1979,7 @@ La condizione si mette **dentro** l’hook, non attorno all’hook.
 
 ---
 
-## 47. Riferimento rapido: hook
+## 3.3 Riferimento rapido: hook
 
 | Hook | Quando usarlo | Esempio |
 |---|---|---|
@@ -1909,7 +1990,7 @@ La condizione si mette **dentro** l’hook, non attorno all’hook.
 
 ---
 
-## 48. Schema finale dei concetti
+## 3.4 Schema finale dei concetti
 
 ```txt
 SPA
@@ -2004,3 +2085,54 @@ Rules of Hooks
 ↓
 gli hook vanno chiamati sempre al primo livello
 ```
+
+# 4. Riferimenti Tecnici
+[React Router Dichiarativo](https://reactrouter.com/start/declarative/installation)
+[React Router Routing](https://reactrouter.com/start/declarative/routing)
+[React Router Navigating Declarative](https://reactrouter.com/start/declarative/navigating)
+[React Router Navigating useNavigate](https://reactrouter.com/start/framework/navigating)
+[React Router Params](https://reactrouter.com/start/declarative/url-values)
+[React Router Outlet](https://reactrouter.com/api/components/Outlet#outlet)
+
+[Approfondimento Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks)
+[Approfondimento useEffect](https://react.dev/reference/react/useEffect)
+[Approfondimento historyAPI](https://developer.mozilla.org/en-US/docs/Web/API/History_API)
+[Approfondimento CSS Modules](https://www.w3schools.com/REACT/react_css_modules.asp)
+
+# 5. Key Takeaways
+
+- **Routing in SPA:** React Router sincronizza l'URL con i componenti senza ricaricare la pagina, permettendo avanti/indietro, deep linking e condivisione di URL.
+- **Setup minimo:** usa `BrowserRouter` per collegare la History API, e `Routes` + `Route` per mappare `path` a componenti.
+- **Navigazione dichiarativa:** per link interni usa `Link` o `NavLink` (quest'ultimo fornisce lo stato `active` per lo styling).
+- **Rotte dinamiche:** definisci segmenti con `:param` e leggili con `useParams()` (i valori sono stringhe).
+- **Query string e stato nell'URL:** `useSearchParams()` gestisce i parametri dopo `?`; `useLocation().state` permette passare dati temporanei tra pagine.
+- **Navigazione programmata e redirect:** `useNavigate()` per navigare via codice; `<Navigate />` per redirect dichiarativi (usa `replace` quando necessario).
+- **Layout e Outlet:** crea layout comuni che contengono `Outlet` per rendere consistenti Navbar/Footer e montare le pagine figlie.
+- **404 e fallback:** usa `path="*"` per gestire pagine non trovate e valuta se mostrare il 404 dentro o fuori dal layout.
+- **Regole pratiche:** rispetta le Rules of Hooks (non chiamare hook condizionalmente) e preferisci `NavLink` in navbar per accessibilità e feedback visivo.
+
+# 6. Glossario
+
+| Termine | Spiegazione Formale | Spiegazione Semplice |
+|---------|-------------------|----------------------|
+| **JSX** | Sintassi che permette di scrivere strutture HTML dentro file JS/TS. | HTML scritto direttamente nel JavaScript: rende il codice più leggibile. |
+| **BrowserRouter** | Contenitore che collega React Router alla History API del browser. | Il wrapper che abilita la navigazione client-side senza ricaricare la pagina. |
+| **Routes** | Contenitore che valuta l'URL corrente e decide quale `Route` mostrare. | L'insieme delle regole: "per questo URL mostra questo componente". |
+| **Route** | Associazione dichiarativa tra un `path` e un componente (`element` o `Component`). | Una singola regola di routing: URL → Componente. |
+| **Link** | Componente che intercetta i click e naviga usando la History API. | Link che non ricaricare la pagina quando clicchi. |
+| **NavLink** | Variante di `Link` che valuta automaticamente lo stato `isActive`. | Link che si evidenzia da solo quando sei sulla pagina corrispondente. |
+| **Outlet** | Segnaposto nel layout dove vengono renderizzate le rotte figlie. | Lo spazio dentro il layout dove appare il contenuto della pagina. |
+| **useParams()** | Hook che restituisce un oggetto con i parametri dinamici del path. | Leggi gli ID o gli slug dall'URL (sono sempre stringhe). |
+| **useSearchParams()** | Hook che legge e modifica la query string dopo `?` nell'URL. | Usa l'URL come stato per filtri e ricerche condivisibili. |
+| **useNavigate()** | Hook che restituisce una funzione per navigare via codice. | Cambia pagina da una funzione dopo aver eseguito logica (es. login, submit). |
+| **useLocation()** | Hook che restituisce l'oggetto location con `pathname`, `search`, `hash` e `state`. | Sapere dove sei adesso: URL, query, frammento, dati passati. |
+| **Navigate** | Componente che esegue redirect dichiarativi nel JSX (render). | Redirect scritto direttamente nel return: utile per rotte protette. |
+| **History API** | API browser native (`pushState`, `replaceState`, `popstate`) per gestire la cronologia. | Il meccanismo sotto il cofano che cambia l'URL senza ricaricare. |
+| **path="*"** | Route jolly che cattura tutti gli URL non riconosciuti dalle rotte precedenti. | La regola che mostra la pagina 404 quando non c'è match. |
+| **Layout** | Componente che contiene parti comuni (Navbar, Footer) e un `Outlet`. | Il guscio della pagina: elementi fissi + area che cambia. |
+| **Index route** | Route predefinita di una Route padre, mostrata quando l'URL corrisponde esattamente al padre. | La pagina che appare quando sei esattamente sul percorso del padre. |
+| **Parametri dinamici** | Segmenti del path che iniziano con `:` (es. `:userId`) e diventano leggibili con `useParams()`. | Valori variabili nell'URL che puoi estrarre. |
+| **Search params** | Coppie chiave/valore dopo il `?` nell'URL (es. `?q=phone&category=tech`). | Filtri e ricerche che vivono nell'URL e sono facili da condividere. |
+| **CSS Modules** | File `.module.css` importati come oggetti JavaScript con scopi locali. | Classi CSS uniche per evitare conflitti globali. |
+| **Rules of Hooks** | Regole che obbligano a chiamare gli hook sempre nello stesso ordine nel componente. | Non mettere hook dentro `if`, `for` o funzioni: chiamali sempre al top. |
+
