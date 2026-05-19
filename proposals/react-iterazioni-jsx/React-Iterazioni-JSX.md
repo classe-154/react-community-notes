@@ -46,8 +46,6 @@ Quando lavori con React, scoprirai rapidamente che la **programmazione funzional
 Dati → Trasformazione Funzionale (.map() / .filter()) → JSX → UI sullo schermo
 ```
 
-In questa sezione imparerai come usare questi strumenti per scrivere codice React pulito, leggibile e performante.
-
 ---
 
 ## 1.1 L'attributo key: Il Pilastro delle Liste
@@ -382,47 +380,7 @@ function ListaUtentiAttivi() {
 
 ---
 
-# 2 Il Destructuring Avanzato
-
-Quando utilizziamo `.map()` per ciclare i dati, potremmo accedere alle proprietà dell'oggetto in questo modo:
-
-```jsx
-utenti.map(utente => (
-  <p key={utente.id}>{utente.nome}</p>
-))
-```
-
-Questo approccio è corretto, ma quando gli oggetti contengono molte proprietà, scrivere continuamente `utente.nomeProprietà` può rendere il codice più lungo e meno leggibile.
-
-## Cos'è il destructuring?
-
-Il destructuring permette di **"estrarre" le proprietà di un oggetto** e salvarle in variabili più comode da utilizzare.
-
-**Esempio con variabile:**
-
-```jsx
-const utente = {
-  id: 1,
-  nome: 'Mario'
-}
-const { id, nome } = utente
-```
-
-Ora possiamo usare direttamente `id` e `nome` senza scrivere `utente.id` o `utente.nome`.
-
-## Destructuring dentro la .map()
-
-Possiamo fare questa operazione direttamente nei parametri della funzione:
-
-```jsx
-utenti.map(({ id, nome }) => (
-  <p key={id}>{nome}</p>
-))
-```
-
----
-
-# 3 Operatori Ternari e Condizioni
+# 2 Operatori Ternari e Condizioni
 
 ## Usare condizioni direttamente nel render
 
