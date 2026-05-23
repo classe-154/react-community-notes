@@ -86,7 +86,7 @@ Alla base dell'uso del terminale, ci sono i comandi di spostamento tra le direct
 
 - `pnpm -v`		        = (pnpm, node o qualsiasi altro programma) indica la versione e conferma che il programma è installato;
 - `volta list`		    = indica la versione di volta e node nel progetto;
-- ``CNTRL+C``		    = **COMANDO** per uscire dal terminale custom;
+- ``CTRL+C``		    = **COMANDO** per uscire dal terminale custom;
 
 > **Nota:** Puoi creare un nuovo comando 'pnpm' aggiungendolo all'oggetto 'scripts' all'interno di "package.json":
 ```
@@ -105,19 +105,15 @@ React trasforma il modo di pensare la UI attraverso i **Componenti**.
 
 - La cartella `src` in un progetto React contiene file con sintassi **ES6 + JSX**, quindi un misto tra ***ECMASCRIPT*** e ***JAVASCRIPT***. Le funzioni in questi file possono resituire sia JS che HTML.
 
-- Nel file `App.js` è contenuta la struttura principale del progetto.
+- Nel file `App.jsx` è contenuta la struttura principale del progetto.
 
-- Il `.gitignore` viene generato in automatico, ignorando anche il folder `node_modules` perché tutte le dipendenze sono già listate nel `package.json` e possono essere riscaricate in automatico con il comando `>pnpm install`.
-
-* *Regola:* Le funzioni che contengono HTML in jsx devono avere un tag principale padre. Per convenzione si usa un tag generico vuoto ***"dummy tag"*** <> </>.
+- Il `.gitignore` viene generato in automatico, ignorando anche il folder `node_modules` perché tutte le dipendenze sono già listate nel `package.json` e possono essere riscaricate in automatico con il comando `pnpm install`.
 
 ### 3.2 I pilastri di React
 
 1. **Componenti:** Pezzi di UI piccoli e riutilizzabili.
 2. **JSX (JavaScript XML):** Permette di scrivere HTML dentro JavaScript.
 * *Regola:* Ogni componente deve restituire un **singolo elemento radice**. Se non vuoi aggiungere un `div` inutile, usa un **Fragment** `<> ... </>`. 🧩
-
-
 3. **Virtual DOM:** React aggiorna solo ciò che è cambiato, rendendo l'app fluida.
 4. **Stato (State):** La "memoria" del componente. Quando lo stato cambia, React "re-renderizza" automaticamente la vista.
 
@@ -127,8 +123,8 @@ React trasforma il modo di pensare la UI attraverso i **Componenti**.
 
 In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import` ed `export`.
 
-- Tramite `export` posso creare variabili globali da poter usare in tutto il progetto.
-- All'interno del documento che mi serve, con `import` importo la variabile globale nel documento.
+- Tramite `export` posso creare variabili da poter riutilizzare in tutto il progetto.
+- All'interno del documento che mi serve, con `import` importo le variabili nel documento.
 
 ### Default Export vs Named Export
 
@@ -144,7 +140,6 @@ In React, ogni file è un modulo isolato. Per condividere codice, usiamo `import
 * **React StrictMode:** `<StrictMode>` in fase di sviluppo renderizza i componenti due volte. Serve a scovare bug e "effetti collaterali" indesiderati. Non preoccuparti se vedi doppi log in console! 🔍
 * **Naming Convention:** I componenti React devono sempre iniziare con la **lettera maiuscola** (es. `Header`, non `header`).
 * **JSX vs HTML:** In JSX usa `className` invece di `class` e `htmlFor` invece di `for`.
-* **Scripts personalizzati:** Nel `package.json` puoi creare alias. Se aggiungi `"pippo": "ls -la"`, potrai eseguirlo con `pnpm pippo`. ⚡
 
 ---
 
