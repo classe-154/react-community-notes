@@ -37,7 +37,7 @@ function BottoneInvio() {
 
 - **Modularità:** Se il tasto "Invia" si rompe, devi intervenire solo sul componente `Bottone`, senza rischiare di danneggiare il resto del sito.
     
-- **Riutilizzabilità:** Una volta creato il componente `CardProdotto`, puoi usarlo cento volte in punti diversi dell'app semplicemente richiamando il suo nome come se fosse un tag HTML.
+- **Riutilizzabilità:** Una volta creato il componente `BottoneInvio`, puoi usarlo cento volte in punti diversi dell'app semplicemente richiamando il suo nome come se fosse un tag HTML.
     
 
 #### 1.1.2 JSX: JavaScript + XML 
@@ -45,7 +45,7 @@ JSX è l'estensione sintattica che ci permette di scrivere codice simile all'HTM
 
 - **Esempio di Sintassi:**
 
-```js
+```jsx
 	function Saluto() {
 	  return <h1>Benvenuti nel nostro progetto!</h1>; 
 }
@@ -80,15 +80,15 @@ Le parentesi graffe sono il ponte tra HTML e logica. Tutto ciò che viene inseri
 
 - **Esempio Pratico:**
 
-```js
-	function ProfiloUtente() {
+```jsx
+function ProfiloUtente() {
   const nome = "Mario";
   const oreLavorate = 8;
 
   return (
     <div>
-      <h2>Utente: {nome}</h2>
-      <p>Oggi hai lavorato per {oreLavorate * 60} minuti.</p>
+      <h2>Utente: { nome }</h2>
+      <p>Oggi hai lavorato per { oreLavorate * 60 } minuti.</p>
     </div>
   );
 }
@@ -97,9 +97,9 @@ Le parentesi graffe sono il ponte tra HTML e logica. Tutto ciò che viene inseri
 
 - **Il Portale `{ }`**: Le graffe interrompono l'HTML e dicono a React: _"Esegui questo pezzo come JavaScript"_.
     
-- **Stampa di variabili**: `{nome}` recupera il valore "Mario" e lo inserisce nel tag `<h2>`. Se cambi il valore della variabile, il testo nel sito si aggiorna da solo.
+- **Stampa di variabili**: `{ nome }` recupera il valore "Mario" e lo inserisce nel tag `<h2>`. Se cambi il valore della variabile, il testo nel sito si aggiorna da solo.
     
-- **Calcoli al volo**: `{oreLavorate * 60}` dimostra che puoi fare operazioni logiche direttamente nell'interfaccia. React calcola il risultato (480) e lo mostra all'utente.
+- **Calcoli al volo**: `{ oreLavorate * 60 }` dimostra che puoi fare operazioni logiche direttamente nell'interfaccia. React calcola il risultato (480) e lo mostra all'utente.
     
 
 **In breve:** Senza graffe scriveresti un testo fisso; con le graffe scrivi un'interfaccia che "pensa" e visualizza dati reali.
@@ -112,8 +112,8 @@ Poiché JSX vive dentro JavaScript, deve rispettare alcune regole per non creare
 
    - **Esempio Corretto:**
    
-```js
-	function ListaContatti() {
+```jsx
+function ListaContatti() {
   return (
     <>
       <h3>Contatti</h3>
