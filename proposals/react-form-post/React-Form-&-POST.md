@@ -305,7 +305,7 @@ function FormRegistrazione() {
 }
 
 ```
-Sarà nostro compito, immplementare una funzione che si occupi di mandare i dati di questa `form` ad una API quando viene scatenato l'evento di `submit`
+Sarà nostro compito, implementare una funzione che si occupi di mandare i dati di questa `form` ad una API quando viene scatenato l'evento di `submit`
 Andiamo a vedere che aspetto avrebbe innanzitutto una funzione che si occupa di fare il "POST" ad una API:
 ```js
 // src/utility/sendData.js
@@ -492,7 +492,7 @@ function FormRegistrazione() {
 }
 
 ```
-Il cambio di `postData` al momento del submit farà si che la `useEffect` che ha tra le sue dependencies `postData` venga eseguita e quindi venga fatto il POST.
+### Il cambio di `postData` al momento del submit farà si che la `useEffect` che ha tra le sue dependencies `postData` venga eseguita e quindi venga fatto il POST.
 ---
 
 ## 📌 3. Risorse Tecniche
