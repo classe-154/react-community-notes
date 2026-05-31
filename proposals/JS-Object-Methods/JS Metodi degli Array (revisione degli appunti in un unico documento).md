@@ -1,3 +1,5 @@
+# JS Object Methods
+
 📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
 
 **Titolo:** Manuale Definitivo sui Metodi degli Array: Manipolare i dati senza stress 
@@ -6,15 +8,15 @@
 
 ### 📍 Indice Rapido
 
-1. [[#1.1 forEach (L'Iteratore Massivo)]]
-2. [[#1.2 map (La Fabbrica di Dati)]]
-3. [[#1.3 filter (Il Selettore)]]
-4. [[#1.4 find (Il Cercatore)]]
-5. [[#1.5 reduce (Il Calcolatore)]]
-6. [[#1.6 sort (L'Ordinatore)]]
-7. [[#🔗 Risorse e Documentazione]]
-8. [[#🚀 Key Takeaways del Giorno]]
-9. [[#📖 Glossario dei Metodi]]
+1. [1.1 forEach (L'Iteratore Massivo)](#11-foreach-literatore-massivo)
+2. [1.2 map (La Fabbrica di Dati)](#12-map-la-fabbrica-di-dati)
+3. [1.3 filter (Il Selettore)](#13-filter-il-selettore)
+4. [1.4 find (Il Cercatore)](#14-find-il-cercatore)
+5. [1.5 reduce (Il Calcolatore)](#15-reduce-il-calcolatore)
+6. [1.6 sort (L'Ordinatore)](#16-sort-lordinatore)
+7. [🔗 Risorse e Documentazione](#-risorse-e-documentazione)
+8. [🚀 Key Takeaways del Giorno](#-key-takeaways-del-giorno)
+9. [📖 Glossario dei Metodi](#-glossario-dei-metodi)
 
 ---
 
