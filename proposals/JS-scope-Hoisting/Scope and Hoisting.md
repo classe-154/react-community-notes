@@ -138,8 +138,10 @@ console.log(i);
 
 L'Hoisting è un comportamento automatico in cui JavaScript, prima di eseguire il codice riga per riga, sposta mentalmente tutte le dichiarazioni in cima al loro scope di appartenenza. È come se un cameriere al ristorante ti portasse il conto prima ancora che tu abbia aperto il menu. Con la vecchia parola chiave `var`, il cameriere ti porta un foglio bianco (`undefined`); con le moderne `let` e `const`, invece, finisci direttamente nella _Temporal Dead Zone_ (Zona Morta Temporale), una terra di mezzo in cui la variabile esiste ma è severamente vietato toccarla prima della sua reale inizializzazione.
 
-**b) Esempi di codice**
+**b) Definizioni con Esempi di codice**
 
+**Definizione**:
+  - _Hoisting_ é il meccanismo per cui JavaScript, prima di leggere il codice, individua tutte le variabili e le funzioni e le "prenota" in memoria, facendole esistere ancora prima che arrivi il turno della riga in cui le hai scritte.
 
 ```JavaScript
 // ❌ CODICE CHE SCRIVI (Pensando che esploda tutto)
@@ -152,6 +154,10 @@ console.log(nomeGatto); // undefined (Esiste la scatola, ma dentro è vuota!)
 nomeGatto = "Malvagio"; // L'assegnamento del valore rimane al suo posto originale
 ```
 
+**Definizione**:
+  - _Temporal Dead Zone (TDZ)_ é la "zona d'ombra" (il blocco di tempo) in cui una variabile creata con let o const esiste già nella memoria ma non può ancora essere usata. Inizia all'apertura del blocco di codice e finisce nell'esatto momento in cui la variabile viene definita e le viene assegnato un valore.
+
+
 
 ```JavaScript
 // ❌ CODICE CHE SCRIVI CON LET
@@ -162,6 +168,7 @@ let nomeCane = "Birba";
 // Spiegazione: 'let' viene sollevata, ma non viene inizializzata a undefined.
 // Da inizio blocco fino alla riga di 'let nomeCane', sei nella Temporal Dead Zone!
 ```
+
 
 **c) Varianti e casi limite (Hoisting delle Funzioni)**
 
