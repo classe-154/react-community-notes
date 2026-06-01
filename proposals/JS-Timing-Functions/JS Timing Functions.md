@@ -63,7 +63,7 @@ L'asincronia permette al programma di rimanere reattivo mentre queste operazioni
 
 ---
 
-####[ 1.4 Cosa sono le Timing Functions](#-indice-rapido)
+#### [ 1.4 Cosa sono le Timing Functions](#-indice-rapido)
 
 Le **Timing Functions** rappresentano il ponte pratico verso l'asincronia: sono funzioni native che permettono di programmare l'esecuzione di codice nel tempo. Le due più importanti sono `setTimeout()` e `setInterval()`. Il tempo in queste funzioni viene sempre espresso in **millisecondi** (1000ms = 1 secondo).
 
