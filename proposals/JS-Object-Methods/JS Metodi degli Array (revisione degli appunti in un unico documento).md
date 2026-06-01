@@ -29,13 +29,29 @@ Il metodo `forEach` è un'operazione nativa progettata per scorrere un array ed 
 - **Visualizzazione Mentale:** Un nastro trasportatore porta i dati davanti a un operatore che esegue un'azione (es. stampare un nome) su ogni elemento che passa, senza però creare un nuovo contenitore.
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     array.forEach((elemento, indice, arrayOriginale) => {
       // Azione da compiere
     });
     ```
     
 - **Casi d'uso con Array di Oggetti:** È ideale per generare "effetti collaterali" come stampare dati a schermo o modificare tag nel DOM.
+    ```JavaScript
+    const prodotti = [
+        { id: 1, nome: "Smartphone", prezzo: 700, categoria: "Elettronica", inStock: true },
+        { id: 2, nome: "Laptop", prezzo: 1200, categoria: "Elettronica", inStock: false },
+        { id: 3, nome: "Giacca a vento", prezzo: 120, categoria: "Abbigliamento", inStock: true },
+        { id: 4, nome: "Cuffie Wireless", prezzo: 80, categoria: "Elettronica", inStock: true },
+        { id: 5, nome: "Zaino", prezzo: 50, categoria: "Abbigliamento", inStock: true }
+    ];
+    // Stampiamo una stringa di log per ogni prodotto disponibile 
+    prodotti.forEach(prodotto => {
+    if (prodotto.inStock) {
+    console.log(`Disponibile: ${prodotto.nome} a soli €${prodotto.prezzo}`);
+    }
+    });
+    ```
+
 - **⚠️ Errori comuni:**
     - Cercare di salvare il risultato: `forEach` ritorna sempre `undefined`.
     - Usare `break` o `continue`: non è possibile interrompere il ciclo forEach; deve scorrere tutto l'array.
@@ -47,13 +63,30 @@ Se `forEach` è l'operaio, `.map()` è la fabbrica. Il suo scopo è **trasformar
 - **Visualizzazione Mentale:** Una catena di montaggio dove ogni oggetto grezzo entra in una macchina (callback), viene trasformato e depositato in una nuova scatola (nuovo array).
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     const nuovoArray = array.map(elemento => {
       return elemento * 2; // Trasformazione
     });
     ```
     
 - **Casi d'uso con Array di Oggetti:** Isolare specifiche proprietà (es. estrarre solo gli ID degli utenti) o clonare oggetti aggiungendo nuove informazioni (es. calcolo prezzi con IVA).
+    ```JavaScript
+    // 1. Il nostro array di dati iniziale (i record degli utenti)
+    const utenti = [
+    { id: 101, nome: "Alice", email: "alice@example.com", attivo: true },
+    { id: 102, nome: "Bob", email: "bob@example.com", attivo: false },
+    { id: 103, nome: "Charlie", email: "charlie@example.com", attivo: true },
+    { id: 104, nome: "Diana", email: "diana@example.com", attivo: true }
+    ];
+
+    // 2. Applichiamo .map() per estrarre solo la proprietà 'id'
+    const listaId = utenti.map(utente => utente.id);
+
+    // 3. Verifichiamo il risultato
+    console.log(listaId); 
+    // Output: [101, 102, 103, 104]
+    ```
+
 - **⚠️ Errori comuni:**
     - Dimenticare il `return`: se non restituisci un valore, il nuovo array sarà pieno di `undefined`.
     - Modificare l'originale: se si manipolano oggetti annidati senza cautela, si rischia di alterare la sorgente.
@@ -65,11 +98,34 @@ Mentre `map` trasforma, `.filter()` agisce come un setaccio. Crea un nuovo array
 - **Visualizzazione Mentale:** Sopra un nastro trasportatore c'è un filtro che fa cadere nel nuovo contenitore solo gli oggetti che rispettano una regola (es. "solo elettronica").
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     const filtrati = array.filter(elemento => elemento.proprieta > valore);
     ```
     
 - **Casi d'uso con Array di Oggetti:** Estrarre record specifici, come utenti attivi o prodotti in una determinata fascia di prezzo.
+    ```JavaScript
+    // 1. Il nostro array di dati iniziale (i record degli utenti)
+    const utenti = [
+    { id: 1, nome: "Alice", email: "alice@example.com", attivo: true },
+    { id: 2, nome: "Bob", email: "bob@example.com", attivo: false },
+    { id: 3, nome: "Carlo", email: "carlo@example.com", attivo: true },
+    { id: 4, nome: "Diana", email: "diana@example.com", attivo: false },
+    { id: 5, nome: "Elena", email: "elena@example.com", attivo: true }
+    ];
+
+    // 2. Applichiamo il metodo .filter()
+    const utentiAttivi = utenti.filter(utente => utente.attivo);
+
+    // 3. Vediamo il risultato in console
+    console.log("Utenti Attivi:", utentiAttivi);
+    /* Output: 
+    [
+    { "id": 1, "nome": "Alice", "email": "alice@example.com", "attivo": true },
+    { "id": 3, "nome": "Carlo", "email": "carlo@example.com", "attivo": true },
+    { "id": 5, "nome": "Elena", "email": "elena@example.com", "attivo": true }
+    ]
+    */
+    ```
 - **⚠️ Errori comuni:**
     - Gestione assenza risultati: se nessun elemento soddisfa la condizione, restituisce un array vuoto `[]`, non `null`.
     - Confondere test con trasformazione: non usare `filter` per modificare dati, usalo solo per selezionarli.
@@ -81,11 +137,30 @@ A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cerca
 - **Visualizzazione Mentale:** Una caccia al tesoro dove, appena trovi la prima scheda corretta nell'archivio, la prendi e smetti di cercare.
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     const trovato = array.find(elemento => elemento.id === 102);
     ```
     
 - **Casi d'uso con Array di Oggetti:** Recuperare un singolo record univoco tramite ID o codice a barre.
+    ```JavaScript
+    // 1. Il nostro array di dati iniziale (i record degli utenti)
+    const utenti = [
+    { id: 1, nome: "Alice", email: "alice@example.com", attivo: true },
+    { id: 2, nome: "Bob", email: "bob@example.com", attivo: false },
+    { id: 3, nome: "Carlo", email: "carlo@example.com", attivo: true },
+    { id: 4, nome: "Diana", email: "diana@example.com", attivo: false },
+    { id: 5, nome: "Elena", email: "elena@example.com", attivo: true }
+    ];
+
+    // 2. Vogliamo recuperare l'utente univoco con ID uguale a 3
+    const idDaCercare = 3;
+    const utenteTarget = utenti.find(utente => utente.id === idDaCercare);
+
+    // 3. Vediamo il risultato in console
+    console.log("Utente trovato:", utenteTarget);
+    ```
+
+
 - **⚠️ Errori comuni:**
     - Accedere a proprietà di `undefined`: se non trova nulla, restituisce `undefined`. Accedere a proprietà di un oggetto inesistente causerà un crash.
     - Usarlo per liste: se ti aspetti più risultati, usa `filter`, poiché `find` restituisce solo il primo.
@@ -97,13 +172,35 @@ A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cerca
 - **Visualizzazione Mentale:** Una palla di neve che rotola: parte da un valore iniziale e accumula dati a ogni giro.
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     const risultato = array.reduce((acc, curr) => {
       return acc + curr.valore;
     }, 0); // 0 è il valore iniziale
     ```
     
 - **Casi d'uso con Array di Oggetti:** Calcolare il totale di un carrello o raggruppare dati in un oggetto riassuntivo.
+    ```JavaScript
+        // 1. Definiamo il carrello della spesa
+        const carrello = [
+            { prodotto: "Smartphone", prezzo: 599.99, quantita: 1 },
+            { prodotto: "Cover protettiva", prezzo: 19.99, quantita: 2 },
+            { prodotto: "Cavo USB-C", prezzo: 9.50, quantita: 3 },
+            { prodotto: "Auricolari Bluetooth", prezzo: 49.90, quantita: 1 }
+        ];
+
+        // 2. Utilizziamo reduce per calcolare il totale
+        const totaleCarrello = carrello.reduce((accumulatore, articoloCorrente) => {
+            // Calcoliamo il costo per il singolo articolo (prezzo * quantità)
+            const costoArticolo = articoloCorrente.prezzo * articoloCorrente.quantita;
+  
+            // Sommiamo il costo all'accumulatore e lo restituiamo per il prossimo ciclo
+            return accumulatore + costoArticolo;
+        }, 0); // <--- IMPORTANTE: 0 è il valore iniziale dell'accumulatore
+
+        // 3. Mostriamo il risultato
+        console.log(`Il totale del carrello è: €${totaleCarrello.toFixed(2)}`);
+        // Output: Il totale del carrello è: €717.87
+    ```
 - **⚠️ Errori comuni:**
     - Dimenticare il valore iniziale: senza di esso, `reduce` usa il primo elemento dell'array come accumulatore, causando errori con gli oggetti.
     - Non restituire l'accumulatore: è obbligatorio scrivere `return acc` alla fine della callback.
@@ -115,14 +212,57 @@ Organizza gli elementi dell'array in base a un criterio specifico. Di base ordin
 - **Visualizzazione Mentale:** Un arbitro che chiama due corridori alla volta (a, b), li confronta e decide chi deve stare davanti.
 - **Sintassi Base:**
     
-    ```javascript
+    ```JavaScript
     // Numeri (Crescente: a-b, Decrescente: b-a)
     array.sort((a, b) => a - b);
     
     // Stringhe (Alfabetico)
     array.sort((a, b) => a.nome.localeCompare(b.nome));
     ```
-    
+- **Casi d'uso con Array di Oggetti:** Ordinamento per Stringhe (Ordine Alfabetico) o Ordinamento per Numeri (Crescente / Decrescente).
+    ```JavaScript
+    const utenti = [
+    { id: 1, nome: "Marco" },
+    { id: 2, nome: "Anna" },
+    { id: 3, nome: "Luigi" },
+    { id: 4, nome: "Sofia" }
+    ];
+
+    // Ordina in base alla stringa 'nome' (dalla A alla Z)
+    utenti.sort((a, b) => a.nome.localeCompare(b.nome));
+
+    console.log("Utenti ordinati per nome:", utenti);
+    /* Output:
+    [
+    { id: 2, nome: 'Anna' },
+    { id: 3, nome: 'Luigi' },
+    { id: 1, nome: 'Marco' },
+    { id: 4, nome: 'Sofia' }
+    ]
+    */
+    ```
+
+    ```JavaScript
+    const prodotti = [
+    { id: 101, articolo: "Tastiera", prezzo: 45 },
+    { id: 102, articolo: "Mouse", prezzo: 25 },
+    { id: 103, articolo: "Monitor", prezzo: 220 },
+    { id: 104, articolo: "Cuffie", prezzo: 80 }
+    ];
+
+    // Ordina in base al numero 'prezzo' (dal più basso al più alto)
+    prodotti.sort((a, b) => a.prezzo - b.prezzo);
+
+    console.log("Prodotti ordinati per prezzo:", prodotti);
+    /* Output:
+    [
+    { id: 102, articolo: 'Mouse', prezzo: 25 },
+    { id: 101, articolo: 'Tastiera', prezzo: 45 },
+    { id: 104, articolo: 'Cuffie', prezzo: 80 },
+    { id: 103, articolo: 'Monitor', prezzo: 220 }
+    ]
+    */
+    ```
 - **⚠️ Errori comuni:**
     - Mutabilità: `.sort()` modifica l'array originale. Per evitarlo, lavora su una copia: `[...array].sort()`.
     - Dimenticare la funzione di confronto con gli oggetti: JavaScript non sa autonomamente quale proprietà dell'oggetto usare per l'ordine.

@@ -19,7 +19,7 @@
 
 ### 📑 Corpo Centrale
 
-#### [1.1 Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)](#📍 Indice Rapido)
+#### [1.1 Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)](#-indice-rapido)
 
 **a) Spiegazione concettuale**
 
@@ -79,7 +79,7 @@ console.log(eroe);
 // Output: "Batman" (Il Batman globale non è stato toccato o modificato)
 ```
 
-#### [1.2 Function Scope vs Block Scope: Gabbie Vecchie e Nuove](#📍 Indice Rapido)
+#### [1.2 Function Scope vs Block Scope: Gabbie Vecchie e Nuove](#-indice-rapido)
 
 **a) Spiegazione concettuale**
 
@@ -132,7 +132,7 @@ console.log(i);
 // Output: 3 (Con 'let' avresti ricevuto un sanissimo ed educato ReferenceError)
 ```
 
-#### [1.3 Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ](#📍 Indice Rapido)
+#### [1.3 Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ](#-indice-rapido)
 
 **a) Spiegazione concettuale**
 
@@ -184,7 +184,7 @@ let faiRinghio = () => {
 };
 ```
 
-#### [1.4 Pratiche Avanzate e Scenari Apocalittici](#📍 Indice Rapido)
+#### [1.4 Pratiche Avanzate e Scenari Apocalittici](#-indice-rapido)
 
 **a) Spiegazione concettuale**
 
@@ -226,7 +226,7 @@ mioContatore(); // Output: 1
 mioContatore(); // Output: 2 (Si ricorda il valore grazie allo scope di nascita!)
 ```
 
-### [🔗 Risorse e Documentazione](#📍 Indice Rapido)
+### [🔗 Risorse e Documentazione](#-indice-rapido)
 
 • 📚 **MDN Web Docs:** 
 	-[Capire lo Scope in JS](https://developer.mozilla.org/en-US/docs/Glossary/Scope) • Per scoprire perché quella variabile dichiara guerra al tuo codice.
@@ -239,7 +239,7 @@ mioContatore(); // Output: 2 (Si ricorda il valore grazie allo scope di nascita!
 
 • ⚛️ **Guida Galattica per Sviluppatori:** [Sopravvivere nella Temporal Dead Zone](https://www.geeksforgeeks.org/javascript/temporal-dead-zone-in-javascript/) • Come evitare di essere folgorati dalla TDZ.
 
-### [🚀 Key Takeaways del Giorno](#📍 Indice Rapido)
+### [🚀 Key Takeaways del Giorno](#-indice-rapido)
 
 _I punti fondamentali da portarsi a casa per non piangere in produzione:_
 
@@ -253,7 +253,7 @@ _I punti fondamentali da portarsi a casa per non piangere in produzione:_
 
 • **Il Principio dello Zainetto:** Le funzioni si ricordano sempre del luogo in cui sono nate e mantengono l'accesso a quelle variabili (Closure).
 
-### [📖 Glossario del Male](#📍 Indice Rapido)
+### [📖 Glossario del Male](#-indice-rapido)
 
 _Lista delle definizioni istituzionali tradotte in linguaggio umano per superare i colloqui tecnici senza ansia._
 
