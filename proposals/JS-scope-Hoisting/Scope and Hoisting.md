@@ -1,4 +1,4 @@
-# Scope e Hoisting: Navigare le Dimensioni Invisibili del Codice
+# Scope e Hoisting
 
 📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
 
