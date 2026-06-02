@@ -6,25 +6,33 @@
 
 **📍 Indice Rapido**
 
-1. Argomento Lezione: Timing Functions
+1. [Argomento Lezione: Timing Functions](#1-argomento-lezione)
 
-    1.1 [[#1.1 Cosa sono le Timing Functions]]
+    1.1 [Cosa sono le Timing Functions](#11-cosa-sono-le-timing-functions)
 
-    1.2 [[#1.2 setTimeout]]
+    1.2 [setTimeout](#12-settimeout)
 
-    1.3 [[#1.3 setInterval]]
+    1.3 [setInterval](#13-setinterval)
 
-    1.4 [[#1.4 clearTimeout e clearInterval]]
+    1.4 [clearTimeout e clearInterval](#14-cleartimeout-e-clearinterval)
 
-2. [[#risorse-e-documentazione|Risorse e Documentazione]]
+2. [Risorse e Documentazione](#risorse-e-documentazione)
 
-3. [[#key-takeaways-del-giorno|Key Takeaways del giorno]]
+3. [Key Takeaways del giorno](#key-takeaways-del-giorno)
 
-4. [[#glossario-definizioni-istituzionali-vs-spiega-brutta|Glossario: Definizioni Istituzionali vs Spiega Brutta]]
+4. [Glossario](#glossario-definizioni-istituzionali-vs-spiega-brutta)
+
+[Errori comuni da evitare](#errori-comuni-da-evitare)
+
+1. [Chiamare subito la funzione](#1-chiamare-subito-la-funzione)
+
+2. [Dimenticare di fermare setInterval](#2-dimenticare-di-fermare-setinterval)
+
+[Mini riepilogo finale](#mini-riepilogo-finale)
 
 ---
 
-### 1. Argomento Lezione
+## 1. Argomento Lezione
 
 > **Nota introduttiva:**  
 > In JavaScript possiamo decidere di eseguire una funzione dopo un certo tempo oppure ripeterla ogni tot secondi.  
@@ -32,7 +40,7 @@
 
 ---
 
-#### 1.1 Cosa sono le Timing Functions
+### 1.1 Cosa sono le Timing Functions
 
 Le **Timing Functions** permettono di programmare l'esecuzione di una funzione nel tempo.
 
@@ -56,11 +64,11 @@ Il tempo viene scritto in **millisecondi**.
 
 ---
 
-#### 1.2 setTimeout
+### 1.2 setTimeout
 
 Il metodo `setTimeout()` serve per eseguire una funzione **una sola volta**, dopo un certo tempo.
 
-##### Sintassi base
+#### Sintassi base
 
 ```js
 setTimeout(callback, tempoInMillisecondi);
@@ -71,7 +79,7 @@ Dove:
 - `callback` è la funzione da eseguire;
 - `tempoInMillisecondi` è il tempo di attesa prima dell'esecuzione.
 
-##### Esempio
+#### Esempio
 
 ```js
 setTimeout(function () {
@@ -89,7 +97,7 @@ JavaScript aspetta 2 secondi e poi esegue la funzione.
 
 ---
 
-##### Esempio con funzione separata
+#### Esempio con funzione separata
 
 ```js
 function mostraMessaggio() {
@@ -115,21 +123,25 @@ Sbagliato:
 setTimeout(mostraMessaggio(), 3000);
 ```
 
-Nel secondo caso la funzione viene eseguita subito, senza aspettare.
+Nel secondo caso la funzione viene eseguita subito, senza aspettare. (Questa cosa vale in generale ogni volta che vogliamo passare una funzione come argomento)
+
+#### Precisazione
+
+Attenzione: il secondo argomento che passiamo alla `setTimeout` è in realtà il **tempo minimo** che vogliamo la funzioni aspetti prima di eseguire la funzione di callback che gli è stata passata. Il momento in cui la funzione viene effettivamente eseguita può dipendere da tanti altri fattori, tra cui ad esempio, se la scheda del browser in cui il nostro timeout sta aspettando è in focus o meno (a causa di funzionalità di management delle risorse dei browser). 
 
 ---
 
-#### 1.3 setInterval
+### 1.3 setInterval
 
 Il metodo `setInterval()` serve per eseguire una funzione **ripetutamente**, ogni tot millisecondi.
 
-##### Sintassi base
+#### Sintassi base
 
 ```js
 setInterval(callback, tempoInMillisecondi);
 ```
 
-##### Esempio
+#### Esempio
 
 ```js
 setInterval(function () {
@@ -150,7 +162,7 @@ Il codice continua a ripetersi ogni secondo.
 
 ---
 
-##### Esempio: contatore
+#### Esempio: contatore
 
 ```js
 let counter = 1;
@@ -173,9 +185,12 @@ Risultato:
 
 Ogni secondo viene stampato il valore di `counter`, poi il valore viene aumentato di 1.
 
+#### Precisazione
+Anche per `setInterval()` valgono le stesse precisazioni fatte per `setTimeout()`, il tempo che gli passiamo come argomento è di fatto più un "suggerimento" che un valore assoluto che assicura la certezza che la callback venga ripetuta precisamente con quell'intervallo di tempo.
+
 ---
 
-#### 1.4 clearTimeout e clearInterval
+### 1.4 clearTimeout e clearInterval
 
 Quando usiamo `setTimeout()` o `setInterval()`, JavaScript restituisce un identificativo.
 
@@ -183,7 +198,7 @@ Questo identificativo può essere salvato in una variabile e usato per fermare i
 
 ---
 
-##### clearTimeout
+#### clearTimeout
 
 `clearTimeout()` serve per annullare un `setTimeout` prima che venga eseguito.
 
@@ -199,7 +214,7 @@ In questo esempio il timeout viene cancellato prima dei 3 secondi.
 
 ---
 
-##### clearInterval
+#### clearInterval
 
 `clearInterval()` serve per fermare un `setInterval`.
 
@@ -230,7 +245,7 @@ Quando `counter` diventa maggiore di 5, l'intervallo viene fermato.
 
 ---
 
-### Risorse e Documentazione
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs:** [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout)
 - 📚 **MDN Web Docs:** [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval)
@@ -238,7 +253,7 @@ Quando `counter` diventa maggiore di 5, l'intervallo viene fermato.
 
 ---
 
-### Key Takeaways del Giorno
+## Key Takeaways del Giorno
 
 _I punti fondamentali da portarsi a casa_
 
@@ -252,24 +267,23 @@ _I punti fondamentali da portarsi a casa_
 
 ---
 
-### Glossario: Definizioni Istituzionali vs Spiega Brutta
+## Glossario: Definizioni Istituzionali vs Spiega Brutta
 
 | **Termine Istituzionale** | **Definizione Formale** | **Spiega Brutta** |
 |---|---|---|
 | **Timing Function** | Funzione che permette di programmare l'esecuzione di codice dopo un certo intervallo di tempo. | Una funzione che dice a JavaScript: “questa cosa falla dopo”. |
 | **setTimeout** | Metodo che esegue una callback una sola volta dopo un ritardo espresso in millisecondi. | Aspetta un po', poi esegue quella funzione una volta. |
-| **setInterval** | Metodo che esegue una callback ripetutamente a intervalli di tempo regolari. | Ogni tot secondi rifà la stessa cosa. |
+| **setInterval** | Metodo che esegue una callback ripetutamente a intervalli di tempo regolari. | Ogni tot millisecondi rifà la stessa cosa. |
 | **clearTimeout** | Metodo che annulla un timeout precedentemente impostato. | Cancella un'azione programmata prima che parta. |
 | **clearInterval** | Metodo che interrompe un intervallo precedentemente impostato. | Ferma una cosa che si sta ripetendo. |
 | **Callback** | Funzione passata come argomento a un'altra funzione, per essere eseguita in un secondo momento. | Le istruzioni che consegniamo a un'altra funzione per dirle cosa fare dopo. |
-| **Millisecondo** | Unità di misura del tempo equivalente a un millesimo di secondo. | 1000 millisecondi fanno 1 secondo. |
 | **Timer ID** | Identificativo restituito da `setTimeout` o `setInterval`, utile per annullare o fermare il timer. | Il numero/scontrino che mi serve per cancellare quel timer. |
 
 ---
 
-### Errori comuni da evitare
+## Errori comuni da evitare
 
-#### 1. Chiamare subito la funzione
+### 1. Chiamare subito la funzione
 
 Sbagliato:
 
@@ -284,11 +298,11 @@ setTimeout(saluta, 2000);
 ```
 
 Nel primo caso la funzione viene eseguita subito.  
-Nel secondo caso viene eseguita dopo 2 secondi.
+Nel secondo caso viene eseguita dopo 2 secondi (si spera).
 
 ---
 
-#### 2. Dimenticare di fermare setInterval
+### 2. Dimenticare di fermare setInterval
 
 ```js
 setInterval(function () {
@@ -302,7 +316,7 @@ Per fermarlo serve `clearInterval`.
 
 ---
 
-### Mini riepilogo finale
+## Mini riepilogo finale
 
 - Se voglio eseguire qualcosa **dopo un ritardo**, uso `setTimeout`.
 - Se voglio eseguire qualcosa **più volte**, uso `setInterval`.

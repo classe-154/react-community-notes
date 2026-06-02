@@ -1,8 +1,27 @@
-## 9.3 JSON (JavaScript Object Notation)
+# JSON
+
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
+
+**Titolo:** JSON
+
+---
+
+### 📍 Indice Rapido
+
+1. [JSON: JavaScript Object Notation](#1-json-javascript-object-notation)
+2. [Regole del formato JSON](#2-regole-del-formato-json)
+3. [Convertire tra JavaScript e JSON](#3-convertire-tra-javascript-e-json)
+4. [Parsing sicuro con try-catch](#4-parsing-sicuro-con-trycatch)
+5. [Risorse e Documentazione](#risorse-e-documentazione)
+6. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+7. [Glossario dei Metodi](#glossario)
+
+---
+## 1. JSON (JavaScript Object Notation)
 
 Il JSON è il formato standard per lo scambio di dati tra client e server sul web. È una versione testuale "serializzata" di un oggetto JavaScript. È incredibilmente leggero, leggibile dall'uomo e facilmente interpretabile da qualsiasi linguaggio di programmazione.
 
-### 📝 9.3.1 Regole del formato JSON
+## 2. Regole del formato JSON
 
 Il JSON somiglia molto a un oggetto JavaScript, ma applica regole sintattiche molto più ferree. Se non le rispetti alla lettera, il server o il browser non riusciranno a leggere i dati.
 
@@ -21,11 +40,11 @@ Il JSON somiglia molto a un oggetto JavaScript, ma applica regole sintattiche mo
     - ❌ _Vietati:_ Funzioni, metodi, espressioni e `undefined`.
         
 
-### 🔄 9.3.2 Convertire tra JavaScript e JSON
+## 3. Convertire tra JavaScript e JSON
 
 Poiché il server invia dati esclusivamente come stringhe di testo grezzo, JavaScript deve convertirli in oggetti reali per poter accedere alle loro proprietà.
 
-```JavaScript
+```js
 // Il server ci invia questo JSON (che per JS è una semplice stringa)
 const jsonDalServer = '{"id": 1, "nome": "Smartphone", "prezzo": 800}';
 
@@ -37,11 +56,11 @@ console.log(prodotto.nome); // Output: "Smartphone"
 const datiPerIlServer = JSON.stringify(prodotto);
 ```
 
-### 🛡️ 9.3.3 Parsing sicuro con `try...catch`
+## 4. Parsing sicuro con `try...catch`
 
 Se provi a fare `JSON.parse()` su una stringa malformata, JavaScript lancerà un errore critico (`SyntaxError`) che interromperà l'esecuzione. Nello sviluppo professionale si protegge sempre il codice:
 
-```JavaScript
+```js
 try {
   const datiConvertiti = JSON.parse(stringaInArrivo);
   // Uso i dati normalmente...
@@ -50,12 +69,12 @@ try {
 }
 ```
 
-🔗 **Risorse e Documentazione**
+## **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (Working with JSON): [Documentazione Ufficiale](https://www.google.com/search?q=https://developer.mozilla.org/it/docs/Learn/JavaScript/Objects/JSON)
     
 
-🚀 **Key Takeaways del Giorno**
+## **Key Takeaways del Giorno**
 
 - **Linguaggio universale:** Il JSON è il "latino" del web; tutti i linguaggi (Java, Python, PHP, Ruby) lo usano per parlare con il front-end.
     
@@ -64,7 +83,7 @@ try {
 - **Zero tolleranza:** Un solo carattere fuori posto invalida l'intero pacchetto JSON.
     
 
-📖 **Glossario**
+## **Glossario**
 
 | **Termine**         | **Definizione**                                    | **"Spiega Brutta"**                                                             |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |

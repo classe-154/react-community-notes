@@ -8,18 +8,16 @@
 
 ### 📍 Indice Rapido
 
-1. [1.1 Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)](#11-lo-scope-il-confine-dei-tuoi-poteri-globale-vs-locale)
-2. [1.2 Function Scope vs Block Scope: Gabbie Vecchie e Nuove](#12-function-scope-vs-block-scope-gabbie-vecchie-e-nuove)
-3. [1.3 Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ](#13-hoisting-il-sollevamento-misterioso-e-la-fantomatica-tdz)
-4. [1.4 Pratiche Avanzate e Scenari Apocalittici](#14-pratiche-avanzate-e-scenari-apocalittici)
-5. [🔗 Risorse Tecniche (MDN, W3S, JS)](https://www.google.com/search?q=%23-risorse-e-documentazione)
-6. [🚀 Key Takeaways del giorno](https://www.google.com/search?q=%23-key-takeaways-del-giorno)
-7. [📖 Glossario: Definizioni Istituzionali vs Spiega Brutta](https://www.google.com/search?q=%23-glossario-del-male)
+1. [Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)](#1-lo-scope-il-confine-dei-tuoi-poteri-globale-vs-locale)
+2. [Function Scope vs Block Scope: Gabbie Vecchie e Nuove](#2-function-scope-vs-block-scope-gabbie-vecchie-e-nuove)
+3. [Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ](#3-hoisting-il-sollevamento-misterioso-e-la-fantomatica-tdz)
+4. [Pratiche Avanzate e Scenari Apocalittici](#4-pratiche-avanzate-e-scenari-apocalittici)
+5. [Risorse Tecniche (MDN, W3S, JS)](#risorse-e-documentazione)
+6. [Key Takeaways del giorno](#key-takeaways-del-giorno)
+7. [Glossario](#glossario-del-male)
 
 
-### 📑 Corpo Centrale
-
-#### [1.1 Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)](#-indice-rapido)
+## 1. Lo Scope: Il Confine dei tuoi Poteri (Globale vs Locale)
 
 **a) Spiegazione concettuale**
 
@@ -27,7 +25,7 @@ Immagina lo scope come i vetri oscurati di una limousine di lusso. Chi sta dentr
 
 **b) Esempi di codice**
 
-```JavaScript
+```js
 // Questo è uno scope globale (la piazza del paese: tutti vedono tutto)
 let messaggioGlobale = "Sono visibile ovunque!";
 
@@ -41,7 +39,7 @@ mostraMessaggio();
 ```
 
 
-```JavaScript
+```js
 function segretoDiStato() {
   // Scope Locale: questa variabile nasce e muore dentro questa funzione
   let codiceLancio = "12345_SuperSegreto";
@@ -63,7 +61,7 @@ Cosa succede se crei una variabile locale con lo stesso identico nome di una glo
 
 
 
-```JavaScript
+```js
 // Scenario Avanzato: Shadowing (Oscuramento)
 let eroe = "Batman"; // Eroe globale
 
@@ -79,7 +77,7 @@ console.log(eroe);
 // Output: "Batman" (Il Batman globale non è stato toccato o modificato)
 ```
 
-#### [1.2 Function Scope vs Block Scope: Gabbie Vecchie e Nuove](#-indice-rapido)
+## 2. Function Scope vs Block Scope: Gabbie Vecchie e Nuove
 
 **a) Spiegazione concettuale**
 
@@ -89,7 +87,7 @@ Fino al 2015, JavaScript usava solo la parola chiave `var`, che creava una gabbi
 
 
 
-```JavaScript
+```js
 function testFunctionScope() {
   if (true) {
     var evaso = "Sono scappato dall'if!"; // var se ne frega delle graffe dell'if
@@ -103,7 +101,7 @@ testFunctionScope();
 ```
 
 
-```JavaScript
+```js
 function testBlockScope() {
   if (true) {
     let prigioniero = "Non posso uscire dalle graffe"; // let rispetta rigorosamente il blocco
@@ -122,7 +120,7 @@ testBlockScope();
 Uno dei bug storici più famosi di JavaScript riguardava l'uso di `var` nei cicli di ripetizione, dove la variabile finiva per inquinare tutto l'ambiente circostante.
 
 
-```JavaScript
+```js
 // Scenario Avanzato: Il loop malefico con var
 for (var i = 0; i < 3; i++) {
   // Esegue il ciclo 3 volte
@@ -132,7 +130,7 @@ console.log(i);
 // Output: 3 (Con 'let' avresti ricevuto un sanissimo ed educato ReferenceError)
 ```
 
-#### [1.3 Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ](#-indice-rapido)
+## 3. Hoisting: Il Sollevamento Misterioso e la Fantomatica TDZ
 
 **a) Spiegazione concettuale**
 
@@ -143,7 +141,7 @@ L'Hoisting è un comportamento automatico in cui JavaScript, prima di eseguire i
 **Definizione**:
   - _Hoisting_ é il meccanismo per cui JavaScript, prima di leggere il codice, individua tutte le variabili e le funzioni e le "prenota" in memoria, facendole esistere ancora prima che arrivi il turno della riga in cui le hai scritte.
 
-```JavaScript
+```js
 // ❌ CODICE CHE SCRIVI (Pensando che esploda tutto)
 console.log(nomeGatto);
 var nomeGatto = "Malvagio";
@@ -159,7 +157,7 @@ nomeGatto = "Malvagio"; // L'assegnamento del valore rimane al suo posto origina
 
 
 
-```JavaScript
+```js
 // ❌ CODICE CHE SCRIVI CON LET
 console.log(nomeCane);
 let nomeCane = "Birba";
@@ -175,7 +173,7 @@ let nomeCane = "Birba";
 Le funzioni create con la forma tradizionale vengono sollevate completamente (dichiarazione + corpo della funzione), mentre le funzioni salvate dentro variabili seguono le regole delle variabili.
 
 
-```JavaScript
+```js
 // Scenario Avanzato: Funzioni vs Arrow Functions
 faiMiao(); 
 // Output: "Miao!" (Funziona! La funzione classica viene sollevata interamente)
@@ -191,7 +189,7 @@ let faiRinghio = () => {
 };
 ```
 
-#### [1.4 Pratiche Avanzate e Scenari Apocalittici](#-indice-rapido)
+## 4. Pratiche Avanzate e Scenari Apocalittici
 
 **a) Spiegazione concettuale**
 
@@ -200,7 +198,7 @@ Scrivere codice senza gestire correttamente gli scope è come lanciare vernice f
 **b) Esempi di codice**
 
 
-```JavaScript
+```js
 // Cattiva pratica estrema: Inquinamento dello Scope Globale
 function creaCaos() {
   variabileFantasma = "Ops, ho dimenticato let!"; 
@@ -217,7 +215,7 @@ console.log(window.variabileFantasma);
 Quando una funzione viene racchiusa dentro un'altra funzione, quella interna si ricorda per sempre dello scope in cui è nata, portandosi dietro le variabili come in uno zainetto invisibile.
 
 
-```JavaScript
+```js
 // Scenario Avanzato: La Closure (Chiusura)
 function fabbricaDiContatori() {
   let conteggio = 0; // Variabile blindata e inaccessibile dall'esterno
@@ -233,7 +231,7 @@ mioContatore(); // Output: 1
 mioContatore(); // Output: 2 (Si ricorda il valore grazie allo scope di nascita!)
 ```
 
-### [🔗 Risorse e Documentazione](#-indice-rapido)
+## Risorse e Documentazione
 
 • 📚 **MDN Web Docs:** 
 	-[Capire lo Scope in JS](https://developer.mozilla.org/en-US/docs/Glossary/Scope) • Per scoprire perché quella variabile dichiara guerra al tuo codice.
@@ -246,7 +244,7 @@ mioContatore(); // Output: 2 (Si ricorda il valore grazie allo scope di nascita!
 
 • ⚛️ **Guida Galattica per Sviluppatori:** [Sopravvivere nella Temporal Dead Zone](https://www.geeksforgeeks.org/javascript/temporal-dead-zone-in-javascript/) • Come evitare di essere folgorati dalla TDZ.
 
-### [🚀 Key Takeaways del Giorno](#-indice-rapido)
+## Key Takeaways del Giorno
 
 _I punti fondamentali da portarsi a casa per non piangere in produzione:_
 
@@ -260,7 +258,7 @@ _I punti fondamentali da portarsi a casa per non piangere in produzione:_
 
 • **Il Principio dello Zainetto:** Le funzioni si ricordano sempre del luogo in cui sono nate e mantengono l'accesso a quelle variabili (Closure).
 
-### [📖 Glossario del Male](#-indice-rapido)
+## Glossario del Male
 
 _Lista delle definizioni istituzionali tradotte in linguaggio umano per superare i colloqui tecnici senza ansia._
 
@@ -268,7 +266,7 @@ _Lista delle definizioni istituzionali tradotte in linguaggio umano per superare
 |---|---|---|
 |**var**|Parola chiave originale per dichiarare variabili con scope limitato alla funzione.|Il vecchio Far West di JavaScript, dove le variabili saltano fuori dalle finestre degli `if`.|
 |**let**|Parola chiave moderna per dichiarare variabili riassegnabili con scope di blocco.|La variabile con la cintura di sicurezza: rispetta fedelmente i confini delle graffe `{}`.|
-|**const**|Parola chiave per dichiarare costanti a blocco non riassegnabili.|Un tatuaggio indelebile sul codice. Se provi a modificarlo, JavaScript ti lancia un errore in faccia.|
+|**const**|Parola chiave per dichiarare costanti non riassegnabili con scope di blocco.|Un tatuaggio indelebile sul codice. Se provi a modificarlo, JavaScript ti lancia un errore in faccia.|
 |**Scope**|Il contesto di esecuzione in cui i valori e le espressioni sono visibili e accessibili.|Il recinto di proprietà privata. Se sei fuori dal cancello, non puoi toccare quello che c'è dentro.|
 |**Hoisting**|Meccanismo per cui le dichiarazioni vengono spostate in cima al loro contesto prima dell'esecuzione.|Il cameriere telepatico che sa già cosa ordinerai, ma intanto ti porta un piatto vuoto (`undefined`).|
 |**Temporal Dead Zone**|Area di un blocco compresa tra l'inizio del blocco stesso e l'effettiva dichiarazione di una variabile `let`/`const`.|Il Purgatorio del codice. Se provi anche solo a nominare la variabile lì dentro, vieni fulminato.|

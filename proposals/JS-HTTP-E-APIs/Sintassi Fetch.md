@@ -1,14 +1,31 @@
-## ⚡ 9.6 Sintassi Fetch (Il cuore delle chiamate)
+# Sintassi Fetch
+
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
+
+**Titolo:** Sintassi Fetch
+
+---
+
+### 📍 Indice Rapido
+
+1. [AJAX: Asynchronous JavaScript And XML](#1-sintassi-fetch-il-cuore-delle-chiamate)
+2. [Cosa significa asincrono](#2-la-struttura-di-fetch-e-il-meccanismo-delle-promise)
+3. [Perché c'è xml nel nome](#3-perché-servono-due-fasi-then)
+4. [Risorse e Documentazione](#risorse-e-documentazione)
+5. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+6. [Glossario dei Metodi](#glossario)
+
+## 1. Sintassi Fetch (Il cuore delle chiamate)
 
 La `fetch` è la funzione nativa di JavaScript che ci permette di effettuare chiamate HTTP verso un server. È lo strumento moderno e standard che sostituisce le vecchie tecniche complesse (come `XMLHttpRequest`).
 
-### 🧱 9.6.1 La struttura di Fetch e il meccanismo delle Promise
+## 2. La struttura di Fetch e il meccanismo delle Promise
 
 La funzione `fetch()` restituisce sempre una **Promise**. Una Promise è un oggetto che rappresenta un'operazione asincrona non ancora conclusa (un "risultato futuro").
 
 Il modo standard di gestire una Promise è tramite la catena di `.then()` e `.catch()`:
 
-```JavaScript
+```js
 // La forma base di una chiamata fetch (di default è un metodo GET)
 fetch('https://api.esempio.it/v1/prodotti')
   .then((response) => {
@@ -31,7 +48,7 @@ fetch('https://api.esempio.it/v1/prodotti')
   });
 ```
 
-### 🔄 9.6.2 Perché servono due fasi (`.then()`)?
+## 3. Perché servono due fasi (`.then()`)?
 
 La conversione richiede due passaggi separati perché la risposta viaggia sulla rete in momenti diversi:
 
@@ -46,7 +63,7 @@ La conversione richiede due passaggi separati perché la risposta viaggia sulla 
     
 - **Configurazione per l'invio dati (POST):** Se devi inviare dati, passa un secondo argomento (oggetto di configurazione) per impostare il metodo, gli header e trasformare il tuo oggetto in stringa JSON:
     
-    ```    JavaScript
+    ```js
     fetch('https://api.esempio.it/v1/prodotti', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -57,12 +74,12 @@ La conversione richiede due passaggi separati perché la risposta viaggia sulla 
     ```
     
 
-🔗 **Risorse e Documentazione**
+## **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (Using Fetch): [Guida Ufficiale](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
     
 
-🚀 **Key Takeaways del Giorno**
+## **Key Takeaways del Giorno**
 
 - **Asincronia non bloccante:** Il codice sotto la `fetch` prosegue mentre la rete lavora. Non puoi usare i dati della `fetch` al di fuori dei suoi `.then()`.
     
@@ -71,7 +88,7 @@ La conversione richiede due passaggi separati perché la risposta viaggia sulla 
 - **Catena logica:** Prima si chiama l'indirizzo, poi si verifica/converte il testo, infine si usano i dati reali.
     
 
-📖 **Glossario**
+## **Glossario**
 
 | **Termine**     | **Definizione**                               | **"Spiega Brutta"**                                     |
 | --------------- | --------------------------------------------- | ------------------------------------------------------- |

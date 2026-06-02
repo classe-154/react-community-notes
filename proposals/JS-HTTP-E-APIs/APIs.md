@@ -1,8 +1,27 @@
-# 9.4 API (Application Programming Interface)
+# API
+
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
+
+**Titolo:** API
+
+---
+
+### 📍 Indice Rapido
+
+1. [API: Application Programming Interface](#1-api-application-programming-interface)
+2. [Anatomia di una chiamata API REST](#2-anatomia-di-una-chiamata-api-rest)
+3. [API di terze parti](#3-api-di-terze-parti-3p-api-e-autenticazione)
+4. [Risorse e Documentazione](#risorse-e-documentazione)
+5. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+6. [Glossario dei Metodi](#glossario)
+
+---
+
+## 1. API (Application Programming Interface)
 
 Una API è un punto di accesso che un server espone per permettere ad altri programmi di richiedere o inviare dati. Quando usi un'API, non stai navigando in una pagina web fatta per gli umani (HTML/CSS), ma stai chiedendo dati "puri" (in formato JSON) che il tuo JavaScript dovrà poi elaborare e mostrare a schermo.
 
-## 🧱 9.4.1 Anatomia di una chiamata API REST
+## 2. Anatomia di una chiamata API REST
 
 Il modello standard utilizzato sul web si chiama REST (Representational State Transfer). In un'API REST, gli URL non rappresentano "azioni" (es. /cancellaUtente), ma rappresentano risorse (es. /utenti).
 
@@ -15,7 +34,7 @@ Ogni chiamata ha bisogno di tre componenti fondamentali:
 - **Risposta (JSON):** Il dato strutturato che il server ti restituisce se la richiesta va a buon fine.
     
 
-## 🌍 9.4.2 API di terze parti (3P API) e Autenticazione
+## 3. API di terze parti (3P API) e Autenticazione
 
 Molti servizi web (come OpenWeather per il meteo, Spotify per la musica, o Google Maps) espongono le loro API per permettere a sviluppatori esterni di usare i loro dati all'interno delle proprie app. Si chiamano 3P API (Third Party API).
 
@@ -26,17 +45,17 @@ Quasi tutte le API di terze parti richiedono un sistema di sicurezza per evitare
 - **Rate Limiting (Limiti di utilizzo):** I servizi limitano il numero di chiamate che puoi fare in un minuto o in un giorno (es. max 60 richieste al minuto per l'account gratuito). Se superi il limite, l'API si blocca temporaneamente restituendo il codice `429 Too Many Requests`.
     
 
-## ⚠️ Reminder Tecnico
+### ⚠️ Reminder Tecnico
 
 - **Il CORS (Il muro del browser):** Spesso, quando proverai a interrogare un'API dal tuo codice JavaScript locale, il browser bloccherà la chiamata lanciando un errore di sicurezza. È il meccanismo CORS (Cross-Origin Resource Sharing). Succede quando il server dell'API non è configurato per accettare richieste provenienti dal tuo specifico dominio (o da localhost). È una protezione fondamentale del web per evitare che siti maligni rubino dati da altri server a tua insaputa sfruttando le tue sessioni attive.
     
 
-## 🔗 Risorse e Documentazione
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs (Client-side web APIs):** [Cosa sono le API (spiegazione ufficiale)](https://www.google.com/search?q=https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introducing_web_APIs)
     
 
-## 🚀 Key Takeaways del Giorno
+## Key Takeaways del Giorno
 
 - **Interfaccia per macchine:** Le API sono porte d'accesso fatte per essere lette da programmi. Eliminano la grafica e lasciano solo il dato puro.
     
@@ -45,7 +64,7 @@ Quasi tutte le API di terze parti richiedono un sistema di sicurezza per evitare
 - **Le API si pagano (o si limitano):** L'accesso ai dati esterni richiede quasi sempre una chiave di autenticazione e il monitoraggio del numero di richieste inviate.
     
 
-## 📖 Glossario
+## Glossario
 
 |**Termine Istituzionale**|**Definizione Formale**|**"Spiega Brutta"**|
 |---|---|---|

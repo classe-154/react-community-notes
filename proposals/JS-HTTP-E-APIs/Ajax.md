@@ -1,8 +1,27 @@
-## 🚀 9.2 AJAX (Asynchronous JavaScript And XML)
+# AJAX
+
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
+
+**Titolo:** AJAX
+
+---
+
+### 📍 Indice Rapido
+
+1. [AJAX: Asynchronous JavaScript And XML](#1-ajax-asynchronous-javascript-and-xml)
+2. [Cosa significa asincrono](#2-cosa-significa-asincrono)
+3. [Perché c'è xml nel nome](#3-perché-cè-xml-nel-nome)
+4. [Risorse e Documentazione](#risorse-e-documentazione)
+5. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+6. [Glossario dei Metodi](#glossario)
+
+---
+
+## 1. AJAX (Asynchronous JavaScript And XML)
 
 Il termine AJAX descrive una tecnica di sviluppo che permette a una pagina web di inviare e ricevere dati dal server "dietro le quinte". Grazie ad AJAX, l'utente può interagire con una pagina (es. cliccare "Mi piace" o inviare un messaggio in chat) senza che il browser debba ricaricare l'intera pagina.
 
-### 🔄 9.2.1 Cosa significa "Asincrono"?
+## 2. Cosa significa "Asincrono"?
 
 La parola chiave qui è **Asincrono**.
 
@@ -13,7 +32,7 @@ La parola chiave qui è **Asincrono**.
 
 > 🧠 **Dietro le quinte (Come fa JS?):** JavaScript esegue un compito alla volta. Quando fai una chiamata AJAX, JavaScript non la gestisce direttamente: la "appalta" al browser. Il browser scarica i dati dal server in un canale separato e, solo quando sono pronti, avvisa JavaScript che è il momento di usarli. Questo meccanismo evita il blocco della pagina.
 
-### 📁 9.2.2 Perché c'è "XML" nel nome?
+## 3. Perché c'è "XML" nel nome?
 
 Storicamente (primi anni 2000), AJAX utilizzava il formato XML per scambiare dati. Oggi, praticamente nessuno usa più XML per lo sviluppo web, sostituito interamente dal **JSON** (_JavaScript Object Notation_), che è molto più leggero e nativo per JavaScript. Non farti ingannare dal nome: oggi AJAX è semplicemente sinonimo di "chiamata asincrona al server", a prescindere dal formato dati usato.
 
@@ -26,12 +45,12 @@ Storicamente (primi anni 2000), AJAX utilizzava il formato XML per scambiare dat
 - **L'esperienza utente (UX):** AJAX è il cuore pulsante delle moderne Web App (Gmail, Instagram, Facebook). Senza AJAX, ogni singola notifica richiederebbe il caricamento da zero dell'intero sito.
     
 
-🔗 **Risorse e Documentazione**
+## **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (AJAX): [Documentazione Ufficiale](https://www.google.com/search?q=https://developer.mozilla.org/it/docs/Web/Guide/AJAX)
     
 
-🚀 **Key Takeaways del Giorno**
+## **Key Takeaways del Giorno**
 
 - **Background processing:** AJAX permette di dialogare col server in background senza interrompere l'esperienza di navigazione.
     
@@ -40,7 +59,7 @@ Storicamente (primi anni 2000), AJAX utilizzava il formato XML per scambiare dat
 - **JSON è il re:** Lo standard globale per lo scambio dati asincrono oggi è il JSON, non l'XML.
     
 
-📖 **Glossario**
+## **Glossario**
 
 |**Termine**|**Definizione**|**"Spiega Brutta"**|
 |---|---|---|

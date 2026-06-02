@@ -1,19 +1,36 @@
-## 9.7 Metodi HTTP: GET e POST (Le azioni)
+# Metodi HTTP: GET e POST
+
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
+
+**Titolo:** Metodi HTTP: GET e POST
+
+---
+
+### 📍 Indice Rapido
+
+1. [Metodi HTTP: GET e POST](#1-metodi-http-get-e-post-le-azioni)
+2. [GET: Leggere i dati](#2-get-leggere-i-dati)
+3. [POST: Inviare e creare dati](#3-post-inviare-e-creare-dati)
+4. [Risorse e Documentazione](#risorse-e-documentazione)
+5. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+6. [Glossario dei Metodi](#glossario)
+
+## 1. Metodi HTTP: GET e POST (Le azioni)
 
 Nel web, ogni richiesta HTTP deve dichiarare esplicitamente l'azione che intende compiere. Sebbene esistano diversi metodi (come PUT, PATCH o DELETE), i due che utilizzerai nel 99% dei casi nello sviluppo di applicazioni web sono GET e POST.
 
-### 🔍 9.7.1 GET (Leggere i dati)
+## 2. GET (Leggere i dati)
 
 Si usa esclusivamente quando vuoi leggere, scaricare o consultare informazioni dal server, senza modificarle o alterare lo stato del database. È il metodo predefinito di qualsiasi browser (quando scrivi un URL nella barra degli indirizzi stai facendo una GET) ed è il comportamento nativo della funzione fetch().
 
 - **Casi d'uso tipici:** "Dammi la lista dei prodotti dello shop", "Cerca l'utente con ID 5", "Mostrami i post di oggi".
     
 
-#### Sintassi in JavaScript
+### Sintassi in JavaScript
 
-Poiché è il comportamento nativo, la fetch in modalità GET è immediata e non richiede un secondo oggetto di configurazione:
+Poiché è il comportamento di default, la fetch in modalità GET è immediata e non richiede un secondo oggetto di configurazione:
 
-```JavaScript
+```js
 // La fetch esegue automaticamente una richiesta GET di default
 fetch('https://api.esempio.it/v1/prodotti')
   .then((response) => {
@@ -31,7 +48,7 @@ fetch('https://api.esempio.it/v1/prodotti')
   });
 ```
 
-### 📥 9.7.2 POST (Inviare e Creare dati)
+## 3. POST (Inviare e Creare dati)
 
 Si usa quando vuoi inviare dati nuovi al server per creare, registrare o generare qualcosa sul database.
 
@@ -40,9 +57,9 @@ A differenza della GET, la fetch in modalità POST richiede obbligatoriamente un
 - **Casi d'uso tipici:** "Crea un nuovo account utente", "Invia un messaggio in chat", "Aggiungi questo prodotto al carrello".
     
 
-#### Sintassi in JavaScript
+### Sintassi in JavaScript
 
-```JavaScript
+```js
 // Il nuovo dato che vogliamo salvare sul server
 const nuovoProdotto = {
   nome: "Smartwatch Pro",
@@ -77,9 +94,9 @@ fetch('https://api.esempio.it/v1/prodotti', {
 
 - **Dove viaggiano i dati?**
     
-    - Nelle richieste **GET**, i dati viaggiano visibili a tutti dentro l'URL (tramite la Query String es: ?id=5). C'è un limite di spazio e non è sicuro.
+    - Nelle richieste **GET**, i dati di richiesta viaggiano visibili a tutti dentro l'URL (tramite la Query String es: ?id=5). C'è un limite di spazio.
         
-    - Nelle richieste **POST**, i dati viaggiano nascosti e protetti all'interno del Body del messaggio HTTP. Non ci sono limiti di spazio e non compaiono nella barra degli indirizzi.
+    - Nelle richieste **POST**, i dati della richiesta viaggiano nascosti e protetti all'interno del Body del messaggio HTTP. Non ci sono limiti di spazio e non compaiono nella barra degli indirizzi.
         
 - **L'obbligo del Content-Type:** Se ometti l'header `'Content-Type': 'application/json'` in una richiesta POST, il server riceverà solo del testo grezzo e non capirà come convertirlo in un oggetto del database, ignorando la richiesta o restituendo un errore 400 Bad Request.
     
@@ -95,12 +112,12 @@ Visto che la POST non è idempotente, gli sviluppatori usano un trucco chiamato 
 
 Al primo clic sul pulsante "Acquista", il browser invia un codice univoco nascosto. Se clicchi una seconda volta per sbaglio, il server vede lo stesso codice, capisce che è un duplicato e blocca il secondo addebito, rispondendoti semplicemente: "Ehi, ho già preso in carico questo ordine!"
 
-### 🔗 Risorse e Documentazione
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs (HTTP Request Methods):** [Documentazione Ufficiale sui Metodi HTTP](https://developer.mozilla.org/it/docs/Web/HTTP/Methods)
     
 
-### 🚀 Key Takeaways del Giorno
+## Key Takeaways del Giorno
 
 - **GET = Scaricare:** È il metodo di default, non richiede configurazioni nella fetch, i parametri passano visibili dall'URL e non possiede un corpo (body).
     
@@ -109,10 +126,10 @@ Al primo clic sul pulsante "Acquista", il browser invia un codice univoco nascos
 - **Il server risponde sempre:** Anche dopo una POST per salvare i dati, il server restituisce una risposta (es. 201 Created) con un payload JSON che va analizzato e confermato.
     
 
-### 📖 Glossario
+## Glossario
 
-| **Termine Istituzionale** | **Definizione Formale**                                                                                                   | **"Spiega Brutta"**                                                                                                          |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Termine Istituzionale** | **Definizione Formale**| **"Spiega Brutta"**|
+| --- | --- | --- |
 | **GET**                   | Metodo HTTP utilizzato per richiedere la rappresentazione di una risorsa specifica.                                       | "Bussare alla porta del server e chiedere: mi fai vedere quel dato?" Non tocchi e non modifichi nulla, guardi e basta.       |
 | **POST**                  | Metodo HTTP utilizzato per inviare un'entità verso una risorsa specifica, causando un cambiamento di stato sul server.    | "Bussare alla porta del server, consegnare un pacco e dire: tieni, salva questo nuovo elemento nel database!".               |
 | **Content-Type**          | Header HTTP che indica il tipo di media (formato originario) dei dati inviati nel corpo della richiesta o della risposta. | L'etichetta del contenuto: avverte chi riceve il pacco postale se dentro c'è del testo semplice, un file JSON o un'immagine. |

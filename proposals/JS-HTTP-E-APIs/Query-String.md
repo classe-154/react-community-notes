@@ -1,16 +1,33 @@
-# 9.6 Query String (I parametri della richiesta)
+# Query String
 
-La Query String è la parte finale di un URL che serve a passare informazioni aggiuntive al server durante una richiesta (solitamente quando ci rivolgiamo al browserdi tipo GET). Se l'URL di base è l'indirizzo di un negozio, la Query String è la "nota dettagliata" che dai al commesso per dirgli esattamente cosa stai cercando.
+📅 **Modulo:** JavaScript Basic-Intermediate & Advanced
 
-## 🧱 9.6.1 Struttura di una Query String
+**Titolo:** Query String
+
+---
+
+### 📍 Indice Rapido
+
+1. [Query String: I parametri della richiesta](#1-query-string-i-parametri-della-richiesta)
+2. [Struttura di una query string](#2-struttura-di-una-query-string)
+3. [Perché è fondamentale per le api](#3-perché-è-fondamentale-per-le-api)
+4. [Risorse e Documentazione](#risorse-e-documentazione)
+5. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+6. [Glossario dei Metodi](#glossario)
+
+## 1. Query String (I parametri della richiesta)
+
+La Query String è la parte finale di un URL (separata dal carattere speciale `?` dal resto dell'URL) che serve a passare informazioni aggiuntive al server durante una richiesta (solitamente quando ci rivolgiamo al browserdi tipo GET). Se l'URL di base è l'indirizzo di un negozio, la Query String è la "nota dettagliata" che dai al commesso per dirgli esattamente cosa stai cercando.
+
+## 2. Struttura di una Query String
 
 La Query String si attacca in fondo all'endpoint e segue una sintassi rigidissima:
 
-- Inizia sempre ed esclusivamente con un punto interrogativo (?).
+- Inizia sempre ed esclusivamente con un punto interrogativo `?`.
     
 - Contiene coppie chiave=valore.
     
-- Se ci sono più parametri, questi vengono concatenati tra loro usando la e commerciale (&).
+- Se ci sono più parametri, questi vengono concatenati tra loro usando la e commerciale `&`.
     
 
 **Esempio:** `https://api.negozio.it/v1/prodotti?categoria=scarpe&colore=nero&ordine=prezzo_asc`
@@ -26,7 +43,7 @@ In questo URL:
 
 Il server leggerà queste chiavi per effettuare un filtro nel database e restituirti solo il JSON dei prodotti desiderati.
 
-## 🌍 9.6.2 Perché è fondamentale per le API?
+## 3. Perché è fondamentale per le API?
 
 Quando interroghi un'API, raramente richiedi l'intero database. Usi la Query String per tre scopi principali:
 
@@ -37,7 +54,7 @@ Quando interroghi un'API, raramente richiedi l'intero database. Usi la Query Str
 - **Paginare:** `?pagina=2&limite=20` (indispensabile per le performance: evita di scaricare migliaia di dati in una sola volta, frammentando la risposta in "pagine").
     
 
-## ⚠️ Reminder Tecnico & Best Practice
+### ⚠️ Reminder Tecnico & Best Practice
 
 - **I dati sono pubblici:** Tutto ciò che scrivi nella Query String finisce nella cronologia del browser, nei log del server e rimane visibile nell'URL. Regola d'oro: non passare MAI dati sensibili come password, PIN o codici fiscali nella Query String.
     
@@ -45,7 +62,7 @@ Quando interroghi un'API, raramente richiedi l'intero database. Usi la Query Str
     
 - **Modern JavaScript Tip:** Oggi non si scrivono più le Query String a mano concatenando le stringhe. Si usa l'oggetto nativo browser `URLSearchParams`, che genera e codifica i parametri in modo automatico e sicuro.
 
-```Javascript
+```js
 const baseUrl = "https://api.shop.com/v1/search";
 
 // 1. Definisci i parametri come un semplice oggetto JavaScript
@@ -63,29 +80,26 @@ const urlFinale = `${baseUrl}?${params.toString()}`;
 console.log(urlFinale);
 
 // Output: https://api.shop.com/v1/search?query=scarpe+da+ginnastica+%26+corsa&category=sport&page=1
-````
+```
 
-
-
-    
 - **Limite di spazio:** I server e i browser non accettano URL infiniti (il limite medio è di circa 2048 caratteri). Non usarla per inviare grandi quantità di testo.
     
 
-## 🔗 Risorse e Documentazione
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs (What is a URL - Parameters):** [Documentazione Meccanismi Web](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
     
 
-## 🚀 Key Takeaways del Giorno
+## Key Takeaways del Giorno
 
 - **Filtro dinamico:** La Query String permette di richiedere variazioni specifiche di dati mantenendo lo stesso identico endpoint di base.
     
-- **Sintassi rigida:** Un solo punto interrogativo (?) all'inizio, e una e commerciale (&) per separare ogni filtro successivo.
+- **Sintassi rigida:** Un solo punto interrogativo `?` all'inizio, e una e commerciale `&` per separare ogni filtro successivo.
     
 - **Visibilità totale:** È una cartolina aperta; usala solo per dati di ricerca e mai per dati privati o di autenticazione critica.
     
 
-## 📖 Glossario
+## Glossario
 
 |**Termine Istituzionale**|**Definizione Formale**|**"Spiega Brutta"**|
 |---|---|---|

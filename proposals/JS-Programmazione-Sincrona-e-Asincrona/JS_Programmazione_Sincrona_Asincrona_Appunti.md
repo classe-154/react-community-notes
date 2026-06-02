@@ -6,25 +6,32 @@
 
 **📍 Indice Rapido**
 
-1. Argomento Lezione: Sincrono e Asincrono
+1. [Argomento Lezione: Sincrono e Asincrono](#1-argomento-lezione)
 
-    1.1 [[#1.1 Programmazione Sincrona]]
+    - 1.1 [1.1 Programmazione Sincrona](#11-programmazione-sincrona)
 
-    1.2 [[#1.2 Programmazione Asincrona]]
+    - 1.2 [1.2 Programmazione Asincrona](#12-programmazione-asincrona)
 
-    1.3 [[#1.3 Perché JavaScript usa codice asincrono]]
+    - 1.3 [1.3 Perché JavaScript usa codice asincrono](#13-perché-javascript-usa-codice-asincrono)
 
-    1.4 [[#1.4 Esempio con setTimeout]]
+    - 1.4 [1.4 Esempio con setTimeout](#14-esempio-con-settimeout)
 
-2. [[#risorse-e-documentazione|Risorse e Documentazione]]
+2. [Risorse e Documentazione](#risorse-e-documentazione)
 
-3. [[#key-takeaways-del-giorno|Key Takeaways del giorno]]
+3. [Key Takeaways del giorno](#key-takeaways-del-giorno)
 
-4. [[#glossario-definizioni-istituzionali-vs-spiega-brutta|Glossario: Definizioni Istituzionali vs Spiega Brutta]]
+4. [Glossario](#glossario-definizioni-istituzionali-vs-spiega-brutta)
+
+[Errori comuni da evitare](#errori-comuni-da-evitare)
+
+1. [Pensare che il codice venga sempre eseguito dall'alto verso il basso](#1-pensare-che-il-codice-venga-sempre-eseguito-dallalto-verso-il-basso)
+2. [Pensare che setTimeout metta in pausa tutto](#2-pensare-che-settimeout-metta-in-pausa-tutto)
+
+[Mini Riepilogo Finale](#mini-riepilogo-finale)
 
 ---
 
-### 1. Argomento Lezione
+## 1. Argomento Lezione
 
 > **Nota introduttiva:**  
 > In JavaScript non tutto il codice viene eseguito nello stesso modo.  
@@ -33,7 +40,7 @@
 
 ---
 
-#### 1.1 Programmazione Sincrona
+### 1.1 Programmazione Sincrona
 
 La programmazione **sincrona** esegue le istruzioni una dopo l'altra, seguendo l'ordine del codice.
 
@@ -63,7 +70,7 @@ Ogni istruzione aspetta che quella precedente sia terminata.
 
 ---
 
-##### Spiegazione semplice
+#### Spiegazione semplice
 
 Il codice sincrono è come una fila alla cassa.
 
@@ -73,7 +80,7 @@ Nessuno salta la fila.
 
 ---
 
-#### 1.2 Programmazione Asincrona
+### 1.2 Programmazione Asincrona
 
 La programmazione **asincrona** permette di avviare un'operazione che verrà completata più tardi, senza bloccare il resto del codice.
 
@@ -105,7 +112,7 @@ JavaScript dice:
 
 ---
 
-##### Spiegazione semplice
+#### Spiegazione semplice
 
 Il codice asincrono è come ordinare una pizza.
 
@@ -117,7 +124,7 @@ Quando la pizza è pronta, vieni avvisato.
 
 ---
 
-#### 1.3 Perché JavaScript usa codice asincrono
+### 1.3 Perché JavaScript usa codice asincrono
 
 JavaScript usa spesso codice asincrono perché alcune operazioni richiedono tempo.
 
@@ -135,7 +142,7 @@ La programmazione asincrona permette invece al programma di continuare a funzion
 
 ---
 
-#### 1.4 Esempio con setTimeout
+### 1.4 Esempio con setTimeout
 
 `setTimeout` è uno degli esempi più semplici per capire l'asincronia.
 
@@ -165,7 +172,7 @@ Questo ci fa capire una cosa importante:
 
 ---
 
-### Risorse e Documentazione
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs:** [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS)
 - 📚 **MDN Web Docs:** [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout)
@@ -173,7 +180,7 @@ Questo ci fa capire una cosa importante:
 
 ---
 
-### Key Takeaways del Giorno
+## Key Takeaways del Giorno
 
 _I punti fondamentali da portarsi a casa_
 

@@ -6,34 +6,32 @@
 
 ### 📍 Indice Rapido
 
-1. [Programmazione Sincrona](#11-programmazione-sincrona)
-2.  [Programmazione Asincrona](#12-programmazione-asincrona)
-3.  [Perché JavaScript usa il codice asincrono](#13-perché-javascript-usa-il-codice-asincrono)
-4.  [Cosa sono le Timing Functions](#14-cosa-sono-le-timing-functions)
-5. [setTimeout](#15-settimeout)
-6. [setInterval](#16-setinterval)
-7. [clearTimeout e clearInterval](#17-cleartimeout-e-clearinterval)
+1. [Programmazione Sincrona](#1-programmazione-sincrona)
+2. [Programmazione Asincrona](#2-programmazione-asincrona)
+3. [Perché JavaScript usa il codice asincrono](#3-perché-javascript-usa-il-codice-asincrono)
+4. [Cosa sono le Timing Functions](#4-cosa-sono-le-timing-functions)
+5. [setTimeout](#5-settimeout)
+6. [setInterval](#6-setinterval)
+7. [clearTimeout e clearInterval](#7-cleartimeout-e-clearinterval)
 8. [Risorse e Documentazione](#risorse-e-documentazione)
 9. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
-10. [Glossario Unificato](#glossario-unificato)
+10. [Glossario](#glossario-dei-metodi)
 11. [Errori Comuni da Evitare](#errori-comuni-da-evitare)
 12. [Mini Riepilogo Finale](#mini-riepilogo-finale)
 
 ---
 
-### 📑 Corpo Centrale
-
 **Nota introduttiva:** In JavaScript non tutto il codice viene eseguito nello stesso modo. Alcune istruzioni vengono eseguite subito, in ordine, mentre altre vengono programmate per essere completate più tardi, senza bloccare il resto del programma. Possiamo decidere di eseguire una funzione dopo un certo tempo oppure ripeterla regolarmente usando funzioni native che lavorano con il tempo.
 
 ---
 
-#### [1.1 Programmazione Sincrona](#-indice-rapido)
+## 1. Programmazione Sincrona
 
 La programmazione **sincrona** esegue le istruzioni una dopo l'altra, seguendo rigorosamente l'ordine del codice scritto nel file, dall'alto verso il basso. Ogni istruzione aspetta che quella precedente sia terminata prima di iniziare.
 
 > **Spiega Brutta:** Il codice sincrono è come una fila alla cassa del supermercato: prima passa una persona, poi la seconda, poi la terza. Nessuno salta la fila.
 
-```JavaScript
+```js
 console.log("A");
 console.log("B");
 console.log("C");
@@ -42,7 +40,7 @@ console.log("C");
 
 ---
 
-#### [1.2 Programmazione Asincrona](#-indice-rapido)
+## 2. Programmazione Asincrona
 
 La programmazione **asincrona** permette di avviare un'operazione che verrà completata più tardi, permettendo al programma di continuare con le istruzioni successive senza fermarsi. Questo tipo di codice è fondamentale per gestire operazioni che richiedono tempo senza "congelare" l'interfaccia utente.
 
@@ -50,7 +48,7 @@ La programmazione **asincrona** permette di avviare un'operazione che verrà com
 
 ---
 
-#### [1.3 Perché JavaScript usa il codice asincrono](#-indice-rapido)
+## 3. Perché JavaScript usa il codice asincrono
 
 JavaScript utilizza l'asincronia perché molte operazioni non sono istantanee. Se JavaScript fosse solo sincrono, la pagina diventerebbe lenta o inutilizzabile durante l'attesa di:
 
@@ -63,25 +61,25 @@ L'asincronia permette al programma di rimanere reattivo mentre queste operazioni
 
 ---
 
-#### [ 1.4 Cosa sono le Timing Functions](#-indice-rapido)
+## 4. Cosa sono le Timing Functions
 
 Le **Timing Functions** rappresentano il ponte pratico verso l'asincronia: sono funzioni native che permettono di programmare l'esecuzione di codice nel tempo. Le due più importanti sono `setTimeout()` e `setInterval()`. Il tempo in queste funzioni viene sempre espresso in **millisecondi** (1000ms = 1 secondo).
 
 ---
 
-#### [1.5 setTimeout](#-indice-rapido)
+## 5. setTimeout
 
 Il metodo `setTimeout()` serve per eseguire una funzione **una sola volta** dopo un ritardo specificato. È un esempio perfetto di comportamento non bloccante: JavaScript programma l'esecuzione e passa subito alla riga successiva.
 
 **Sintassi:**
 
-```JavaScript
+```js
 setTimeout(callback, tempoInMillisecondi);
 ```
 
 **Esempio Pratico:**
 
-```JavaScript
+```js
 console.log("Inizio");
 
 setTimeout(() => {
@@ -101,15 +99,19 @@ console.log("Fine");
 - ❌ `setTimeout(mostraMessaggio(), 2000);` (Sbagliato: esegue subito)
 - ✅ `setTimeout(mostraMessaggio, 2000);` (Corretto: aspetta 2 secondi)
 
+### Precisazione
+
+Attenzione: il secondo argomento che passiamo alla `setTimeout` è in realtà il **tempo minimo** che vogliamo la funzioni aspetti prima di eseguire la funzione di callback che gli è stata passata. Il momento in cui la funzione viene effettivamente eseguita può dipendere da tanti altri fattori, tra cui ad esempio, se la scheda del browser in cui il nostro timeout sta aspettando è in focus o meno (a causa di funzionalità di management delle risorse dei browser).
+
 ---
 
-#### [1.6 setInterval](#-indice-rapido)
+## 6. setInterval
 
 Il metodo `setInterval()` serve per eseguire una funzione **ripetutamente** a intervalli regolari.
 
 **Esempio Contatore:**
 
-```JavaScript
+```js
 let counter = 1;
 setInterval(() => {
     console.log("Contatore: " + counter);
@@ -118,16 +120,19 @@ setInterval(() => {
 // Stampa il valore ogni secondo incrementandolo.
 ```
 
+### Precisazione
+Anche per `setInterval()` valgono le stesse precisazioni fatte per `setTimeout()`, il tempo che gli passiamo come argomento è di fatto più un "suggerimento" che un valore assoluto che assicura la certezza che la callback venga ripetuta precisamente con quell'intervallo di tempo.
+
 ---
 
-#### [1.7 clearTimeout e clearInterval](#-indice-rapido)
+## 7. clearTimeout e clearInterval
 
 Quando attiviamo un timer, JavaScript restituisce un **identificativo (Timer ID)**. Salvando questo ID in una variabile, possiamo annullare l'esecuzione.
 
 - **clearTimeout(id):** Annulla un `setTimeout` prima che venga eseguito.
 - **clearInterval(id):** Ferma definitivamente un `setInterval` che si sta ripetendo.
 
-```JavaScript
+```js
 let intervallo = setInterval(() => {
     console.log("Check...");
     if (condizioneSoddisfatta) {
@@ -138,7 +143,7 @@ let intervallo = setInterval(() => {
 
 ---
 
-### [🔗 Risorse e Documentazione](#-indice-rapido)
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs:** [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - 📚 **MDN Web Docs:** [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) e [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
@@ -147,7 +152,7 @@ let intervallo = setInterval(() => {
 
 ---
 
-### [🚀 Key Takeaways del Giorno](#-indice-rapido)
+## Key Takeaways del Giorno
 
 - Il codice **sincrono** segue l'ordine scritto; il codice **asincrono** può essere eseguito più tardi senza bloccare il programma.
 - Le **Timing Functions** controllano il "quando" delle esecuzioni.
@@ -158,7 +163,7 @@ let intervallo = setInterval(() => {
 
 ---
 
-### [📖 Glossario dei Metodi](#-indice-rapido)
+## Glossario dei Metodi
 
 |Termine Istituzionale|Definizione Formale|Spiega Brutta|
 |:--|:--|:--|
@@ -179,7 +184,7 @@ let intervallo = setInterval(() => {
 
 ---
 
-### [❌Errori Comuni da Evitare](#-indice-rapido)
+## Errori Comuni da Evitare
 
 - ❌ **Confondere l'ordine di scrittura con quello di esecuzione:** Pensare che `setTimeout` blocchi il codice successivo. In realtà, JavaScript continua a leggere e l'output asincrono arriverà solo alla fine del tempo impostato.
 - ❌ **Invocare la funzione nel timer:** Scrivere `setTimeout(miaFunzione(), 1000)`. Questo esegue `miaFunzione` immediatamente. La sintassi corretta non vuole le parentesi: `setTimeout(miaFunzione, 1000)`.
@@ -187,7 +192,7 @@ let intervallo = setInterval(() => {
 
 ---
 
-### [📝Mini Riepilogo Finale](#-indice-rapido)
+## Mini Riepilogo Finale
 
 - Usa **setTimeout** per un ritardo singolo e **setInterval** per la ripetizione.
 - Usa i rispettivi **clear** per fermarli tramite l'ID restituito.

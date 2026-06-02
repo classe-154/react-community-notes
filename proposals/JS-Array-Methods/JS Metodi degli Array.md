@@ -8,35 +8,33 @@
 
 ### 📍 Indice Rapido
 
-1. [1.1 forEach (L'Iteratore Massivo)](#11-foreach-literatore-massivo)
-2. [1.2 map (La Fabbrica di Dati)](#12-map-la-fabbrica-di-dati)
-3. [1.3 filter (Il Selettore)](#13-filter-il-selettore)
-4. [1.4 find (Il Cercatore)](#14-find-il-cercatore)
-5. [1.5 reduce (Il Calcolatore)](#15-reduce-il-calcolatore)
-6. [1.6 sort (L'Ordinatore)](#16-sort-lordinatore)
-7. [🔗 Risorse e Documentazione](#-risorse-e-documentazione)
-8. [🚀 Key Takeaways del Giorno](#-key-takeaways-del-giorno)
-9. [📖 Glossario dei Metodi](#-glossario-dei-metodi)
+1. [forEach (L'Iteratore Massivo)](#1-foreach-literatore-massivo)
+2. [map (La Fabbrica di Dati)](#2-map-la-fabbrica-di-dati)
+3. [filter (Il Selettore)](#3-filter-il-selettore)
+4. [find (Il Cercatore)](#4-find-il-cercatore)
+5. [reduce (Il Calcolatore)](#5-reduce-il-calcolatore)
+6. [sort (L'Ordinatore)](#6-sort-lordinatore)
+7. [Risorse e Documentazione](#risorse-e-documentazione)
+8. [Key Takeaways del Giorno](#key-takeaways-del-giorno)
+9. [Glossario dei Metodi](#glossario)
 
 ---
 
-### 📑 Corpo Centrale
-
-#### [1.1 forEach (L'Iteratore Massivo)](#-indice-rapido)
+## 1. forEach (L'Iteratore Massivo)
 
 Il metodo `forEach` è un'operazione nativa progettata per scorrere un array ed eseguire una funzione di callback su ogni singolo elemento, in modo automatico e pulito. Immaginalo come un postino che consegna una lettera a ogni casa di una via.
 
 - **Visualizzazione Mentale:** Un nastro trasportatore porta i dati davanti a un operatore che esegue un'azione (es. stampare un nome) su ogni elemento che passa, senza però creare un nuovo contenitore.
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     array.forEach((elemento, indice, arrayOriginale) => {
       // Azione da compiere
     });
     ```
     
 - **Casi d'uso con Array di Oggetti:** È ideale per generare "effetti collaterali" come stampare dati a schermo o modificare tag nel DOM.
-    ```JavaScript
+    ```js
     const prodotti = [
         { id: 1, nome: "Smartphone", prezzo: 700, categoria: "Elettronica", inStock: true },
         { id: 2, nome: "Laptop", prezzo: 1200, categoria: "Elettronica", inStock: false },
@@ -56,21 +54,21 @@ Il metodo `forEach` è un'operazione nativa progettata per scorrere un array ed 
     - Cercare di salvare il risultato: `forEach` ritorna sempre `undefined`.
     - Usare `break` o `continue`: non è possibile interrompere il ciclo forEach; deve scorrere tutto l'array.
 
-#### [1.2 map (La Fabbrica di Dati)](#-indice-rapido)
+## 2. map (La Fabbrica di Dati)
 
 Se `forEach` è l'operaio, `.map()` è la fabbrica. Il suo scopo è **trasformare** ogni elemento di un array per generarne uno **nuovo** della stessa identica lunghezza, lasciando l'originale intatto (immutabilità).
 
 - **Visualizzazione Mentale:** Una catena di montaggio dove ogni oggetto grezzo entra in una macchina (callback), viene trasformato e depositato in una nuova scatola (nuovo array).
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     const nuovoArray = array.map(elemento => {
       return elemento * 2; // Trasformazione
     });
     ```
     
 - **Casi d'uso con Array di Oggetti:** Isolare specifiche proprietà (es. estrarre solo gli ID degli utenti) o clonare oggetti aggiungendo nuove informazioni (es. calcolo prezzi con IVA).
-    ```JavaScript
+    ```js
     // 1. Il nostro array di dati iniziale (i record degli utenti)
     const utenti = [
     { id: 101, nome: "Alice", email: "alice@example.com", attivo: true },
@@ -80,7 +78,7 @@ Se `forEach` è l'operaio, `.map()` è la fabbrica. Il suo scopo è **trasformar
     ];
 
     // 2. Applichiamo .map() per estrarre solo la proprietà 'id'
-    const listaId = utenti.map(utente => utente.id);
+    const listaId = utenti.map(utente => utente.id); // utilizziamo il return implicito della arrow function
 
     // 3. Verifichiamo il risultato
     console.log(listaId); 
@@ -89,16 +87,15 @@ Se `forEach` è l'operaio, `.map()` è la fabbrica. Il suo scopo è **trasformar
 
 - **⚠️ Errori comuni:**
     - Dimenticare il `return`: se non restituisci un valore, il nuovo array sarà pieno di `undefined`.
-    - Modificare l'originale: se si manipolano oggetti annidati senza cautela, si rischia di alterare la sorgente.
 
-#### [1.3 filter (Il Selettore)](#-indice-rapido)
+## 3. filter (Il Selettore)
 
-Mentre `map` trasforma, `.filter()` agisce come un setaccio. Crea un nuovo array contenente solo gli elementi che superano una determinata condizione logica (restituiscono `true`).
+Mentre `map` trasforma, `.filter()` agisce come un setaccio. Crea un nuovo array contenente solo gli elementi che superano una determinata condizione logica (la callback restituisce `true`).
 
 - **Visualizzazione Mentale:** Sopra un nastro trasportatore c'è un filtro che fa cadere nel nuovo contenitore solo gli oggetti che rispettano una regola (es. "solo elettronica").
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     const filtrati = array.filter(elemento => elemento.proprieta > valore);
     ```
     
@@ -130,19 +127,19 @@ Mentre `map` trasforma, `.filter()` agisce come un setaccio. Crea un nuovo array
     - Gestione assenza risultati: se nessun elemento soddisfa la condizione, restituisce un array vuoto `[]`, non `null`.
     - Confondere test con trasformazione: non usare `filter` per modificare dati, usalo solo per selezionarli.
 
-#### [1.4 find (Il Cercatore)](#-indice-rapido)
+## 4. find (Il Cercatore)
 
 A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cercatore che si ferma al **primo** elemento che soddisfa la condizione.
 
 - **Visualizzazione Mentale:** Una caccia al tesoro dove, appena trovi la prima scheda corretta nell'archivio, la prendi e smetti di cercare.
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     const trovato = array.find(elemento => elemento.id === 102);
     ```
     
 - **Casi d'uso con Array di Oggetti:** Recuperare un singolo record univoco tramite ID o codice a barre.
-    ```JavaScript
+    ```js
     // 1. Il nostro array di dati iniziale (i record degli utenti)
     const utenti = [
     { id: 1, nome: "Alice", email: "alice@example.com", attivo: true },
@@ -157,7 +154,7 @@ A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cerca
     const utenteTarget = utenti.find(utente => utente.id === idDaCercare);
 
     // 3. Vediamo il risultato in console
-    console.log("Utente trovato:", utenteTarget);
+    console.log("Utente trovato:", utenteTarget); /// restituirà {id: 3, nome:"Carlo", email:"carlo@example.com", attivo:true}
     ```
 
 
@@ -165,21 +162,21 @@ A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cerca
     - Accedere a proprietà di `undefined`: se non trova nulla, restituisce `undefined`. Accedere a proprietà di un oggetto inesistente causerà un crash.
     - Usarlo per liste: se ti aspetti più risultati, usa `filter`, poiché `find` restituisce solo il primo.
 
-#### [1.5 reduce (Il Calcolatore)](#-indice-rapido)
+## 5. reduce (Il Calcolatore)
 
 È il metodo più potente e trasforma l'intero array in un **singolo valore finale** (numero, stringa o oggetto).
 
 - **Visualizzazione Mentale:** Una palla di neve che rotola: parte da un valore iniziale e accumula dati a ogni giro.
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     const risultato = array.reduce((acc, curr) => {
       return acc + curr.valore;
     }, 0); // 0 è il valore iniziale
     ```
     
 - **Casi d'uso con Array di Oggetti:** Calcolare il totale di un carrello o raggruppare dati in un oggetto riassuntivo.
-    ```JavaScript
+    ```js
         // 1. Definiamo il carrello della spesa
         const carrello = [
             { prodotto: "Smartphone", prezzo: 599.99, quantita: 1 },
@@ -205,14 +202,14 @@ A differenza di `filter`, che raccoglie tutti i risultati, `.find()` è un cerca
     - Dimenticare il valore iniziale: senza di esso, `reduce` usa il primo elemento dell'array come accumulatore, causando errori con gli oggetti.
     - Non restituire l'accumulatore: è obbligatorio scrivere `return acc` alla fine della callback.
 
-#### [1.6 sort (L'Ordinatore)](#-indice-rapido)
+## 6. sort (L'Ordinatore)
 
 Organizza gli elementi dell'array in base a un criterio specifico. Di base ordina come stringhe, quindi per i numeri serve una regola esplicita.
 
 - **Visualizzazione Mentale:** Un arbitro che chiama due corridori alla volta (a, b), li confronta e decide chi deve stare davanti.
 - **Sintassi Base:**
     
-    ```JavaScript
+    ```js
     // Numeri (Crescente: a-b, Decrescente: b-a)
     array.sort((a, b) => a - b);
     
@@ -220,7 +217,7 @@ Organizza gli elementi dell'array in base a un criterio specifico. Di base ordin
     array.sort((a, b) => a.nome.localeCompare(b.nome));
     ```
 - **Casi d'uso con Array di Oggetti:** Ordinamento per Stringhe (Ordine Alfabetico) o Ordinamento per Numeri (Crescente / Decrescente).
-    ```JavaScript
+    ```js
     const utenti = [
     { id: 1, nome: "Marco" },
     { id: 2, nome: "Anna" },
@@ -242,7 +239,7 @@ Organizza gli elementi dell'array in base a un criterio specifico. Di base ordin
     */
     ```
 
-    ```JavaScript
+    ```js
     const prodotti = [
     { id: 101, articolo: "Tastiera", prezzo: 45 },
     { id: 102, articolo: "Mouse", prezzo: 25 },
@@ -269,15 +266,15 @@ Organizza gli elementi dell'array in base a un criterio specifico. Di base ordin
 
 ---
 
-### [🔗 Risorse e Documentazione](#-indice-rapido)
+## Risorse e Documentazione
 
 - 📚 **MDN Web Docs:** Guide complete per [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach), [map](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [filter](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find), [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) e [sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort).
-- 🏫 **W3Schools:** Esercizi interattivi sui metodi degli Array.
-- ⚛️ **React Documentation:** Rendering di liste tramite `.map()`.
+- 🏫 **W3Schools:** [Esercizi interattivi sui metodi degli Array.](https://www.w3schools.com/js/js_arrays.asp)
+- ⚛️ **React Documentation:** [Rendering di liste tramite `.map()`.](https://react.dev/learn/rendering-lists)
 
 ---
 
-### [🚀 Key Takeaways del Giorno](#-indice-rapido)
+## Key Takeaways del Giorno
 
 - **Immutabilità:** Metodi come `map` e `filter` creano copie e non rovinano i dati di partenza; `sort` invece è mutabile e modifica l'originale.
 - **Il Ritorno (`return`):** Nelle callback di `map`, `filter`, `find` e `reduce`, il `return` è essenziale. Senza di esso, si ottengono risultati errati o `undefined`.
@@ -289,7 +286,7 @@ Organizza gli elementi dell'array in base a un criterio specifico. Di base ordin
 
 ---
 
-### [📖 Glossario dei Metodi](#-indice-rapido)
+## Glossario
 
 |Termine Istituzionale|Definizione Formale|"Spiega Brutta"|
 |:--|:--|:--|
