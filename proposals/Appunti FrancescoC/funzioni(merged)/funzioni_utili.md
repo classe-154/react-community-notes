@@ -1,0 +1,164 @@
+#### Modulo: JavaScript  
+**Titolo:** Function Utility
+
+### 📍 Indice Rapido
+
+1. [Funzioni Utili e Modularità](#funzioni-utility)
+
+2. [Struttura della Raccolta: Separazione dei File](#separazione-file)
+
+3. [Standardizzazione della Validazione e Nomenclatura](#standardizzazione)
+
+4. [Sviluppo della Raccolta (function.js)](#sviluppo-funzioni)
+
+5. [Applicazione della Raccolta (script.js)](#applicazione-funzioni)
+
+6. [Errori comuni](#errori-comuni)
+
+7. [Risorse e Documentazione](#risorse)
+
+8. [Key Takeaways del Giorno](#takeaways)
+
+9. [Glossario](#glossario)
+
+
+## ⚙️ 1. Funzioni Utili (Raccolta di utility e Modularità){#funzioni-utility}
+
+Nello sviluppo professionale, i programmatori non reinventano la ruota ad ogni riga di codice. Man mano che si identificano compiti ripetitivi (como calcolare una percentuale, ripulire un testo o validare un dato), si isolano queste logiche all'interno di funzioni dedicate. L'unione di queste funzioni prende il nome di **Raccolta di Utility** (o Libreria Personale).
+
+Creare una raccolta di funzioni utili richiede un approccio ingegneristico basato sulla **Modularità**: ogni funzione deve fare una sola cosa, farla bene, ed essere completamente indipendente dal contesto in cui viene usata.
+### 🗂️ 2. Struttura della Raccolta: Separazione dei File{#separazione-file}
+
+Per evitare di avere un unico file enorme e illeggibile, la buona pratica didattica ed ingegneristica impone di dividere nettamente il codice in due file distinti:
+
+- **`function.js` (La Logica):** Il file "fabbrica". Contiene esclusivamente le definizioni delle funzioni utili. In questo file non si eseguono calcoli diretti e non ci sono invocazioni.
+
+- **`script.js` (L'Uso):** Il file "esecutivo". È il punto di ingresso dell'applicazione dove le funzioni del file `function.js` vengono invocate passandogli i dati reali.
+
+#### 🌐 La Regola d'Oro del collegamento HTML
+
+Per fare in modo che `script.js` riesca a usare le funzioni scritte in `function.js`, l'ordine di inclusione all'interno del file `index.html` (solitamente prima della chiusura del tag `</body>`) è vitale:
+
+```HTML
+
+<script src="function.js"></script>
+
+<script src="script.js"></script>
+
+```
+
+> 🛑 **Attenzione:** Se inverti questo ordine, `script.js` partirà immediatamente, cercherà le utility in memoria prima ancora che il computer abbia letto il file delle funzioni, bloccando all'istante l'applicazione con un errore di tipo `ReferenceError`.
+
+### 📐 3. Standardizzazione della Validazione e Nomenclatura{#standardizzazione}
+
+All'interno di una raccolta di utility, le funzioni devono parlare una lingua comune. Quando si progetta la logica di controllo di un parametro, per convenzione tra le **Best Practices**, si utilizzano codici identificativi numerici per segnalare all'esterno lo stato del dato ricevuto:
+
+- **Se il dato è nullo (`null`):** La funzione interrompe il calcolo e restituisce `-1`.
+
+- **Se il dato è vuoto (es. stringa vuota `""` o `0`):** La funzione interrompe il calcolo e restituisce `0`.
+
+- **Se il dato è valido:** La funzione esegue l'operazione e restituisce il valore elaborato.
+
+Inoltre, i nomi di variabili e funzioni devono essere espressivi e scritti **interamente in italiano**, auto-esplicando il compito svolto (es. `calcolaValoreSconto` invece di `getDiscount`).
+
+### 🛠️ 4. Sviluppo della Raccolta (function.js){#sviluppo-funzioni}
+
+Ecco come appare il nostro `function.js`. Immaginalo come un **archivio organizzato**: contiene solo le istruzioni e le ricette pronte all'uso. Noterai che qui non c'è nessuna operazione che parte da sola: è tutto in attesa, pronto per essere chiamato dal file principale.
+
+```JavaScript
+// ==========================================
+// FILE: function.js (Definizione delle Utility)
+// ==========================================
+
+/**
+ * Calcola il valore assoluto dello sconto applicato a un prezzo.
+ * Gestisce la validazione standard del prezzo.
+ */
+
+function calcolaValoreSconto(prezzoBase, percentualeSconto) {
+  if (prezzoBase === null) {
+    return -1; // Codice identificativo: dato nullo
+  }
+  if (prezzoBase === 0) {
+    return 0;  // Codice identificativo: dato vuoto/zero
+  }
+  let valoreSconto = (prezzoBase * percentualeSconto) / 100;
+  return valoreSconto;
+}
+
+/**
+ * Ripulirà una stringa da spazi superflui e la renderà minuscola.
+ * Utile per standardizzare i controlli sui testi (es. email o nomi utente).
+ */
+function normalizzaTesto(testoInput) {
+
+  if (testoInput === null) {
+
+    return -1;
+
+  }
+  let testoPulito = testoInput.trim();
+  if (testoPulito === "") {
+    return 0;
+  }
+  return testoPulito.toLowerCase();
+}
+```
+
+**Perché?** Il motivo tecnico per cui `calcolaValoreSconto` deve occuparsi _solo_ del calcolo e non, ad esempio della stampa a schermo e che se una funzione stampa _e_ calcola, non puoi usarla in un progetto dove vuoi solo il dato matematico.
+
+### 🚀 5. Applicazione della Raccolta (script.js){#applicazione-funzioni}
+
+Nel file esecutivo `script.js` richiamiamo le funzioni contenute in `function.js` per elaborare i nostri dati. Poiché le funzioni possono restituire sia un risultato corretto che un codice di errore (come `-1` o `0`), è compito di `script.js` **controllare cosa è tornato indietro** prima di procedere, proprio come faresti con un controllo qualità su un pezzo appena prodotto in fabbrica.
+
+```JavaScript
+// ==========================================
+// FILE: script.js (Uso ed Esecuzione)
+// ==========================================
+
+// Scenario 1: Calcolo finanziario su un prodotto
+let prezzoArticolo = 120;
+let scontoApplicato = 15;
+
+let risparmioEffettivo = calcolaValoreSconto(prezzoArticolo, scontoApplicato);
+console.log(`Il cliente ha risparmiato: ${risparmioEffettivo}€`); // Risultato: 18€
+
+// Scenario 2: Pulizia dei dati provenienti da un form web sporco
+let emailUtenteGrezza = "   NuovoUtente@EMAIL.COM   ";
+let emailPronta = normalizzaTesto(emailUtenteGrezza);
+
+if (emailPronta === -1) {
+  console.log("Errore: Il campo email non è presente.");
+} else if (emailPronta === 0) {
+  console.log("Errore: Il campo email è vuoto.");
+} else {
+  console.log(`Email registrata nel database: ${emailPronta}`);
+  // Risultato: "nuovoutente@email.com"
+}
+```
+### ⚠️ 6. Errori comuni{#errori-comuni}
+
+- **Mescolare input/output globali dentro le utility:** Inserire un `console.log` o leggere una variabile globale direttamente dentro `function.js` rompe completamente la modularità. La funzione deve dipendere esclusivamente dai suoi parametri e comunicare con il mondo esterno solo tramite `return`.
+
+- **Mancata gestione dei casi limite (Edge Cases):** Se una funzione di calcolo matematico non controlla se il dato ricevuto è valido o nullo prima di lavorarlo, passerà il valore errato alle operazioni aritmetiche, generando bug a catena come il temibile valore `NaN` nel file esecutivo.
+
+#### 🔗 7. **Risorse e Documentazione**{#risorse}
+
+- 📚 [MDN Web Docs (Efficienza e Modularità)](https://developer.mozilla.org/it/docs/Web/JavaScript/Guide/Functions)
+
+#### 🚀 8. **Key Takeaways del Giorno**{#takeaways}
+
+- **Una funzione, un compito:** Non creare funzioni "coltellino svizzero" che fanno troppe cose insieme. Dividi sempre i compiti in micro-funzioni atomiche.
+
+- **Separazione dei file:** Mantieni le definizioni logiche isolate in `function.js` e consumale dentro `script.js` per garantire la pulizia e la manutenibilità dell'architettura.
+
+- **I codici di errore salvano il codice:** Usare ritorni convenzionali e standardizzati come `-1` o `0` permette al file esecutivo di capire se c'è stato un problema senza bloccare bruscamente l'applicazione.
+
+#### 📖 9. **Glossario**{#glossario}
+
+| **Termine Istituzionale**          | **Definizione Formale**                                                                                | **"Spiega Brutta"**                                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Modularità**                     | Pratica di progettazione software che divide il sistema in moduli funzionali distinti e indipendenti.  | Separare il codice in pezzi piccoli e scambiabili, mettendo le logiche stabili da una parte e l'uso dall'altra.                        |
+| **Libreria (Utility)**             | Raccolta di funzioni o risorse predefinite messe a disposizione per facilitare lo sviluppo software.   | Il tuo set di attrezzi personali: funzioni pronte all'uso che ti porti dietro di progetto in progetto per risparmiare tempo.           |
+| **Edge Case**                      | Scenario problematico o limite che si verifica solo ai margini estremi dei parametri operativi.        | Il "caso sfigato": quando l'utente immette un dato vuoto, nullo o fuori scala che rischia di spaccare la funzione se non controllato.  |
+| **Separazione dei Concetti (SoC)** | Principio di progettazione che separa un programma in sezioni distinte.                                | Non mescolare mai la logica di calcolo con l'invocazione reale: ognuno deve fare il suo lavoro nel suo spazio.                         |

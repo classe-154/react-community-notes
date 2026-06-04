@@ -1,6 +1,27 @@
 # React Context API — Appunti di lezione
 
-## 🔌 1. Il problema: Props Drilling
+1. Argomenti Lezione: React Context API
+
+ - [1.1 Il Problema: Props Drilling](#-11-il-problema-props-drilling)
+
+ - [1.2 La Soluzione: La Context API](#-12-la-soluzione-la-context-api)
+
+ - [1.3 Creazione del context e del provider](#13-creazione-del-context-e-del-provider)
+
+ - [1.4 Lettura del context con useContext](#-14-lettura-del-context-con-usecontext)
+
+ - [1.5 Custom hooks per usare il Context](#-15-custom-hook-per-usare-il-context)
+
+ - [1.6 Wrapping dell'applicazione e struttura dei file](#-16-wrapping-dellapplicazione-e-struttura-dei-file)
+
+ - [1.7 Context semplice e Context complesso](#17-context-semplice-e-context-complesso)
+
+2. [Capitolo Riassuntivo e Schematico](#-2-capitolo-riassuntivo-e-schematico)
+3. [Risorse Tecniche (MDN, W3S, React)](#-3-risorse-tecniche-mdn-w3schools-react)
+4. [Key Takeaways](#-4-key-takeaways) 
+5. [Glossario](#-5-syllabus)
+
+## 🔌 1.1 Il problema: Props Drilling
 
 React passa normalmente i dati dall'alto verso il basso tramite **props**.
 
@@ -34,7 +55,7 @@ La **Context API** permette di evitare questi passaggi inutili, rendendo un dato
 
 ---
 
-## 🌊 2. La metafora del canale d'acqua
+## 🌊 1.2 La Soluzione: La Context API
 
 Possiamo immaginare la Context API come un **canale d'acqua** che trasporta dati.
 
@@ -63,7 +84,7 @@ Tutti i componenti dentro `ThemeProvider` possono leggere i dati forniti dal con
 
 ---
 
-## 🏗️ 3. Creazione del Context e del Provider
+## 1.3 Creazione del Context e del Provider
 
 Il primo passo è creare il context con `createContext()`.
 
@@ -124,7 +145,7 @@ In questo esempio:
 
 ---
 
-## 🎣 4. Lettura del Context con `useContext`
+## 🎣 1.4 Lettura del Context con `useContext`
 
 Per leggere i dati del context dentro un componente si usa `useContext()`.
 
@@ -157,7 +178,7 @@ In questo caso il componente legge:
 
 ---
 
-## 🧰 5. Custom Hook per usare il Context
+## 🧰 1.5 Custom Hook per usare il Context
 
 Una buona pratica è creare un **custom hook** dedicato.
 
@@ -207,26 +228,29 @@ Il custom hook è utile perché:
 
 ---
 
-## 🧩 6. Wrapping dell'applicazione e struttura dei file
+## 🧩 1.6 Wrapping dell'applicazione e struttura dei file
 
 Per rendere disponibile il context, dobbiamo avvolgere l'applicazione con il Provider.
 
-### 💻 Snippet: Wrapping in `main.jsx`
+### 💻 Snippet: Wrapping in `App.jsx`
 
 ```jsx
-// src/main.jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+// src/App.jsx
 import ThemeProvider from "./contexts/ThemeProvider";
+import Header from "./components/Header";
+import ThemeButton from "./components/ThemeButton";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+function App() {
+  return(
     <ThemeProvider>
-      <App />
+      <Header>
+        <ThemeButton />
+      </Header>
     </ThemeProvider>
-  </React.StrictMode>
-);
+  );
+}
+
+export default App
 ```
 
 Una possibile struttura del progetto:
@@ -259,7 +283,7 @@ Questa organizzazione separa:
 
 ---
 
-## ⚖️ 7. Context semplice e Context complesso
+## 1.7 Context semplice e Context complesso
 
 Un'applicazione può avere più context, ognuno con una responsabilità precisa.
 
@@ -290,7 +314,7 @@ Questo significa che un componente può pescare dati da più canali.
 
 ---
 
-## 🏁 8. Capitolo Riassuntivo e Schematico
+## 🏁 2 Capitolo Riassuntivo e Schematico
 
 ### 📊 Tabella Comparativa: Props vs Context
 
@@ -312,7 +336,15 @@ Questo significa che un componente può pescare dati da più canali.
 
 ---
 
-## 📌 9. Key Takeaways
+## 📌 3. Risorse Tecniche (MDN, W3Schools, React)
+- [Context](https://react.dev/learn/passing-data-deeply-with-context)
+- [useContext](https://react.dev/reference/react/useContext)
+- [createContext](https://react.dev/reference/react/createContext)
+- [W3Schools Context](https://www.w3schools.com/react/react_usecontext.asp)
+
+---
+
+## 📌 4. Key Takeaways
 
 - La Context API serve a condividere dati tra componenti senza passare props manualmente a ogni livello.
 - Il problema principale che risolve è il **props drilling**.
@@ -327,7 +359,7 @@ Questo significa che un componente può pescare dati da più canali.
 
 ---
 
-## 📚 10. Syllabus
+## 📚 5. Syllabus
 
 | Termine | Definizione istituzionale | Spiegazione semplice |
 | --- | --- | --- |

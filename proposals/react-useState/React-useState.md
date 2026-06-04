@@ -14,15 +14,15 @@
 1.7 [Chiavi dinamiche e form handling](#chiavi-dinamiche-e-form-handling)  
 1.8 [Controlled components e state lifting](#controlled-components-e-state-lifting)  
 1.9 [Errori comuni e best practice](#errori-comuni-e-best-practice)  
-2. Esempi pratici  
-3. Risorse Tecniche (MDN, W3Schools)  
-4. Key Takeaways del giorno  
-5. Glossario: termini essenziali
+2. [Esempi pratici](#2-esempi-pratici)  
+3. [Risorse Tecniche (MDN, W3Schools)](#3-risorse-e-documentazione)
+4. [Key Takeaways del giorno](#4-key-takeaways-del-giorno)
+5. [Glossario: termini essenziali](#5-glossario-termini-essenziali)
 
 
 ### 1. useState
 
-1.1 Introduzione e perché serve
+### Introduzione e perché serve
 
 useState è un Hook fornito da React (a partire dalla v16.8) che permette di dichiarare variabili di stato all'interno di un componente funzionale.  
 Lo stato memorizza i dati che determinano cosa mostra la UI e rende il componente "reattivo": quando il valore di stato cambia tramite il setter, React pianifica un nuovo render per aggiornare la UI.
