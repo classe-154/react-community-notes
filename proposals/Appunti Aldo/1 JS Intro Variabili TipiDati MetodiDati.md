@@ -11,7 +11,7 @@
 3. [Tipi di Dati](#3-tipi-di-dati)
 4. [Metodi dei Dati](#4-metodi-dei-dati)
 
------
+----
 
 ## 1. Introduzione a JavaScript
 

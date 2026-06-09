@@ -10,7 +10,7 @@
 7. [Operatori Logici](#7-operatori-logici)
 8. [Operatori Binari (Bitwise)](#8-operatori-binari-bitwise) — *⚠️ Approfondimento fuori programma*
 
----
+----
 
 ## 5. Definizione di Condizione
 
