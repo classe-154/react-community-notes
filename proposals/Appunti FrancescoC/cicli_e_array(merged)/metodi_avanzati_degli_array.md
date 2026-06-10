@@ -364,10 +364,10 @@ Questa è la distinzione più importante da memorizzare:
 Se `.find()` non trova alcun elemento che soddisfa la condizione, ritorna `undefined`. È un comportamento che va gestito per evitare crash quando provi ad accedere alle proprietà dell'oggetto.
 
 ```JavaScript
-const utenteInesistente = utenti.find((u) => u.id === 999);
+const utenteDaTrovare = utenti.find((u) => u.id === 999);
 
-if (utenteInesistente) {
-  console.log(utenteInesistente.nome);
+if (utenteDaTrovare) {
+  console.log(utenteDaTrovare.nome);
 } else {
   console.log("Utente non presente nel database.");
 }
@@ -547,7 +547,7 @@ const inventario = [
 ];
 
 const conteggio = inventario.reduce((acc, curr) => {
-  acc[curr.tipo] = (acc[curr.tipo] || 0) + 1;
+  acc[curr.tipo] = (acc[curr.tipo] || 0) + 1; // e.g.: acc["frutta"] = (acc["frutta"] || 0 ) + 1; La proprietà "frutta" dell'oggetto accumulatore sarà uguale al suo valore attuale (oppure 0 se essa non esiste) + 1 (questo succede quando curr.tipo è "frutta").
   return acc;
 }, {}); // <--- Partiamo con un oggetto vuoto
 
@@ -566,17 +566,40 @@ Per capire come funziona questo magico shorthand, guardiamo prima la sintassi e 
 
 ```Javascript
 // Il pattern in una sola riga:
-const pipe = (...fns) => x => fns.reduce((value, fn) => fn(value), x);
+const pipe = (...fns) => x => fns.reduce((value, fn) => fn(value), x); // Abbiamo una arrow function che prende come argomento un array di funzioni, e ci restituisce un'altra arrow function. Questa seconda arrow function chiama la reduce sull'array di funzioni ricevuto all'inizio. La reduce ha un accumulatore "value" e un valore corrente, che è la funzione attuale dell'array su cui stiamo iterando e restituisce come risultato la funzione attuale, chiamata sul valore attuale dell'accumulatore. Questo vuol dire che per ogni funzione stiamo facendo l'update del valore dell'accumulatore, chiamando la funzione sul valore precedente. Infine come valore iniziale per l'accumulatore abbiamo x.
 
 // Usiamolo nella pratica:
 const quadrato = x => x * x;
 const raddoppia = x => x * 2;
 const aggiungiDieci = x => x + 10;
 
+// Abbiamo creato 3 funzioni, esse prendono un valore x e restituiscono un risultato facendo delle operazioni su questo valore iniziale
+
 // Creiamo una super-funzione combinando i nostri tre "vagoni"
-const superTrasforma = pipe(quadrato, raddoppia, aggiungiDieci); 
+const superTrasforma = pipe(quadrato, raddoppia, aggiungiDieci);
+// Quindi abbiamo una funzione chiamata superTrasforma che non è altro che pipe(...fns) dove l'array fns è [quadrato, raddoppia, aggiungiDieci].
 
 console.log(superTrasforma(5)); // Output: 60
+// Nel momento in cui andiamo a chiamarla cosa sta succedendo sotto la scocca?
+// Beh sappiamo che pipe restituisce una callback, quindi vediamol:
+// Questa è la callback restituita, scritta in pseudo-codice:
+/*
+   5 => [quadrato, raddoppia, aggiungiDieci].reduce((value, fn) => fn(value), 5);
+   Che diventa, seguendola passo passo:
+   5 => [x => x * x, x => x * 2, x => x + 10].reduce((value, fn) => fn(value), 5);
+   Al primo giro avremo quindi:
+    quadrato => quadrato(5) che ci darà 25, questo verrà salvato come valore dell'accumulatore value, grazie al return implicito.
+   Al secondo giro avremo:
+    raddoppia => raddoppia(25) che ci darà 50, questo verrà salvato come valore dell'accumulatore value, grazie al return implicito.
+   All'ultimo giro avremo:
+    aggiungiDieci => aggiungiDieci(50) che ci darà 60, questo verrà salvato come valore dell'accumulatore value, grazie al return implicito.
+   Quindi alla del reduce avremo il valore 60.
+   Ricordiamo che pipe = (...fns) => x => fns.reduce.... Ovvero in questo caso:
+
+   superTrasforma(5) = pipe(quadrato, raddoppia, aggiungiDieci) => 5 => 60.
+   Quindi il risultato finale che ci verrà restituito è 60.
+   Tenere a mente che questo che ho scritto è tutto pseudo-codice per rendere leggibile il ragionamento. E' un aspetto abbastanza avanzato di programmazione funzionale.
+*/
 ```
 
 #### 🔍 Anatomia della Riga di Codice: Chi è chi?
@@ -624,7 +647,7 @@ Con `pipe` il codice diventa **pulito, modulare, elegantissimo** e si legge da s
 
 `sort` organizza gli elementi di un array in base a un criterio specifico. Di base, JavaScript converte gli elementi in stringhe e li ordina alfabeticamente (per questo per lui il numero `10` viene prima di `2`). Per ordinare strutture complesse o numeri dobbiamo passargli una funzione di confronto (`compareFn`).
 
-⚠️ **Attenzione (Metodo Mutabile):** `sort` modifica l'array originale (_in-place_). Se vuoi preservare l'ordine iniziale, devi creare prima una copia usando lo spread operator: `[...array].sort()`
+⚠️ **Attenzione (Metodo Mutativo):** `sort` modifica l'array originale (_in-place_). Se vuoi preservare l'ordine iniziale, devi creare prima una copia usando lo spread operator: `[...array].sort()`. In alternativa puoi usare il metodo `toSorted()` che funziona esattamente come il `sort()` ma restituisce una copia dell'array ordinato senza modificare quello originale.
 
 ### 🧠 8.1 Ordinamento di Stringhe Semplici
 Quando lavoriamo con stringhe pulite e prive di accenti, sort non ha bisogno di istruzioni extra per ordinare in ordine alfabetico (dalla A alla Z).
@@ -650,7 +673,7 @@ La funzione riceve e confronta due elementi alla volta (`a` e `b`) e agisce in b
     
 - **Numero positivo:** `b` precede `a`.
     
-- **Zero:** Nessun cambio di posizione.
+- **Zero:** `a` e `b` sono considerati uguali dalla nostra funzione di comparazione.
     
 💡 **Regola Mnemonica per i Numeri:**
 
@@ -682,7 +705,7 @@ L'Obiettivo è ordinare i corridori dal più giovane al più vecchio. Il metodo 
     
 - **Secondo scontro (Luca 30 vs Marco 28):** L'arbitro calcola $30 - 28 = 2$ (positivo). Anche qui, Marco deve stare davanti a Luca.
     
-- **Terzo scontro (Marco 28 vs Anna 22):** L'arbitro calcola $28 - 22 = 6$ (positivo). Anna deve stare davanti a Marco.
+- **Terzo scontro (Anna 22 vs Marco 28):** L'arbitro calcola $22 - 28 = -6$ (negativo). Anna deve stare davanti a Marco.
     
 
 ### 🔤 8.3 Ordinare Stringhe Complesse con .localeCompare()
@@ -705,7 +728,7 @@ utenti.sort((a, b) => a.nome.localeCompare(b.nome));
 
 ### ⚠️ 8.4 Errori comuni
 
-- **Il metodo è Mutabile:** `.sort()` cambia l'ordine dell'array originale. Se ti serve mantenere l'ordine di partenza, devi prima creare una copia (es. `[...utenti].sort(...)`).
+- **Il metodo è Mutativo:** `.sort()` cambia l'ordine dell'array originale. Se ti serve mantenere l'ordine di partenza, devi prima creare una copia (es. `[...utenti].sort(...)`). In alternativa puoi usare il metodo `toSorted()` che funziona esattamente come il `sort()` ma restituisce una copia dell'array ordinato senza modificare quello originale.
     
 - **Dimenticare la funzione di confronto:** Se scrivi solo `array.sort()` su oggetti, JavaScript non sa quale proprietà usare e non otterrai l'ordine sperato.
 
@@ -730,39 +753,39 @@ utenti.sort((a, b) => a.nome.localeCompare(b.nome));
 
 - **`forEach` (Azione):** Meno codice, meno bug. Usalo per scorrere un array dall'inizio alla fine senza interruzioni per generare "effetti collaterali" (es. stampe o modifiche DOM). Non restituisce nulla (`undefined`). I suoi parametri di callback hanno un ordine fisso: `(elemento, indice, array)`.
     
-- **`map` (Trasformazione):** Lavora in rapporto uno-a-uno (stessa lunghezza di output). Converti dati complessi in array semplici o calcola nuovi valori. **Il `return` è obbligatorio** se usi le parentesi graffe nella callback, altrimenti generi un array di `undefined`.
+- **`map` (Trasformazione):** Lavora in rapporto uno-a-uno (stessa lunghezza di output). Converti dati complessi in array semplici o calcola nuovi valori. **Il `return` è obbligatorio** se usi le parentesi graffe nella callback, altrimenti generi un array di `undefined`. I suoi parametri di callback hanno un ordine fisso: `(elemento, indice, array)`.
 
-- **`filter` (Selezione Logica):** Funziona come un vero e proprio setaccio. Restituisce sempre un nuovo array contenente solo gli elementi che superano il test (la callback deve restituire `true`). Se nessuno passa, ti restituisce un array vuoto `[]`. Non confonderlo con `find`.
+- **`filter` (Selezione Logica):** Funziona come un vero e proprio setaccio. Restituisce sempre un nuovo array contenente solo gli elementi che superano il test (la callback deve restituire `true`). Se nessuno passa, ti restituisce un array vuoto `[]`. Non confonderlo con `find`. I suoi parametri di callback sono sempre `(elemento, indice, array)`.
 
-- **`find` (Ricerca Univoca):** Massima velocità ed efficienza; si spegne alla prima corrispondenza utile. Restituisce l'oggetto pulito direttamente (non un array). Ricorda sempre di verificare che il risultato non sia `undefined` prima di accedere alle sue proprietà.
+- **`find` (Ricerca Univoca):** Massima velocità ed efficienza; si spegne alla prima corrispondenza utile. Restituisce l'oggetto pulito direttamente (non un array). Ricorda sempre di verificare che il risultato non sia `undefined` prima di accedere alle sue proprietà. I suoi parametri di callback sono sempre `(elemento, indice, array)`.
 
-- **`some` ed `every` (Verifica Booleana):** Alta efficienza grazie allo _short-circuit_ (si fermano appena hanno la certezza matematica). Non estraggono dati, ma rispondono solo con `true` o `false`. Usa `some` per verificare se esiste almeno un elemento e preferiscilo a `filter().length > 0` per non sprecare memoria. Attenzione all'inganno dell'array vuoto `[]` (su cui `every` restituisce sempre `true`).
+- **`some` ed `every` (Verifica Booleana):** Alta efficienza grazie allo _short-circuit_ (si fermano appena hanno la certezza matematica). Non estraggono dati, ma rispondono solo con `true` o `false`. Usa `some` per verificare se esiste almeno un elemento e preferiscilo a `filter().length > 0` per non sprecare memoria. Attenzione all'inganno dell'array vuoto `[]` (su cui `every` restituisce sempre `true`). I suoi parametri di callback sono sempre `(elemento, indice, array)`.
 
-- **`reduce` (Aggregazione):** Flessibilità totale per ridurre un array a un singolo valore (un numero, una stringa o un nuovo oggetto riassuntivo). Imposta sempre accuratamente il **valore iniziale** e non dimenticare mai il `return acc;` ad ogni passaggio del ciclo.
+- **`reduce` (Aggregazione):** Flessibilità totale per ridurre un array a un singolo valore (un numero, una stringa o un nuovo oggetto riassuntivo). Imposta sempre accuratamente il **valore iniziale** e non dimenticare mai il `return acc;` ad ogni passaggio del ciclo. I suoi parametri di callback sono sempre `(accumulatore, elemento, indice, array)`.
     
-- **`sort` (Ordinamento):** Consente il controllo totale sulla disposizione dei dati tramite la funzione di confronto `(a, b)`. Usa `a - b` per l'ordine numerico crescente e `.localeCompare()` per stringhe e testi alfabetici. **Attenzione: modifica l'array originale (è mutabile)**.
+- **`sort` (Ordinamento):** Consente il controllo totale sulla disposizione dei dati tramite la funzione di confronto `(a, b)`. Usa `a - b` per l'ordine numerico crescente e `.localeCompare()` per stringhe e testi alfabetici. **Attenzione: modifica l'array originale (è mutativo)**. I suoi parametri di callback sono sempre `(a, b)` i due elementi a caso da comparare (che non saranno MAI undefined).
     
 ## 11. Glossario 
 
 | **Termine Istituzionale**      | **Definizione Formale**                                                                                               | **"Spiega Brutta"**                                                                                               |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **`forEach`**                  | Metodo del prototipo Array che esegue una funzione di callback fornita una volta per ogni elemento dell'array.        | Un passino automatico: una funzione che prende un elenco e applica un ordine a ogni riga, una dopo l'altra.                          |
+| **`Accumulatore`**             | Il valore che conserva il risultato parziale del calcolo tra un passaggio e l'altro del ciclo.                        | Il "salvadanaio" che si riempie man mano che il ciclo scorre gli elementi.                                                           |
 | **`Callback Function`**        | Funzione passata come argomento all'interno di un'altra funzione per essere eseguita in un secondo momento.           | La busta con le istruzioni che dai al comando per spiegargli cosa deve fare quando arriva il suo turno.                              |
-| **`Side Effect`**              | Modifica dello stato di un'applicazione o interazione con l'esterno che avviene durante l'esecuzione di una funzione. | Un effetto collaterale: quando una funzione cambia cose al di fuori di se stessa, come stampare a schermo o salvare dati in memoria. |
-| **`map`**                      | Metodo che crea un nuovo array popolato dai risultati della chiamata di una funzione fornita su ogni elemento.        | Una catena di montaggio: prendi gli oggetti, gli applichi una trasformazione e crei una nuova lista "sfornata".                      |
-| **`Immutabilità`**             | Paradigma in cui le strutture dati non vengono modificate, ma sostituite da nuove versioni.                           | Non toccare l'originale: se vuoi cambiare qualcosa, fanne una copia nuova e cambia quella.                                           |
-| **`Return`**                   | Parola chiave che termina l'esecuzione di una funzione e specifica il valore da restituire al chiamante.              | Il "risultato" che la funzione rispedisce indietro dopo aver finito il suo lavoro.                                                   |
+| **`every`**                    | Metodo che verifica se tutti gli elementi dell'array superano il test implementato dalla funzione fornita, restituendo un booleano. | Il controllo severo: ti dice `true` solo se **tutti quanti** gli elementi rispettano la regola. Se ne trova anche solo uno sbagliato, si ferma e dice `false`. |
+| **`filter`**                   | Metodo che crea un nuovo array con tutti gli elementi che superano il test implementato dalla funzione fornita.        | Il setaccio: imposti una regola e tieni solo le righe della lista che la rispettano, scartando le altre.                             |
 | **`find`**                     | Metodo che restituisce il valore del primo elemento nell'array che soddisfa la funzione di test fornita.              | La caccia al tesoro: cerca il primo oggetto che rispetta la regola e, appena lo trova, te lo dà in mano e smette di cercare.         |
-| **`undefined`**                | Valore primitivo che indica che una variabile non ha un valore assegnato o che un metodo non ha trovato nulla.        | Il "vuoto": ti dice che il cercatore non ha trovato niente di quello che hai chiesto.                                                |
+| **`forEach`**                  | Metodo del prototipo Array che esegue una funzione di callback fornita una volta per ogni elemento dell'array.        | Un passino automatico: una funzione che prende un elenco e applica un ordine a ogni riga, una dopo l'altra.                          |
+| **`Funzione di comparazione`** | Funzione che riceve due argomenti e restituisce un valore indicando il loro ordine relativo.                          | L'arbitro: guarda due oggetti, li confronta e decide chi dei due deve stare davanti all'altro.                                       |
+| **`Immutabilità`**             | Paradigma in cui le strutture dati non vengono modificate, ma sostituite da nuove versioni.                           | Non toccare l'originale: se vuoi cambiare qualcosa, fanne una copia nuova e cambia quella.                                           |
+| **`Iterazione`**               | L'atto di ripetere un processo o scorrere una lista di elementi sequenzialmente all'interno di un ciclo.               | Fare il giro turistico completo di tutto l'array, leggendo i dati riga per riga dall'inizio alla fine.                               |
+| **`localeCompare`**            | Metodo per confrontare due stringhe in base all'ordine alfabetico locale.                                             | Lo specialista delle parole: sa come ordinare i nomi ignorando accenti o maiuscole.                                                  |
+| **`map`**                      | Metodo che crea un nuovo array popolato dai risultati della chiamata di una funzione fornita su ogni elemento.        | Una catena di montaggio: prendi gli oggetti, gli applichi una trasformazione e crei una nuova lista "sfornata".                      |
 | **`Record Univoco`**           | Elemento che si distingue da tutti gli altri per un identificativo unico (es. ID).                                    | Il pezzo unico: l'elemento che ha una "carta d'identità" tutta sua che non può essere condivisa con altri.                           |
 | **`reduce`**                   | Metodo che esegue una funzione riduttrice su ogni elemento dell'array, risultando in un singolo valore di output.     | Il raccoglitore: passa in rassegna tutto e "riassume" l'intero array in un unico risultato.                                          |
-| **`Accumulatore`**             | Il valore che conserva il risultato parziale del calcolo tra un passaggio e l'altro del ciclo.                        | Il "salvadanaio" che si riempie man mano che il ciclo scorre gli elementi.                                                           |
-| **`Valore Iniziale`**          | Il valore fornito come base di partenza per l'accumulatore.                                                           | Il numero (o oggetto) da cui partiamo prima di iniziare a contare.                                                                   |
+| **`Return`**                   | Parola chiave che termina l'esecuzione di una funzione e specifica il valore da restituire al chiamante.              | Il "risultato" che la funzione rispedisce indietro dopo aver finito il suo lavoro.                                                   |
+| **`Short-Circuit`**            | Meccanismo algoritmico in cui l'esecuzione di un ciclo si interrompe non appena il risultato finale è matematicamente certo. | La scorciatoia intelligente: fermarsi prima di arrivare alla fine dell'array se si ha già in mano la risposta definitiva (usato da `find`, `some` ed `every`). |
+| **`Side Effect`**              | Modifica dello stato di un'applicazione o interazione con l'esterno che avviene durante l'esecuzione di una funzione. | Un effetto collaterale: quando una funzione cambia cose al di fuori di se stessa, come stampare a schermo o salvare dati in memoria. |
+| **`some`**                     | Metodo che verifica se almeno un elemento dell'array supera il test implementato dalla funzione fornita, restituendo un booleano. | Il controllo flessibile: ti dice `true` se nella lista c'è **almeno una** riga che rispetta la regola, e si ferma subito appena la trova. |
 | **`sort`**                     | Metodo che ordina gli elementi di un array in base a un criterio specifico.                                           | L'organizzatore: mette in fila i dati in base a una regola che gli dai tu.                                                           |
-| **`Funzione di comparazione`** | Funzione che riceve due argomenti e restituisce un valore indicando il loro ordine relativo.                          | L'arbitro: guarda due oggetti, li confronta e decide chi dei due deve stare davanti all'altro.                                       |
-| **`localeCompare`**            | Metodo per confrontare due stringhe in base all'ordine alfabetico locale.                                             | Lo specialista delle parole: sa come ordinare i nomi ignorando accenti o maiuscole.                                                  |
-| **`filter`** | Metodo che crea un nuovo array con tutti gli elementi che superano il test implementato dalla funzione fornita. | Il setaccio: imposti una regola e tieni solo le righe della lista che la rispettano, scartando le altre. |
-| **`Iterazione`**|	L'atto di ripetere un processo o scorrere una lista di elementi sequenzialmente all'interno di un ciclo.|	Fare il giro turistico completo di tutto l'array, leggendo i dati riga per riga dall'inizio alla fine.|
-|**`some`**|Metodo che verifica se almeno un elemento dell'array supera il test implementato dalla funzione fornita, restituendo un booleano.| Il controllo flessibile: ti dice `true` se nella lista c'è **almeno una** riga che rispetta la regola, e si ferma subito appena la trova.
-|**`every`**|Metodo che verifica se tutti gli elementi dell'array superano il test implementato dalla funzione fornita, restituendo un booleano.|Il controllo severo: ti dice `true` solo se **tutti quanti** gli elementi rispettano la regola. Se ne trova anche solo uno sbagliato, si ferma e dice `false`.|
-|**`Short-Circuit`**|Meccanismo algoritmico in cui l'esecuzione di un ciclo si interrompe non appena il risultato finale è matematicamente certo.|La scorciatoia intelligente: fermarsi prima di arrivare alla fine dell'array se si ha già in mano la risposta definitiva (usato da `find`, `some` ed `every`).|
+| **`undefined`**                | Valore primitivo che indica che una variabile non ha un valore assegnato o che un metodo non ha trovato nulla.        | Il "vuoto": ti dice che il cercatore non ha trovato niente di quello che hai chiesto.                                                |
+| **`Valore Iniziale`**          | Il valore fornito come base di partenza per l'accumulatore.                                                           | Il numero (o oggetto) da cui partiamo prima di iniziare a contare.                                                                   |
