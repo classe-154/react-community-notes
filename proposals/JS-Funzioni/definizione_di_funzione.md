@@ -3,17 +3,17 @@
 
 ## 📍 Indice Rapido
 
-1. [Definizione di Funzione](#definizione)
+1. [Definizione di Funzione](#1-️-definizione-di-funzione)
 
 2. [Anatomia di una Funzione: Allocazione vs Invocazione](#-2-anatomia-di-una-funzione-allocazione-vs-invocazione)
 
-3. [Scelte Strutturali: Function Declaration vs Function Expression](#scelte-strutturali)
+3. [Scelte Strutturali: Function Declaration vs Function Expression](#️-3-scelte-strutturali-function-declaration-vs-function-expression)
 
-4. [La vera differenza tecnica: L'Hoisting](#hoisting)
+4. [La vera differenza tecnica: L'Hoisting](#4-la-vera-differenza-tecnica-lhoisting-sollevamento)
 
 5. [Concetto Avanzato: L'Isolamento dello Scope](#-5-concetto-avanzato-lisolamento-dello-scope-e-i-blocchi-di-memoria)
 
-6. [Errori comuni](#errori-comuni)
+6. [Errori comuni](#️-6-errori-comuni)
 
 7. [Risorse e Documentazione](#-7-risorse-e-documentazione)
 
@@ -21,13 +21,13 @@
 
 9. [Glossario](#-9-glossario)
 
-### 1. ⚙️ Definizione di Funzione{#definizione}
+## 1. ⚙️ Definizione di Funzione
 
 Per evitare di duplicare blocchi di codice identici, il linguaggio introduce il concetto di **Funzione**.
 
 A livello teorico, una funzione è un **sotto-programma**: un blocco indipendente di istruzioni a cui viene dato un nome o un punto di ancoraggio e che viene memorizzato all'interno dell'applicazione. Questo blocco rimane in uno stato "dormiente" finché non viene esplicitamente richiesto dal resto del software.
 
-### 🧠 2. Anatomia di una Funzione: Allocazione vs Invocazione
+## 🧠 2. Anatomia di una Funzione: Allocazione vs Invocazione
 
 Capire il ciclo di vita di una funzione è fondamentale per non generare bug strutturali. Questo processo si divide rigorosamente in due fasi temporali distinte:
 
@@ -46,7 +46,7 @@ function mostrareMessaggioIniziale() {
 mostrareMessaggioIniziale(); 
 ```
 
-### 🏛️ 3. Scelte Strutturali: Function Declaration vs Function Expression{#scelte-strutturali}
+## 🏛️ 3. Scelte Strutturali: Function Declaration vs Function Expression
 
 In JavaScript puoi definire un punto di ancoraggio per un sotto-programma in due modi differenti. Sebbene il risultato finale sia l'esecuzione di un blocco di codice, l'interprete gestisce la memoria in modo completamente diverso:
 
@@ -67,13 +67,13 @@ const eseguiScrittura = function() {
 };
 ```
 
-### ⚡4. La vera differenza tecnica: L'Hoisting (Sollevamento){#hoisting}
+## ⚡4. La vera differenza tecnica: L'Hoisting (Sollevamento)
 
 JavaScript gestisce la memoria delle due strutture in modo differente:
 
 - Le **Function Declaration** vengono caricate in memoria prima di eseguire il file. Puoi quindi invocare la funzione anche prima di averla scritta nel codice.
     
-- Le **Function Expression** seguono l'ordine di lettura dall'alto verso il basso. Non puoi usarle prima della riga in cui le hai create.
+- Le **Function Expression** seguono l'ordine di lettura dall'alto verso il basso. Non puoi usarle prima della riga in cui le hai create. (Rispettano le regole di const e let, quindi vengono dichiarate ma sono ancora nella temporal dead zone fino a che l'interprete non arriva alla riga dove vengono assegnate alla variabile)
     
 
 ```JavaScript
@@ -92,7 +92,7 @@ const salutaVariabile = function() {
 ```
 
 
-### 🔒 5. Concetto Avanzato: L'Isolamento dello Scope e i Blocchi di Memoria
+## 🔒 5. Concetto Avanzato: L'Isolamento dello Scope e i Blocchi di Memoria
 
 Un aspetto ingegneristico cruciale quando si definisce una funzione è il concetto di **Isolamento della Memoria**.
 
@@ -111,19 +111,19 @@ simulazioneProcesso();
 console.log(tracciamentoStato); // Stampa: "Globale" (Il file esterno è protetto)
 ```
 
-### ⚠️ 6. Errori comuni{#errori-comuni}
+## ⚠️ 6. Errori comuni
 
 - **Confondere il riferimento con l'attivazione:** Scrivere `let azione = mostrareMessaggioIniziale;` (senza parentesi tonde) non esegue la funzione. Stai semplicemente creando un secondo collegamento alla ricetta. Per ordinare a JavaScript di avviare il blocco della funzione devi tassativamente usare le parentesi tonde `()`.
     
 - **Tentare di accedere alle variabili interne:** Pensare che le variabili nate dentro il blocco `{ }` della funzione siano accessibili nel resto del file è un errore comune. Qualsiasi tentativo di leggere una variabile locale dall'esterno causerà un errore di tipo `ReferenceError`, bloccando l'applicazione.
     
 
-#### 🔗 7. **Risorse e Documentazione**
+## 🔗 7. **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (Functions): [https://developer.mozilla.org/it/docs/Web/JavaScript/Guide/Functions](https://developer.mozilla.org/it/docs/Web/JavaScript/Guide/Functions)
     
 
-#### 🚀 8. **Key Takeaways del Giorno**
+## 🚀 8. **Key Takeaways del Giorno**
 
 - **La definizione è solo una ricetta:** Creare una funzione non significa eseguirla; il codice rimane congelato in memoria finché non viene chiamato.
     
@@ -132,7 +132,7 @@ console.log(tracciamentoStato); // Stampa: "Globale" (Il file esterno è protett
 - **Le graffe sono uno scudo:** Tutto ciò che nasce dentro il blocco di una funzione è isolato e protetto dal mondo esterno.
     
 
-#### 📖 9. **Glossario**
+## 📖 9. **Glossario**
 
 | **Termine Istituzionale** | **Definizione Formale**                                                                               | **"Spiega Brutta"**                                                                           |
 | ------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |

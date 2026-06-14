@@ -3,15 +3,15 @@
 
 ## 📍 Indice Rapido 
 
-1. [Operatori Rest e Spread](#rest-spread)
-2. [L'operatore Rest (...) nelle Funzioni](#rest-parameter)
-3. [L'operatore Spread (...) nelle Invocazioni e Strutture Dati](#spread-operator)
-4. [Errori comuni](#errori-comuni)
-5. [Risorse e Documentazione](#risorse)
-6. [Key Takeaways del Giorno](#takeaways)
-7. [Glossario](#glossario)
+1. [Operatori Rest e Spread](#-1-operatori-rest-e-spread)
+2. [L'operatore Rest (...) nelle Funzioni](#-2-loperatore-rest--nelle-funzioni)
+3. [L'operatore Spread (...) nelle Invocazioni e Strutture Dati](#-3-loperatore-spread--nelle-invocazioni-e-strutture-dati)
+4. [Errori comuni](#️-4-errori-comuni)
+5. [Risorse e Documentazione](#-5-risorse-e-documentazione)
+6. [Key Takeaways del Giorno](#-6-key-takeaways-del-giorno)
+7. [Glossario](#-7-glossario)
 
-## 🔄 1. Operatori Rest e Spread{#rest-spread}
+## 🔄 1. Operatori Rest e Spread
 
 In JavaScript moderno, i tre puntini consecutivi `...` rappresentano uno dei costrutti sintattici più flessibili e utilizzati. Questo operatore cambia comportamento e nome in base alla posizione esatta in cui viene inserito nel codice:
 
@@ -22,7 +22,7 @@ In JavaScript moderno, i tre puntini consecutivi `...` rappresentano uno dei cos
 
 Capire questa dualità è fondamentale per gestire flussi di dati dinamici ed evitare la manipolazione diretta della memoria.
 
-### 📥 2. L'operatore Rest (...) nelle Funzioni{#rest-parameter}
+## 📥 2. L'operatore Rest (...) nelle Funzioni
 
 Il parametro Rest viene utilizzato all'interno della firma (i parametri) di una funzione. Risolve un problema storico di JavaScript: come gestire una funzione quando non sappiamo in anticipo quanti argomenti passerà l'utente.
 
@@ -77,13 +77,13 @@ let spesaAnna = calcolaSpesa(2, 3, 1, 4, 10);
 console.log(`Anna deve pagare: ${spesaAnna}€`); // Output: 20€
 ```
 
-### 📤 3. L'operatore Spread (...) nelle Invocazioni e Strutture Dati{#spread-operator}
+## 📤 3. L'operatore Spread (...) nelle Invocazioni e Strutture Dati
 
 L'operatore Spread fa l'esatto opposto del Rest: prende un contenitore (come un Array o un Oggetto) e lo "scompatta", spalmando i suoi singoli elementi all'interno di un nuovo contesto, come se li avessi scritti a mano uno per uno separati da virgole.
 
 Viene utilizzato principalmente in tre scenari professionali:
 
-#### 1. Passare un Array a funzioni che richiedono argomenti singoli
+### 1. Passare un Array a funzioni che richiedono argomenti singoli
 
 Funzioni native come `Math.max()` o `Math.min()` non accettano un array come input, ma vogliono una lista di numeri singoli separati da virgole. Lo Spread "sbriciola" l'array prima di passarlo.
 
@@ -95,7 +95,7 @@ const temperaturaMassima = Math.max(...temperature); // Equivale a: Math.max(19,
 console.log(temperaturaMassima); // Stampa: 31
 ```
 
-#### 2. Clonare Array o Oggetti (Copia Superficiale / Shallow Copy)
+### 2. Clonare Array o Oggetti (Copia Superficiale / Shallow Copy)
 
 In JavaScript, assegnare un array o un oggetto a una nuova variabile non crea una copia, ma un **collegamento allo stesso indirizzo di memoria**. Se modifichi la nuova variabile, cambierai accidentalmente anche l'originale. Lo Spread `[...]` rompe questo legame creando un nuovo contenitore indipendente.
 
@@ -118,7 +118,7 @@ console.log(originalePulito); // ["pane", "latte"] -> ✅ L'originale è protett
 console.log(copiaSicura);     // ["pane", "latte", "uova"]
 ```
 
-#### 3. Unire (Fondere) strutture dati
+### 3. Unire (Fondere) strutture dati
 
 Lo Spread permette di combinare elementi di più array o proprietà di più oggetti all'interno di un unico elemento finale in modo pulito e dichiarativo.
 
@@ -131,21 +131,37 @@ const configurazioneFinale = { ...configurazioneBase, ...impostazioniUtente };
 console.log(configurazioneFinale); // { tema: "scuro", notificheAttive: false, lingua: "it" }
 ```
 
-### ⚠️ 4. Errori comuni{#errori-comuni}
+## ⚠️ 4. Errori comuni
 
 - **Invertire l'ordine del Rest Parameter:** Scrivere `const impostaDati = (...elementi, idFisso) => {}` bloccherà immediatamente l'applicazione lanciando un `SyntaxError: Rest parameter must be last formal parameter`. Il Rest deve sempre chiudere la fila.
     
 - **Confondere la copia profonda con lo Spread:** Lo Spread esegue una copia superficiale (_Shallow Copy_). Se cloni un array o un oggetto che contiene al suo interno altri oggetti o array annidati, i sotto-elementi strutturati rimarranno comunque collegati per riferimento alla memoria originale.
+Ad esempio:
+```JavaScript
+const originale = [{ nome: "Luca" }, 2];
+const copia = [...originale];
+// Analiziamo cosa sta succedendo qui:
+/*
+copia è un nuovo array diverso da originale
+copia[0] punta allo stesso oggetto di originale[0]
+copia[1] è un numero e quindi è una copia del valore
+
+Quindi:
+
+Se modifichi copia[1], l’originale non cambia.
+Se modifichi una proprietà interna dell’oggetto annidato (copia[0].nome = "Mario"), anche originale[0].nome cambia, perché l’oggetto annidato è lo stesso riferimento.
+*/
+```
     
 
-#### 🔗 5. **Risorse e Documentazione**{#risorse}
+## 🔗 5. **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (Rest parameters): [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
     
 - 📚 MDN Web Docs (Spread syntax): [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
     
 
-#### 🚀 6. **Key Takeaways del Giorno**{#takeaways}
+## 🚀 6. **Key Takeaways del Giorno**
 
 - **Rest raccoglie, Spread distribuisce:** Identifica il contesto visivo: se si trova nei parametri di una funzione sta raggruppando elementi sparsi (`Rest`), se si trova in un'assegnazione o chiamata a funzione sta scompattando un contenitore (`Spread`).
     
@@ -154,7 +170,7 @@ console.log(configurazioneFinale); // { tema: "scuro", notificheAttive: false, l
 - **Flessibilità totale:** Il Rest parameter elimina per sempre il bisogno di prevedere strutture fisse di parametri, lasciando la firma della funzione aperta a qualsiasi volume di input.
     
 
-#### 📖 7. **Glossario**{#glossario}
+## 📖 7. **Glossario**
 
 | **Termine Istituzionale** | **Definizione Formale**                                                                                         | **"Spiega Brutta"**                                                                                                        |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |

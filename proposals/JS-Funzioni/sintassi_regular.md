@@ -3,29 +3,29 @@
 
 ### 📍 Indice Rapido
 
-1. [Sintassi Regular (Parametri, Argomenti e Return)](#sintassi-regular)
+1. [Sintassi Regular (Parametri, Argomenti e Return)](#️-1-sintassi-regular-parametri-argomenti-e-return)
 
-2. [I Dati in Ingresso: Parametri vs Argomenti](#input-dati)
+2. [I Dati in Ingresso: Parametri vs Argomenti](#-2-i-dati-in-ingresso-parametri-vs-argomenti)
 
-3. [I Dati in Uscita: L'istruzione Return](#output-dati)
+3. [I Dati in Uscita: L'istruzione Return](#-3-i-dati-in-uscita-listruzione-return)
 
-4. [Concetto Avanzato 1: Parametri di Default](#parametri-default)
+4. [Concetto Avanzato 1: Parametri di Default](#️-4-concetto-avanzato-1-parametri-di-default)
 
-5. [Concetto Avanzato 2: Passaggio per Valore vs Riferimento](#valore-riferimento)
+5. [Concetto Avanzato 2: Passaggio per Valore vs Riferimento](#-5-concetto-avanzato-2-passaggio-per-valore-vs-passaggio-per-riferimento)
 
-6. [Errori comuni](#errori-comuni)
+6. [Errori comuni](#️-6-errori-comuni)
 
-7. [Risorse e Documentazione](#risorse)
+7. [Risorse e Documentazione](#-7-risorse-e-documentazione)
 
-8. [Key Takeaways del Giorno](#takeaways)
+8. [Key Takeaways del Giorno](#-8-key-takeaways-del-giorno)
 
-9. [Glossario](#glossario)
+9. [Glossario](#-9-glossario)
 
-## ⚙️ 1. Sintassi Regular (Parametri, Argomenti e Return){#sintassi-regular}
+## ⚙️ 1. Sintassi Regular (Parametri, Argomenti e Return)
 
 La sintassi _regular_ (standard) di JavaScript permette di creare un canale di comunicazione bidirezionale con la funzione: possiamo inviare dei dati in ingresso, lavorarli e sputare fuori un risultato finale in uscita.
 
-### 📥 2. I Dati in Ingresso: Parametri vs Argomenti{#input-dati}
+## 📥 2. I Dati in Ingresso: Parametri vs Argomenti
 
 Spesso questi due termini vengono confusi, ma indicano due elementi specifici in momenti temporali diversi:
 
@@ -44,7 +44,7 @@ function generareBadge(nome, ruolo) {
 generareBadge("Alice", "Developer"); 
 ```
 
-### 📤 3. I Dati in Uscita: L'istruzione Return{#output-dati}
+## 📤 3. I Dati in Uscita: L'istruzione Return
 
 Una funzione che si limita a stampare in console con `console.log` è come una fabbrica che produce un oggetto e lo lascia sul pavimento del magazzino. Per poter riutilizzare il risultato di una funzione nel resto del nostro programma, dobbiamo usare la parola chiave `return`.
 
@@ -92,7 +92,7 @@ function approvaAccesso(eta) {
 }
 ```
 
-### ⚙️ 4. Concetto Avanzato 1: Parametri di Default{#parametri-default}
+## ⚙️ 4. Concetto Avanzato 1: Parametri di Default
 
 Cosa succede se definiamo una funzione con due parametri, ma durante l'invocazione passiamo un solo argomento? JavaScript non blocca il programma, ma assegna in automatico il valore `undefined` al parametro mancante, rischiando di generare calcoli errati o `NaN`.
 
@@ -108,7 +108,7 @@ console.log(calcolaPunteggio(50));    // Manca il secondo argomento -> 50 * 1 = 
 console.log(calcolaPunteggio(50, 3)); // Passato il secondo argomento -> 50 * 3 = 150
 ```
 
-### 🧠 5. Concetto Avanzato 2: Passaggio per Valore vs Passaggio per Riferimento{#valore-riferimento}
+## 🧠 5. Concetto Avanzato 2: Passaggio per Valore vs Passaggio per Riferimento
 
 Questo è uno dei comportamenti ingegneristici più importanti di JavaScript e dipende dal tipo di dato che passi come argomento:
 
@@ -141,21 +141,21 @@ console.log(utenteEsterno.nome); // È diventato "Luca"!
 
 **Nota sulla "Purezza":** Modificare un oggetto passato per riferimento crea un **effetto collaterale (side effect)**. La funzione cambia lo stato del programma al di fuori del suo ambito, rendendo il codice difficile da debuggare. In contesti professionali, si preferisce clonare l'oggetto prima di modificarlo per mantenere la funzione "pura" e prevedibile.
 
-### ⚠️ 6. Errori comuni{#errori-comuni}
+## ⚠️ 6. Errori comuni
 
 - **Confondere console.log con return:** Il `console.log` serve solo a noi sviluppatori per vedere un dato sul monitor, ma non restituisce nulla al flusso logico del programma. Se scrivi `let x = miaFunzione();` e dentro la funzione c'è solo un `console.log`, la variabile `x` sarà valorizzata come `undefined`.
     
 - **Invertire l'ordine degli argomenti:** JavaScript associa gli argomenti ai parametri esclusivamente in base all'ordine posizionale in cui li scrivi. Se la funzione è `function iscrizione(nome, email)` e tu la invochi scrivendo `iscrizione("info@email.com", "Matteo")`, il sistema salverà l'indirizzo email dentro il parametro `nome` e viceversa.
     
 
-#### 🔗 7. **Risorse e Documentazione**{#risorse}
+## 🔗 7. **Risorse e Documentazione**
 
 - 📚 MDN Web Docs (Default parameters): [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
     
 - 📚 MDN Web Docs (Return statement): [https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Statements/return](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Statements/return)
     
 
-#### 🚀 8. **Key Takeaways del Giorno**{#takeaways}
+## 🚀 8. **Key Takeaways del Giorno**
 
 - **I parametri sono scatole, gli argomenti il contenuto:** I parametri si definiscono una volta sola nella firma della funzione, gli argomenti cambiano dinamicamente ad ogni invocazione.
     
@@ -165,7 +165,7 @@ console.log(utenteEsterno.nome); // È diventato "Luca"!
 
 **Evita gli effetti collaterali:** Quando passi oggetti o array, sii consapevole che la funzione può modificare l'originale; se vuoi evitare sorprese, lavora sempre su una copia del dato.
 
-#### 📖 9. **Glossario**{#glossario}
+## 📖 9. **Glossario**
 
 | **Termine Istituzionale**     | **Definizione Formale**                                                                                                                          | **"Spiega Brutta"**                                                                                                                   |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |

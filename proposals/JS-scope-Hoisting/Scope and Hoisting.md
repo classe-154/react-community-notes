@@ -234,12 +234,12 @@ mioContatore(); // Output: 2 (Si ricorda il valore grazie allo scope di nascita!
 ## Risorse e Documentazione
 
 • 📚 **MDN Web Docs:** 
-	-[Capire lo Scope in JS](https://developer.mozilla.org/en-US/docs/Glossary/Scope) • Per scoprire perché quella variabile dichiara guerra al tuo codice.
-	-[Il Sollevamento Magico (Hoisting)](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) • Una guida passo passo per non farsi spaventare dal codice che fluttua verso l'alto.
+- [Capire lo Scope in JS](https://developer.mozilla.org/en-US/docs/Glossary/Scope) • Per scoprire perché quella variabile dichiara    guerra al tuo codice.
+- [Il Sollevamento Magico (Hoisting)](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) • Una guida passo passo per non farsi spaventare dal codice che fluttua verso l'alto.
 
 • 🏫 **W3Schools:** 
-	-[Esercizi semplici per comprendere lo Scope](https://www.w3schools.com/js/js_scope.asp)
-	-[Esercizi semplici per comprendere l'Hoisting](https://www.w3schools.com/js/js_hoisting.asp)
+- [Esercizi semplici per comprendere lo Scope](https://www.w3schools.com/js/js_scope.asp)
+- [Esercizi semplici per comprendere l'Hoisting](https://www.w3schools.com/js/js_hoisting.asp)
 
 
 • ⚛️ **Guida Galattica per Sviluppatori:** [Sopravvivere nella Temporal Dead Zone](https://www.geeksforgeeks.org/javascript/temporal-dead-zone-in-javascript/) • Come evitare di essere folgorati dalla TDZ.

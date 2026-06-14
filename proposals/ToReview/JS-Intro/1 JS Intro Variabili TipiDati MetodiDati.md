@@ -7,6 +7,13 @@
 ## 📍 Indice
 
 1. [Introduzione a JavaScript](#1-introduzione-a-javascript)
+    - 1.1 [Cos'è e a cosa serve](#11-cosè-e-a-cosa-serve)
+    - 1.2 [Esempio Base](#12-esempio-base)
+    - 1.3 [Esempio Pratico](#13-esempio-pratico)
+    - 1.4 [Errori Comuni](#14-️-errori-comuni)
+    - 1.5 [Risorse e Documentazione](#15-risorse-e-documentazione)
+    - 1.6 [Key Takeaways del Giorno](#16-key-takeaways-del-giorno)
+    - 1.7 [Glossario](#17-glossario)
 2. [Variabili — `const`, `let`, `var`](#2-variabili--const-let-var)
 3. [Tipi di Dati](#3-tipi-di-dati)
 4. [Metodi dei Dati](#4-metodi-dei-dati)
@@ -15,7 +22,7 @@
 
 ## 1. Introduzione a JavaScript
 
-### Cos’è e a cosa serve
+### 1.1 Cos’è e a cosa serve
 
 Immagina di voler creare un sito web. Con l’**HTML** crei la struttura (testi, titoli, bottoni), con il **CSS** decidi lo stile (colori, font, layout). Ma il sito, finché usi solo questi due strumenti, è statico e fermo.
 
@@ -30,7 +37,7 @@ Esempi concreti:
 
 > **Regola d’oro:** JavaScript esegue le istruzioni **in ordine**, dall’alto verso il basso, una riga alla volta.
 
-### Esempio base
+### 1.2 Esempio base
 
 ```js
 // Creiamo una variabile con un messaggio e la mostriamo all'utente
@@ -41,7 +48,7 @@ alert(messaggio);
 - `let messaggio = ...` → crea una “scatola” chiamata `messaggio` e ci mette dentro il testo
 - `alert(messaggio)` → mostra una finestra pop-up con il contenuto della variabile
 
-### Esempio pratico
+### 1.3 Esempio pratico
 
 ```js
 // Saluto personalizzato per un utente registrato
@@ -53,13 +60,26 @@ console.log(saluto); // → "Benvenuto nel tuo profilo, Luca!"
 
 Il simbolo `+` tra stringhe non fa una somma matematica, ma **concatena** (unisce) i testi. `console.log()` stampa il risultato nella console del browser, strumento utile per i programmatori durante lo sviluppo.
 
-### ⚠️ Errori comuni
+### 1.4 ⚠️ Errori comuni
 
 - **Dimenticare le virgolette per i testi:** `let nome = Luca;` provoca un errore perché JS cerca una variabile chiamata `Luca`, non il testo.
 - **Sbagliare maiuscole/minuscole:** `nomeUtente` e `nomeutente` sono due variabili diverse per JavaScript.
 - **Confondere il nome con il contenuto:** `console.log("nomeUtente")` stampa la parola *nomeUtente*; `console.log(nomeUtente)` stampa il valore contenuto nella variabile.
 
-### Glossario
+### 1.5 Risorse e Documentazione:
+- MDN: [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+### 1.6 Key Takeaways del Giorno
+
+- JavaScript è il linguaggio che rende il sito web dinamico e interattivo, non solo statico.
+- Il codice viene eseguito in ordine, dall’alto verso il basso: una riga alla volta.
+- Usa JavaScript per reagire a eventi dell’utente come click, invio di un form o caricamento di contenuti.
+- `alert()` mostra un messaggio all’utente, mentre `console.log()` è lo strumento per il programmatore.
+- Una stringa si concatena con `+`, ma con JavaScript moderno conviene usare i Template Literals per leggibilità.
+- In JavaScript i nomi sono case sensitive: `nomeUtente` e `nomeutente` sono diversi.
+
+
+### 1.7 Glossario
 
 |Termine            |Definizione                                                     |“Spiegazione Brutta”                                               |
 |-------------------|----------------------------------------------------------------|-------------------------------------------------------------------|
@@ -67,18 +87,19 @@ Il simbolo `+` tra stringhe non fa una somma matematica, ma **concatena** (unisc
 |**`alert()`**      |Metodo che apre una finestra di dialogo modale con un messaggio |Il pop-up fastidioso che blocca tutto finché non clicchi OK        |
 |**`console.log()`**|Funzione che scrive un messaggio nella console del browser      |Il “radiografo” del programmatore per vedere se il codice funziona |
 
+
 -----
 
 ## 2. Variabili — `const`, `let`, `var`
 
-### `let` e `const` (moderno)
+### 2.1 `let` e `const` (moderno)
 
 In JavaScript moderno abbiamo due parole chiave principali per dichiarare variabili:
 
 - **`let`** → usata quando il valore **può cambiare** nel tempo (es. punteggio di un gioco, elementi in un carrello, secondi di un timer)
 - **`const`** → usata quando il valore **non deve mai cambiare** (es. anno di nascita, costanti matematiche, nomi di configurazione)
 
-### Esempio base
+### 2.2 Esempio base
 
 ```js
 // 'let': il punteggio cambierà durante la partita
@@ -92,7 +113,7 @@ const annoNascita = 2000;
 
 > La parola chiave `let` o `const` si scrive **solo la prima volta** (dichiarazione). Per aggiornare il valore di una `let`, si usa solo il nome della variabile.
 
-### Esempio pratico
+### 2.3 Esempio pratico
 
 ```js
 let prezzoIniziale = 50;   // Modificabile: può cambiare con opzioni aggiuntive
@@ -102,7 +123,7 @@ let prezzoFinale = prezzoIniziale - scontoEuro;
 console.log("Prezzo da pagare: " + prezzoFinale + " €"); // → "Prezzo da pagare: 45 €"
 ```
 
-### `var` (vecchio stile)
+### 2.4 `var` (vecchio stile)
 
 Prima di `let` e `const`, esisteva solo `var`. Si trova ancora in codice legacy, ma **non va usato nei progetti moderni** perché ha comportamenti anomali legati allo *scope* (visibilità della variabile nel codice) che possono generare bug difficili da trovare.
 
@@ -116,17 +137,17 @@ var vecchioModo = "Usato fino a ES5"; // ⚠️ Evitare nei progetti moderni
 |`let`  |✅ Sì         |Blocco `{}`|Solo se il valore deve cambiare|
 |`var`  |✅ Sì         |Funzione   |Mai (codice legacy)            |
 
-### 💡 Best Practice
+### 2.5 💡 Best Practice
 
 > **Usa `const` come scelta predefinita.** Passa a `let` solo quando sai con certezza che il valore dovrà essere aggiornato. Questo previene modifiche accidentali e rende il codice più leggibile e sicuro.
 
-### ⚠️ Errori comuni
+### 2.6 ⚠️ Errori comuni
 
 - **Modificare una `const`:** `const nome = "Luca"; nome = "Marco";` → errore bloccante.
 - **Ridichiarare una variabile con `let`:** `let x = 1; let x = 2;` → errore. Per aggiornare, usa solo `x = 2;`.
 - **Creare una `const` vuota:** `const codice;` → errore di sintassi. Le costanti devono essere inizializzate subito.
 
-### Glossario
+### 2.7 Glossario
 
 |Termine             |Definizione                                                    |“Spiegazione Brutta”                                                |
 |--------------------|---------------------------------------------------------------|--------------------------------------------------------------------|

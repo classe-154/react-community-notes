@@ -3,32 +3,32 @@
 
 ## 📍 Indice Rapido 
 
-1. [Arrow Functions (Sintassi a Freccia)](#sintassi-arrow)
+1. [Arrow Functions (Sintassi a Freccia)](#-1-arrow-functions-sintassi-a-freccia)
 
-2. [Regole di Contrazione Sintattica](#regole-contrazione) 
+2. [Regole di Contrazione Sintattica](#-2-regole-di-contrazione-sintattica) 
 
-3. [Il Return Implicito](#return-implicito) 
+3. [Il Return Implicito](#-3-il-return-implicito) 
 
-4. [Integrazione con i Metodi degli Array](#integrazione-array)
+4. [Integrazione con i Metodi degli Array](#️-4-standard-professionale-integrazione-con-i-metodi-degli-array)
 
-5. [Concetto Avanzato: Il Lexical this](#lexical-this) 
+5. [Concetto Avanzato: Il Lexical this](#-5-concetto-avanzato-il-lexical-this-comportamento-del-contesto) 
 
-6. [Errori comuni e l'oggetto arguments](#errori-arrow) 
+6. [Errori comuni e l'oggetto arguments](#️-6-errori-comuni) 
 
-7. [Risorse e Documentazione](#risorse) 
+7. [Risorse e Documentazione](#-7-risorse-e-documentazione) 
 
-8. [Key Takeaways del Giorno](#takeaways) 
+8. [Key Takeaways del Giorno](#-8-key-takeaways-del-giorno) 
 
-9. [Glossario](#glossario)
+9. [Glossario](#-9-glossario)
 
 
-## ⚡ 1. Arrow Functions (Sintassi a Freccia){#sintassi-arrow}
+## ⚡ 1. Arrow Functions (Sintassi a Freccia)
 
 Con l'evoluzione del linguaggio (a partire dallo standard ES6), JavaScript ha introdotto un modo rivoluzionario e compatto per definire le espressioni di funzione: le **Arrow Functions** (funzioni a freccia).
 
 Non si tratta di una semplice scelta estetica per scrivere meno codice. Le Arrow Functions cambiano l'impatto visivo degli script, migliorano la leggibilità dei flussi logici (specialmente nelle operazioni di manipolazione dati) e modificano radicalmente il modo in cui la funzione gestisce il suo contesto interno.
 
-### 📐 2. Regole di Contrazione Sintattica{#regole-contrazione}
+## 📐 2. Regole di Contrazione Sintattica
 
 La sintassi a freccia elimina la parola chiave `function` e la sostituisce con il simbolo `=>` posizionato tra i parametri e il blocco delle istruzioni.
 
@@ -59,7 +59,7 @@ const formatUserCard = (username, role) => {
 };
 ```
 
-### 🏹 3. Il Return Implicito{#return-implicito}
+## 🏹 3. Il Return Implicito
 
 La caratteristica ingegneristica più potente delle Arrow Functions è il **Return Implicito**.
 
@@ -77,7 +77,7 @@ const multiplyArrow = (a, b) => a * b;
 console.log(multiplyArrow(5, 6)); // Stampa: 30
 ```
 
-### 🏎️ 4. Standard Professionale: Integrazione con i metodi degli Array{#integrazione-array}
+## 🏎️ 4. Standard Professionale: Integrazione con i metodi degli Array
 
 Nello sviluppo standard, le Arrow Functions sono l'alleato fondamentale dei metodi di iterazione degli Array (come `.map()`, `.filter()`, `.forEach()`). La combinazione di questi strumenti permette di elaborare intere collezioni di dati in pochissime righe di codice pulito e dichiarativo.
 
@@ -93,7 +93,7 @@ const expensivePrices = prices.filter(price => price > 25);
 console.log(expensivePrices); // [30, 40]
 ```
 
-### 🧠 5. Concetto Avanzato: Il "Lexical this" (Comportamento del Contesto){#lexical-this}
+## 🧠 5. Concetto Avanzato: Il "Lexical this" (Comportamento del Contesto)
 
 Nelle funzioni regolari (tradizionali), la parola chiave `this` cambia valore in base a _come_ e _da chi_ la funzione viene invocata, rappresentando storicamente una delle maggiori fonti di bug in JavaScript.
 
@@ -106,7 +106,7 @@ Immagina il `this` come il riferimento alla "casa" (l'oggetto) dove risiedi:
 - **Arrow Function:** È una funzione "senza pareti". Quando ha bisogno di sapere chi è il proprietario, guarda semplicemente fuori dalla stanza e usa il riferimento di chi la ospita.
     
 
-#### 🛠️ Esempio Pratico: Il confronto
+## 🛠️ Esempio Pratico: Il confronto
 
 ```JavaScript
 const persona = {
@@ -116,7 +116,7 @@ const persona = {
     setTimeout(function() {
       console.log("Ciao, sono " + this.nome); 
     }, 1000); // Output: "Ciao, sono undefined" (Ha perso il riferimento a 'persona')
-
+    // Piccolo inframezzo, this in questo caso è un riferimento alla setTimeout, infatti se lasciamo console.log(this) vedremo apparire in console l'asyncId della setTimeout (L'id restituito quando chiamiamo la setTimeout per poterla poi in seguito cancellare)
     // 2. ARROW FUNCTION (La funzione senza pareti)
     setTimeout(() => {
       console.log("Ciao, sono " + this.nome);
@@ -127,13 +127,13 @@ const persona = {
 persona.salutaDopoUnSecondo();
 ```
 
-### ⚠️ 6. Errori comuni{#errori-arrow}
+## ⚠️ 6. Errori comuni
 
 - **Dimenticare il return esplicito se si usano le parentesi graffe:** Se riapri le parentesi graffe `{ }` per scrivere una funzione su più righe, il return implicito decade immediatamente. Scrivere `const sum = (a, b) => { a + b };` farà sì che la funzione restituisca sempre `undefined`. Se ci sono le graffe, la parola chiave `return` è obbligatoria.
     
 - **Tentare di usarle come Costruttori:** Le Arrow Function non hanno un metodo interno `[[Construct]]`. Di conseguenza, non possono essere usate con la parola chiave `new` per istanziare oggetti e non possiedono una proprietà `prototype`.
     
-#### ⚠️ **Il caso limite dell'oggetto "arguments"** 
+## ⚠️ **Il caso limite dell'oggetto "arguments"** 
 Nelle funzioni tradizionali esiste un oggetto speciale nativo chiamato `arguments`, che si comporta come un finto array e raccoglie in automatico tutti i dati passati in ingresso all'invocazione, anche se non hai impostato parametri espliciti. Nelle Arrow Functions questo oggetto **non esiste** (è del tutto assente dal loro contesto). Se provi a usarlo, il programma si rompe.
 
 Ecco la prova pratica di questa differenza:
@@ -169,19 +169,19 @@ mostraDatiArrow("Mela", "Banana", "Arancia");
 // (Oppure, se usato nel browser, potrebbe leggere dati sporchi del file globale)
 ```
 
-### 🔍 Spiegazione dell'esempio:
+## 🔍 Spiegazione dell'esempio:
 
 Nello scenario 1, la funzione classica apre il suo "sacco" nativo `arguments` e vi trova dentro tutti e tre i frutti ordinati per indice (`[0]`, `[1]`, ecc.), comportandosi quasi come un array.
 
 Nello scenario 2, la Arrow Function non ha quel sacco automatico: quando le dici di stampare `arguments`, JavaScript non sa cosa sia all'interno di quel contesto e il programma va in errore.
 
 
-#### 🔗 7. **Risorse e Documentazione**{#risorse}
+## 🔗 7. **Risorse e Documentazione**
 
 - [📚 MDN Web Docs (Arrow Functions expressions)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
     
 
-#### 🚀 8. **Key Takeaways del Giorno**{#takeaways}
+## 🚀 8. **Key Takeaways del Giorno**
 
 - **Codice snello e leggibile:** Le Arrow Function eliminano la verbosità della parola chiave `function`, riducendo al minimo l'impatto visivo del codice.
     
@@ -190,7 +190,7 @@ Nello scenario 2, la Arrow Function non ha quel sacco automatico: quando le dici
 - **Inseparabili dagli Array:** Usale sempre all'interno di metodi come `.map()` e `.filter()` per scrivere catene di elaborazione dati moderne e lineari.
     
 
-#### 📖 9. **Glossario**{#glossario}
+## 📖 9. **Glossario**
 
 | **Termine Istituzionale** | **Definizione Formale** | **"SpiegaBrutta"** |
 |--- | --- | --- | 
