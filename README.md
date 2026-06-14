@@ -8,7 +8,7 @@ Landing page, Indice Mastro e Team Showcase
         - [Indici e Cicli](./proposals/JS-Cicli-e-Array/indici_e_cicli.md)
         - [Metodi degli Array](./proposals/JS-Cicli-e-Array/metodi_degli_array.md)
         - [Metodi Avanzati degli Array](./proposals/JS-Cicli-e-Array/metodi_avanzati_degli_array.md)
-    - [Funzioni]
+    - [Funzioni](./proposals/JS-Funzioni/)
         - [Definizione di Funzione](./proposals/JS-Funzioni/definizione_di_funzione.md)
         - [Sintassi Regular](./proposals/JS-Funzioni/sintassi_regular.md)
         - [Arrow Function](./proposals/JS-Funzioni/arrow_function.md)
