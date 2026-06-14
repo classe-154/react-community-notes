@@ -113,7 +113,7 @@ console.log(tracciamentoStato); // Stampa: "Globale" (Il file esterno è protett
 
 ## ⚠️ 6. Errori comuni
 
-- **Confondere il riferimento con l'attivazione:** Scrivere `let azione = mostrareMessaggioIniziale;` (senza parentesi tonde) non esegue la funzione. Stai semplicemente creando un secondo collegamento alla ricetta. Per ordinare a JavaScript di avviare il blocco della funzione devi tassativamente usare le parentesi tonde `()`.
+- **Confondere il riferimento con l'attivazione:** Scrivere `let simulazione = simulazioneProcesso;` (senza parentesi tonde) non esegue la funzione. Stai semplicemente creando un secondo collegamento alla ricetta. Per ordinare a JavaScript di avviare il blocco della funzione devi tassativamente usare le parentesi tonde `()`.
     
 - **Tentare di accedere alle variabili interne:** Pensare che le variabili nate dentro il blocco `{ }` della funzione siano accessibili nel resto del file è un errore comune. Qualsiasi tentativo di leggere una variabile locale dall'esterno causerà un errore di tipo `ReferenceError`, bloccando l'applicazione.
     
