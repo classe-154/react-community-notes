@@ -4,15 +4,20 @@
 **📍 Indice Rapido**
 
 1. [I Metodi degli Array (Base e Avanzati)](#️-1-i-metodi-degli-array-base-e-avanzati)
+
 2. [I metodi base di inserimento, rimozione e taglio](#-2-i-metodi-base-di-inserimento-rimozione-e-taglio)
+
 3. [Metodi di Ricerca e Conversione rapida](#-3-metodi-di-ricerca-e-conversione-rapida)
-4. [I metodi avanzati di iterazione (Funzionali)](#-4-i-metodi-avanzati-di-iterazione-funzionali)
-5. [Esempio pratico: La concatenazione (Chaining)](#-5-esempio-pratico-la-concatenazione-chaining)
-6. [Errori comuni](#️-6-errori-comuni)
-7. [Approfondimento leggero: Modificare l'array originale o crearne uno nuovo? (Mutabilità)](#-7-approfondimento-leggero-modificare-larray-originale-o-crearne-uno-nuovo-mutabilità)
-8. [Risorse e Documentazione](#8-risorse-e-documentazione)
-9. [Key Takeaways del Giorno](#9-key-takeaways-del-giorno)
-10. [Glossario](#10-glossario)
+
+4. [Errori comuni](#️-4-errori-comuni)
+
+5. [Approfondimento leggero: Modificare l'array originale o crearne uno nuovo? (Mutabilità)](#-5-approfondimento-leggero-modificare-larray-originale-o-crearne-uno-nuovo-mutabilità)
+
+6. [Risorse e Documentazione](#6-risorse-e-documentazione)
+
+7. [Key Takeaways del Giorno](#7-key-takeaways-del-giorno)
+
+8. [Glossario](#8-glossario)
 
 ## 🛠️ 1. **I Metodi degli Array (Base e Avanzati)**
 
@@ -24,29 +29,52 @@ I comandi più utilizzati per modificare la struttura dell'array operano sulle e
 
 - `.`**`push(elemento1, elemento2, ...)`**: Aggiunge uno o più elementi in fondo e restituisce la nuova lunghezza dell'array. **Questo metodo cambia l'array originale.**   
 - `.`**`pop()`**: Rimuove l'ultimo elemento in fondo e lo restituisce. **Questo metodo cambia l'array originale.**
-    
+
+*Esempio* `push()` e `pop()` (Lavorare in fondo):
+```javascript
+const lista = ["A", "B"];
+lista.push("C", "D"); // lista ora è: ["A", "B", "C", "D"]
+const ultimo = lista.pop(); // ultimo è "D", lista ora è: ["A", "B", "C"]
+```
+
 - `.`**`unshift(elemento1, elemento2, ...)`**: Inserisce uno o più elementi all'inizio (fa scalare gli altri in avanti) e restituisce la nuova lunghezza dell'array. **Questo metodo cambia l'array originale.**
     
 - `.`**`shift()`**: Rimuove il primo elemento all'inizio (fa scalare gli altri indietro) e lo restituisce. **Questo metodo cambia l'array originale.**
     
-- `.`**`splice(indicePartenza, quantiEliminare, nuovoElemento1, ...)`**: Questo metodo è un vero "coltellino svizzero". Serve a rimuovere o sostituire elementi in qualsiasi punto dell'array modificando quello originale. **Questo metodo cambia l'array originale.**
-    
-- `.`**`slice(inizio, fine)`**: Copia una parte dell'array e la inserisce in un nuovo array, senza modificare quello originale. **Questo metodo non cambia l'array originale.**
-    
+*Esempio* `unshift()` e `shift()` (Lavorare all'inizio):
+```javascript
+const lista = ["B", "C"];
+lista.unshift("A"); // lista ora è: ["A", "B", "C"]
+const primo = lista.shift(); // primo è "A", lista ora è: ["B", "C"]
+```
 
-```js
-let listaSpesa = ["Pane", "Latte", "Caffè", "Uova"];
+### ✂️ Modifiche arbitrarie: `splice()` e `slice()`
 
-// 1. Uso di Splice: eliminiamo 1 elemento a partire dall'indice 1 ("Latte")
-listaSpesa.splice(1, 1); // Stato array: ["Pane", "Caffè", "Uova"]
+- `splice()`: Chirurgia mirata (Modifica l'originale)
 
-// 2. Uso di Splice per sostituire: all'indice 1 ("Caffè") eliminiamo 1 elemento e mettiamo "Tè"
-listaSpesa.splice(1, 1, "Tè");
-// Stato array: ["Pane", "Tè", "Uova"]
+```JavaScript
+let colori = ["Rosso", "Verde", "Blu", "Giallo"];
 
-// 3. Uso di Slice: copiamo gli elementi dall'indice 1 fino all'indice 3 (escluso)
-let sottoLista = listaSpesa.slice(1, 3);
-// sottoLista contiene: ["Tè", "Uova"] -> listaSpesa rimane identica
+// Rimuovere 2 elementi partendo dall'indice 1
+colori.splice(1, 2); // colori: ["Rosso", "Giallo"]
+
+// Inserire elementi all'indice 1 senza rimuovere nulla
+colori.splice(1, 0, "Viola", "Arancio"); // colori: ["Rosso", "Viola", "Arancio", "Giallo"]
+
+// Sostituire 1 elemento all'indice 0 con "Nero"
+colori.splice(0, 1, "Nero"); // colori: ["Nero", "Viola", "Arancio", "Giallo"]
+```
+
+-  `slice()`: Estrazione sicura (Crea una copia)
+
+```JavaScript
+const numeri = [10, 20, 30, 40, 50];
+
+// Prende gli elementi dall'indice 1 fino al 4 (escluso)
+const parte = numeri.slice(1, 4); // parte è: [20, 30, 40]
+
+// L'array originale non viene toccato
+console.log(numeri); // [10, 20, 30, 40, 50]
 ```
 
 ## 🔍 3. **Metodi di Ricerca e Conversione rapida**
@@ -69,49 +97,7 @@ console.log(spesa.indexOf("Pasta"));  // Output: -1 (non esiste!)
 
 console.log(spesa.join(" - "));      // Output: "Pane - Latte - Caffè"
 ```
-
-## 🧠 4. **I metodi avanzati di iterazione (Funzionali)**
-
-Nello sviluppo moderno, evitiamo il ciclo `for` classico per trasformare o filtrare i dati. Usiamo invece i **metodi funzionali**, che accettano una funzione freccia (_arrow function_) per elaborare ogni elemento.
-
-> **Nota:** Di seguito un riassunto strategico. Per la guida tecnica completa, la visualizzazione mentale di ogni metodo e gli errori comuni, consulta il **Modulo: Metodi avanzati degli array**.
-
-| **Metodo**    | **Obiettivo**                | **Restituisce**   | **"Spiega Brutta"**                             |
-| ------------- | ---------------------------- | ----------------- | ----------------------------------------------- |
-| **`forEach`** | Eseguire un'azione           | `undefined`       | L'operaio: fa qualcosa su ogni riga.            |
-| **`map`**     | Trasformare i dati           | Nuovo Array       | Il trasformatore: cambia forma a tutti.         |
-| **`filter`**  | Selezionare dati             | Nuovo Array       | Il selezionatore: tiene solo chi passa il test. |
-| **`find`**    | Estrarre un singolo elemento | Singolo elemento  | Il cercatore: trova il primo utile.             |
-| **`sort`**    | Ordinare gli elementi        | Array modificato  | L'arbitro: mette tutti in fila.                 |
-| **`reduce`**  | Aggregare dati               | Un singolo valore | Il raccoglitore: riassume tutto.                |
-
-## 🛒 5. **Esempio pratico: La concatenazione (Chaining)**
-
-Oltre all'uso singolo, puoi **concatenare** questi metodi per creare flussi di lavoro potenti. Ecco come trasformare un array di prezzi grezzi in un elenco di prodotti "Premium" pronti per la vendita:
-
-```JavaScript
-const prezziBase = [10, 50, 5, 25];
-
-// Un unico flusso logico: Trasforma -> Filtra -> Ordina
-const prodottiPremium = prezziBase
-  .map((prezzo) => prezzo * 1.22)       // 1. Aggiungi IVA
-  .filter((prezzo) => prezzo > 15)      // 2. Tieni solo > 15€
-  .sort((a, b) => b - a);               // 3. Ordina dal più caro
-
-console.log("Risultato finale:", prodottiPremium);
-```
-
-🔍 **Spiegazione dell'esempio:**
-
-- **Il `map` (Fase di Trasformazione):** Prende l'array `prezziBase`, applica l'IVA a ogni elemento e genera un _nuovo_ array (`prezziConIva`) con i valori già calcolati.
-    
-- **Il `filter` (Fase di Selezione):** Riceve l'array trasformato e applica un controllo logico (`> 15`). Gli elementi che non superano il test (come il vecchio 10 che è diventato 12.2) vengono scartati.
-    
-- **Il `sort` (Fase di Ordinamento):** Prende i risultati rimasti e li organizza in ordine decrescente (`b - a`).
-
-⚠️ **Nota importante sulla catena (Chaining):** Quando concateni i metodi, ricorda che **ogni passaggio deve restituire un array** per poter passare il testimone al metodo successivo. Se inserisci un metodo che restituisce un singolo valore (come `.find()` o `.reduce()`) o null (come `.forEach()`), la catena si interrompe e il codice genererà un errore. Assicurati che il "carburante" della tua catena sia sempre un array!
-
-## ⚠️ 6. **Errori comuni**
+## ⚠️ 4. **Errori comuni**
 
 - **Confondere .splice() con .slice():** I loro nomi si somigliano, ma fanno cose diverse. `.splice()` (con la 'p') modifica l'array originale, distruggendo o cambiando i suoi dati sul posto. `.slice()` (senza 'p') è sicuro, non tocca l'array originale e si limita a fare una copia di una porzione.
     
@@ -122,7 +108,7 @@ console.log("Risultato finale:", prodottiPremium);
 - **Pensare che .forEach() restituisca qualcosa:** Scrivere `let risultato = array.forEach(...)` salverà sempre `undefined` dentro la variabile. Il `forEach` serve solo ad eseguire azioni (come i `console.log`), non a generare nuovi dati o modificare l'array per l'assegnazione.
     
 
-## 📌 7. **Approfondimento leggero: Modificare l'array originale o crearne uno nuovo? (Mutabilità)**
+## 📌 5. **Approfondimento leggero: Modificare l'array originale o crearne uno nuovo? (Mutabilità)**
 
 In JavaScript avanzato è fondamentale distinguere tra metodi mutativi (che modificano i dati di partenza) e immutativi (che lasciano intatto l'array iniziale e ne creano uno nuovo).
 
@@ -133,7 +119,7 @@ In JavaScript avanzato è fondamentale distinguere tra metodi mutativi (che modi
 
 Nello sviluppo moderno (specialmente quando si utilizzano librerie come React) si preferisce quasi sempre l'approccio immutativo per evitare che una funzione modifichi per errore dati usati in altre parti del programma.
 
-## 8. **Risorse e Documentazione**
+## 6. **Risorse e Documentazione**
 
 - 📚 [MDN Web Docs (Array Map)](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
     
@@ -142,7 +128,7 @@ Nello sviluppo moderno (specialmente quando si utilizzano librerie come React) s
 - 🏫 [W3Schools (JS Array Iteration)](https://www.w3schools.com/js/js_array_iteration.asp)
     
 
-## 9. **Key Takeaways del Giorno**
+## 7. **Key Takeaways del Giorno**
 
 - **Splice taglia, Slice copia:** Usa `.splice()` se devi asportare o iniettare elementi modificando la lista originale. Usa `.slice()` per fare una foto parziale senza fare danni.
     
@@ -151,7 +137,7 @@ Nello sviluppo moderno (specialmente quando si utilizzano librerie come React) s
 - **Filter seleziona:** `.filter()` riduce le dimensioni della lista trattenendo solo gli elementi che superano il tuo test logico.
     
 
-## 10. **Glossario**
+## 8. **Glossario**
 
 | **Termine Istituzionale**   | **Definizione Formale**                                                                                                       | **"Spiega Brutta"**                                                                                                                        |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
