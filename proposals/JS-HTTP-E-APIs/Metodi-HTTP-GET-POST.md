@@ -100,7 +100,7 @@ fetch('https://api.esempio.it/v1/prodotti', {
         
 - **L'obbligo del Content-Type:** Se ometti l'header `'Content-Type': 'application/json'` in una richiesta POST, il server riceverà solo del testo grezzo e non capirà come convertirlo in un oggetto del database, ignorando la richiesta o restituendo un errore 400 Bad Request.
     
-- * **Sicurezza e Idempotenza (GET vs POST):** La `GET` è un metodo *sicuro* perché si limita a leggere i dati senza modificare lo stato del server. Al contrario, la `POST` non è *idempotente*.: ogni singola esecuzione genera un nuovo effetto collaterale (es. l'inserimento di una nuova riga nel database).
+- * **Sicurezza e Idempotenza (GET vs POST):** La `GET` è un metodo *sicuro* perché si limita a leggere i dati senza modificare lo stato del server. Al contrario, la `POST` non è *idempotente*.: ogni singola esecuzione genera un nuovo effetto collaterale (es. l'inserimento di una nuova riga nel database). NOTA BENE: Le richieste HTML non sono altro che richieste, come si capisce dal nome. Cosa fare di queste richieste è sempre prerogativa del backend, sarà il server di backend a decidere come gestire richieste multiple consecutive, o addirittura se fare qualcosa con i dati ricevuti dalla `POST`
 
 ***Approfondimento sul concetto di Idempotenza**
 In informatica, un'operazione si definisce **idempotente** se eseguirla una sola volta o cento volte di fila produce esattamente lo stesso identico risultato sul server. 
